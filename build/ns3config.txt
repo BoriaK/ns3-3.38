@@ -8,7 +8,7 @@ BRITE Integration             : OFF (missing dependency)
 DES Metrics event collection  : OFF (not requested)
 DPDK NetDevice                : OFF (not requested)
 Emulation FdNetDevice         : ON
-Examples                      : ON
+Examples                      : OFF (not requested)
 File descriptor NetDevice     : ON
 GNU Scientific Library (GSL)  : OFF (missing dependency)
 GtkConfigStore                : OFF (missing dependency)

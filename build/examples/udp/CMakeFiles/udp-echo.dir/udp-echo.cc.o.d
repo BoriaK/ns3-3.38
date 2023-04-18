@@ -198,31 +198,16 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/bulk-send-application.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/bulk-send-application.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-loss-counter.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-sink.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-sink.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/inet-socket-address.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet-socket-address.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/inet6-socket-address.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet6-socket-address.h \
- /usr/include/c++/9/unordered_map \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/seq-ts-echo-header.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-echo-header.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-client.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-client.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-header.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-header.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-server.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-variables.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-variables.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-echo-client.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-client.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-echo-server.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-server.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-trace-client.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-trace-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/custom_onoff-application.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/custom_onoff-application.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/customTag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/uinteger.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tutorial-app.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/tutorial-app.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/core-module.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/int64x64-128.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64-128.h \
@@ -303,6 +288,7 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/fd-reader.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/environment-variable.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/environment-variable.h \
+ /usr/include/c++/9/unordered_map \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/global-value.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/global-value.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/hash-fnv.h \
@@ -405,8 +391,6 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-name.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/type-traits.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-traits.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/uinteger.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/unused.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/unused.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/valgrind.h \
@@ -440,15 +424,15 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/matrix-array.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/matrix-array.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/val-array.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-module.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-helper.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/helper/csma-helper.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-channel.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/csma-channel.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/channel.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/network-module.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/delay-jitter-estimation.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/delay-jitter-estimation.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/net-device-container.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/net-device-container.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket-helper.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/packet-socket-helper.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/simple-net-device-helper.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/simple-net-device-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/queue.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/queue-fwd.h \
@@ -457,6 +441,11 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/queue-size.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/simple-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac48-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/channel.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/trace-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/trace-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/output-stream-wrapper.h \
@@ -464,10 +453,122 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/pcap-file-wrapper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/backoff.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/backoff.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-net-device.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/csma-net-device.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/byte-tag-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/byte-tag-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/channel-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/channel-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/chunk.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/chunk.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/nix-vector.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/nix-vector.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/node-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-metadata.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-metadata.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-tag-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-tag-list.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/socket-factory.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket-factory.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/socket.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/inet-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/inet6-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet6-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/trailer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/trailer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/header-serialization-test.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/test/header-serialization-test.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/address-utils.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/address-utils.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac16-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac64-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/bit-deserializer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/bit-deserializer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/bit-serializer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/bit-serializer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/crc32.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/crc32.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/drop-tail-queue.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/drop-tail-queue.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/dynamic-queue-limits.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/dynamic-queue-limits.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/9/include/syslimits.h \
+ /usr/include/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/error-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/error-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/error-model.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/error-model.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ethernet-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ethernet-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ethernet-trailer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ethernet-trailer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/flow-id-tag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/flow-id-tag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/generic-phy.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/generic-phy.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/llc-snap-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/llc-snap-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/lollipop-counter.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/lollipop-counter.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/mac16-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac16-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/mac64-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac64-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/mac8-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac8-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/net-device-queue-interface.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/net-device-queue-interface.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-burst.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-burst.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-data-calculators.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-data-calculators.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/basic-data-calculators.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/stats/model/basic-data-calculators.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/stats/model/data-calculator.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/stats/model/data-output-interface.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/data-calculator.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/stats/model/data-calculator.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-probe.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-probe.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-address.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket-factory.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-factory.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-socket.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packetbb.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packetbb.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/pcap-file.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/pcap-test.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-test.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/queue-limits.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-limits.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/radiotap-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/radiotap-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/sequence-number.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/sequence-number.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/simple-net-device.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-net-device.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/sll-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/sll-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/timestamp-tag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/timestamp-tag.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/internet-module.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/internet-stack-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/helper/internet-stack-helper.h \
@@ -478,10 +579,6 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-interface-address.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-route.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/socket.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tag.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv6-interface-container.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/helper/ipv6-interface-container.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv6.h \
@@ -554,8 +651,6 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-interface.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv6-interface.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv6-interface.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/node-list.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node-list.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/rip-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/helper/rip-helper.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ripng-helper.h \
@@ -608,8 +703,6 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-queue-disc-item.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv4-raw-socket-factory.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-raw-socket-factory.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/socket-factory.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket-factory.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv4-raw-socket-impl.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-raw-socket-impl.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/ipv4-route.h \
@@ -669,8 +762,6 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-rate-ops.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tcp-tx-item.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-tx-item.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/sequence-number.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/sequence-number.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-socket-state.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-rx-buffer.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tcp-header.h \
@@ -747,4 +838,33 @@ examples/udp/CMakeFiles/udp-echo.dir/udp-echo.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-socket-factory.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/udp-socket-factory.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-socket.h \
- /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/udp-socket.h
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/udp-socket.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-loss-counter.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-sink.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-sink.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/seq-ts-echo-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-echo-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-header.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/three-gpp-http-variables.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-variables.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-echo-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-echo-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-server.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/udp-trace-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-trace-client.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-module.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-helper.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/helper/csma-helper.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/csma-channel.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/backoff.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/backoff.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/csma-net-device.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/csma/model/csma-net-device.h

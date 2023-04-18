@@ -26,6 +26,9 @@ set(source_files
     model/tag-buffer.cc
     model/tag.cc
     model/trailer.cc
+    # adde by me #######
+    model/customTag.cc
+    ######################
     utils/address-utils.cc
     utils/bit-deserializer.cc
     utils/bit-serializer.cc
@@ -99,6 +102,9 @@ set(header_files
     model/tag-buffer.h
     model/tag.h
     model/trailer.h
+    ### adde by me #####
+    model/customTag.h
+    ####################
     test/header-serialization-test.h
     utils/address-utils.h
     utils/bit-deserializer.h

@@ -101,6 +101,7 @@ libnetwork_EXTERNAL_OBJECTS = \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/model/tag-buffer.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/model/tag.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/model/trailer.cc.o" \
+"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/utils/address-utils.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/utils/bit-deserializer.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/CMakeFiles/libnetwork-obj.dir/utils/bit-serializer.cc.o" \
@@ -172,6 +173,7 @@ lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/model/
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/model/tag-buffer.cc.o
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/model/tag.cc.o
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/model/trailer.cc.o
+lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.o
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/utils/address-utils.cc.o
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/utils/bit-deserializer.cc.o
 lib/libns3.38-network-debug.so: src/network/CMakeFiles/libnetwork-obj.dir/utils/bit-serializer.cc.o

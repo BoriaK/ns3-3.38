@@ -76,6 +76,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/application-packet-probe.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/bulk-send-application.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/onoff-application.h"
+    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/custom_onoff-application.h"
+    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/tutorial-app.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-sink.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-echo-header.h"
@@ -92,11 +94,5 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-trace-client.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/applications-module.h"
     )
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/examples/cmake_install.cmake")
-
 endif()
 

@@ -12,8 +12,6 @@ CXX_FLAGS = -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=depr
 
 # PCH options: src/core/CMakeFiles/libcore-obj.dir/model/unix-fd-reader.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
-# PCH options: src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
-
 # PCH options: src/core/CMakeFiles/libcore-obj.dir/helper/csv-reader.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
 # PCH options: src/core/CMakeFiles/libcore-obj.dir/helper/random-variable-stream-helper.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx

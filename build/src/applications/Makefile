@@ -382,6 +382,30 @@ model/bulk-send-application.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/bulk-send-application.cc.s
 .PHONY : model/bulk-send-application.cc.s
 
+model/custom_onoff-application.o: model/custom_onoff-application.cc.o
+.PHONY : model/custom_onoff-application.o
+
+# target to build an object file
+model/custom_onoff-application.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.o
+.PHONY : model/custom_onoff-application.cc.o
+
+model/custom_onoff-application.i: model/custom_onoff-application.cc.i
+.PHONY : model/custom_onoff-application.i
+
+# target to preprocess a source file
+model/custom_onoff-application.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.i
+.PHONY : model/custom_onoff-application.cc.i
+
+model/custom_onoff-application.s: model/custom_onoff-application.cc.s
+.PHONY : model/custom_onoff-application.s
+
+# target to generate assembly for a file
+model/custom_onoff-application.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.s
+.PHONY : model/custom_onoff-application.cc.s
+
 model/onoff-application.o: model/onoff-application.cc.o
 .PHONY : model/onoff-application.o
 
@@ -622,6 +646,30 @@ model/three-gpp-http-variables.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/three-gpp-http-variables.cc.s
 .PHONY : model/three-gpp-http-variables.cc.s
 
+model/tutorial-app.o: model/tutorial-app.cc.o
+.PHONY : model/tutorial-app.o
+
+# target to build an object file
+model/tutorial-app.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.o
+.PHONY : model/tutorial-app.cc.o
+
+model/tutorial-app.i: model/tutorial-app.cc.i
+.PHONY : model/tutorial-app.i
+
+# target to preprocess a source file
+model/tutorial-app.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.i
+.PHONY : model/tutorial-app.cc.i
+
+model/tutorial-app.s: model/tutorial-app.cc.s
+.PHONY : model/tutorial-app.s
+
+# target to generate assembly for a file
+model/tutorial-app.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.s
+.PHONY : model/tutorial-app.cc.s
+
 model/udp-client.o: model/udp-client.cc.o
 .PHONY : model/udp-client.o
 
@@ -780,6 +828,9 @@ help:
 	@echo "... model/bulk-send-application.o"
 	@echo "... model/bulk-send-application.i"
 	@echo "... model/bulk-send-application.s"
+	@echo "... model/custom_onoff-application.o"
+	@echo "... model/custom_onoff-application.i"
+	@echo "... model/custom_onoff-application.s"
 	@echo "... model/onoff-application.o"
 	@echo "... model/onoff-application.i"
 	@echo "... model/onoff-application.s"
@@ -810,6 +861,9 @@ help:
 	@echo "... model/three-gpp-http-variables.o"
 	@echo "... model/three-gpp-http-variables.i"
 	@echo "... model/three-gpp-http-variables.s"
+	@echo "... model/tutorial-app.o"
+	@echo "... model/tutorial-app.i"
+	@echo "... model/tutorial-app.s"
 	@echo "... model/udp-client.o"
 	@echo "... model/udp-client.i"
 	@echo "... model/udp-client.s"

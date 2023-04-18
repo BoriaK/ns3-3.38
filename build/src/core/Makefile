@@ -646,30 +646,6 @@ model/event-impl.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/libcore-obj.dir/build.make src/core/CMakeFiles/libcore-obj.dir/model/event-impl.cc.s
 .PHONY : model/event-impl.cc.s
 
-model/example-as-test.o: model/example-as-test.cc.o
-.PHONY : model/example-as-test.o
-
-# target to build an object file
-model/example-as-test.cc.o:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/libcore-obj.dir/build.make src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.o
-.PHONY : model/example-as-test.cc.o
-
-model/example-as-test.i: model/example-as-test.cc.i
-.PHONY : model/example-as-test.i
-
-# target to preprocess a source file
-model/example-as-test.cc.i:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/libcore-obj.dir/build.make src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.i
-.PHONY : model/example-as-test.cc.i
-
-model/example-as-test.s: model/example-as-test.cc.s
-.PHONY : model/example-as-test.s
-
-# target to generate assembly for a file
-model/example-as-test.cc.s:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/core/CMakeFiles/libcore-obj.dir/build.make src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.s
-.PHONY : model/example-as-test.cc.s
-
 model/fatal-impl.o: model/fatal-impl.cc.o
 .PHONY : model/fatal-impl.o
 
@@ -1917,9 +1893,6 @@ help:
 	@echo "... model/event-impl.o"
 	@echo "... model/event-impl.i"
 	@echo "... model/event-impl.s"
-	@echo "... model/example-as-test.o"
-	@echo "... model/example-as-test.i"
-	@echo "... model/example-as-test.s"
 	@echo "... model/fatal-impl.o"
 	@echo "... model/fatal-impl.i"
 	@echo "... model/fatal-impl.s"

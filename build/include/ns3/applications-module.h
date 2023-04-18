@@ -12,6 +12,8 @@
     #include <ns3/application-packet-probe.h>
     #include <ns3/bulk-send-application.h>
     #include <ns3/onoff-application.h>
+    #include <ns3/custom_onoff-application.h>
+    #include <ns3/tutorial-app.h>
     #include <ns3/packet-loss-counter.h>
     #include <ns3/packet-sink.h>
     #include <ns3/seq-ts-echo-header.h>

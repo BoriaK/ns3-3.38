@@ -33,10 +33,10 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
-CMAKE_COLOR_MAKEFILE:BOOL=TRUE
+CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//No help, variable specified on the command line.
-CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
+//CXX compiler
+CMAKE_CXX_COMPILER:STRING=/usr/bin/g++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -61,8 +61,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//No help, variable specified on the command line.
-CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
+//C compiler
+CMAKE_C_COMPILER:STRING=/usr/bin/gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -237,10 +237,10 @@ CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //If set, runtime paths are not added when installing shared libraries,
 // but are added when building.
-CMAKE_SKIP_INSTALL_RPATH:BOOL=FALSE
+CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
 
 //If set, runtime paths are not added when using shared libraries.
-CMAKE_SKIP_RPATH:BOOL=FALSE
+CMAKE_SKIP_RPATH:BOOL=NO
 
 //Flags used by the linker during the creation of static libraries
 // during all build types.
@@ -332,77 +332,77 @@ LLD:FILEPATH=LLD-NOTFOUND
 MOLD:FILEPATH=MOLD-NOTFOUND
 
 //Enable assert on failure
-NS3_ASSERT:BOOL=FALSE
+NS3_ASSERT:BOOL=OFF
 
 //Value Computed by CMake
 NS3_BINARY_DIR:STATIC=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build
 
 //Use Ccache to speed up recompilation
-NS3_CCACHE:BOOL=TRUE
+NS3_CCACHE:BOOL=ON
 
 //Enforce cody style with clang-format
-NS3_CLANG_FORMAT:BOOL=FALSE
+NS3_CLANG_FORMAT:BOOL=OFF
 
 //Use clang-tidy static analysis
-NS3_CLANG_TIDY:BOOL=FALSE
+NS3_CLANG_TIDY:BOOL=OFF
 
 //Collect compilation statistics to analyze the build process
-NS3_CLANG_TIMETRACE:BOOL=FALSE
+NS3_CLANG_TIMETRACE:BOOL=OFF
 
 //Colorize CMake messages
-NS3_COLORED_OUTPUT:BOOL=FALSE
+NS3_COLORED_OUTPUT:BOOL=OFF
 
 //Enable code coverage measurements and report generation
-NS3_COVERAGE:BOOL=FALSE
+NS3_COVERAGE:BOOL=OFF
 
 //Zero lcov counters before running. Requires NS3_COVERAGE=ON
-NS3_COVERAGE_ZERO_COUNTERS:BOOL=FALSE
+NS3_COVERAGE_ZERO_COUNTERS:BOOL=OFF
 
 //Enable DES Metrics event collection
-NS3_DES_METRICS:BOOL=FALSE
+NS3_DES_METRICS:BOOL=OFF
 
 //List of modules to disable (e.g. lte;wimax;wave)
 NS3_DISABLED_MODULES:STRING=
 
 //Enable fd-net-device DPDK features
-NS3_DPDK:BOOL=FALSE
+NS3_DPDK:BOOL=OFF
 
 //Build with Eigen support
-NS3_EIGEN:BOOL=TRUE
+NS3_EIGEN:BOOL=ON
 
 //Build with emulation support
-NS3_EMU:BOOL=TRUE
+NS3_EMU:BOOL=ON
 
 //List of modules to enable (e.g. core;network;internet)
 NS3_ENABLED_MODULES:STRING=
 
 //Embed version info into libraries
-NS3_ENABLE_BUILD_VERSION:BOOL=FALSE
+NS3_ENABLE_BUILD_VERSION:BOOL=OFF
 
 //Set executables ownership to root and enable the SUID flag
-NS3_ENABLE_SUDO:BOOL=FALSE
+NS3_ENABLE_SUDO:BOOL=OFF
 
 //Enable examples to be built
-NS3_EXAMPLES:BOOL=TRUE
+NS3_EXAMPLES:BOOL=OFF
 
 //Use Mold or LLD to speed up linking if available
-NS3_FAST_LINKERS:BOOL=TRUE
+NS3_FAST_LINKERS:BOOL=ON
 
 //Fetch Brite, Click and Openflow dependencies
-NS3_FETCH_OPTIONAL_COMPONENTS:BOOL=FALSE
+NS3_FETCH_OPTIONAL_COMPONENTS:BOOL=OFF
 
 //List of modules that should have their examples and tests built
 // (e.g. lte;wifi)
 NS3_FILTER_MODULE_EXAMPLES_AND_TESTS:STRING=
 
 //Build with GSL support
-NS3_GSL:BOOL=TRUE
+NS3_GSL:BOOL=ON
 
 //Build with GTK3 support
-NS3_GTK3:BOOL=TRUE
+NS3_GTK3:BOOL=ON
 
 //Use IWYU to determine unnecessary headers included
-NS3_INCLUDE_WHAT_YOU_USE:BOOL=FALSE
+NS3_INCLUDE_WHAT_YOU_USE:BOOL=OFF
 
 //Int64x64 implementation
 NS3_INT64X64:STRING=INT128
@@ -411,75 +411,75 @@ NS3_INT64X64:STRING=INT128
 NS3_IS_TOP_LEVEL:STATIC=ON
 
 //Build with link-time optimization
-NS3_LINK_TIME_OPTIMIZATION:BOOL=FALSE
+NS3_LINK_TIME_OPTIMIZATION:BOOL=OFF
 
 //Use LWYU to determine unnecessary linked libraries
-NS3_LINK_WHAT_YOU_USE:BOOL=FALSE
+NS3_LINK_WHAT_YOU_USE:BOOL=OFF
 
 //Enable logging to be built
-NS3_LOG:BOOL=FALSE
+NS3_LOG:BOOL=OFF
 
 //Build a single shared ns-3 library and link it against executables
-NS3_MONOLIB:BOOL=FALSE
+NS3_MONOLIB:BOOL=OFF
 
 //Build with MPI support
-NS3_MPI:BOOL=FALSE
+NS3_MPI:BOOL=OFF
 
 //Build with -march=native -mtune=native
-NS3_NATIVE_OPTIMIZATIONS:BOOL=FALSE
+NS3_NATIVE_OPTIMIZATIONS:BOOL=OFF
 
 //Build netanim
-NS3_NETANIM:BOOL=FALSE
+NS3_NETANIM:BOOL=OFF
 
 //Use ninjatracing to convert Ninja's build log to the about://tracing
 // format
-NS3_NINJA_TRACING:BOOL=FALSE
+NS3_NINJA_TRACING:BOOL=OFF
 
 //Directory to store built artifacts
 NS3_OUTPUT_DIRECTORY:STRING=
 
 //Precompile module headers to speed up compilation
-NS3_PRECOMPILE_HEADERS:BOOL=TRUE
+NS3_PRECOMPILE_HEADERS:BOOL=ON
 
 //Build ns-3 python bindings
-NS3_PYTHON_BINDINGS:BOOL=FALSE
+NS3_PYTHON_BINDINGS:BOOL=OFF
 
 //Export all third-party libraries
 //\nand include directories to ns-3 module consumers
-NS3_REEXPORT_THIRD_PARTY_LIBRARIES:BOOL=TRUE
+NS3_REEXPORT_THIRD_PARTY_LIBRARIES:BOOL=ON
 
 //Build with address, leak and undefined sanitizers
-NS3_SANITIZE:BOOL=FALSE
+NS3_SANITIZE:BOOL=OFF
 
 //Build with memory sanitizer
-NS3_SANITIZE_MEMORY:BOOL=FALSE
+NS3_SANITIZE_MEMORY:BOOL=OFF
 
 //Value Computed by CMake
 NS3_SOURCE_DIR:STATIC=/home/bk/workspace/ns-allinone-3.38/ns-3.38
 
 //Build with SQLite support
-NS3_SQLITE:BOOL=TRUE
+NS3_SQLITE:BOOL=ON
 
 //Build a static ns-3 library and link it against executables
-NS3_STATIC:BOOL=FALSE
+NS3_STATIC:BOOL=OFF
 
 //Build with Tap support
-NS3_TAP:BOOL=TRUE
+NS3_TAP:BOOL=ON
 
 //Enable tests to be built
-NS3_TESTS:BOOL=FALSE
+NS3_TESTS:BOOL=OFF
 
 //Print additional build system messages
-NS3_VERBOSE:BOOL=FALSE
+NS3_VERBOSE:BOOL=OFF
 
 //Build visualizer module
-NS3_VISUALIZER:BOOL=TRUE
+NS3_VISUALIZER:BOOL=ON
 
 //Enable compiler warnings
-NS3_WARNINGS:BOOL=TRUE
+NS3_WARNINGS:BOOL=ON
 
 //Treat warnings as errors. Requires NS3_WARNINGS=ON
-NS3_WARNINGS_AS_ERRORS:BOOL=TRUE
+NS3_WARNINGS_AS_ERRORS:BOOL=ON
 
 //Build with brite support
 NS3_WITH_BRITE:PATH=
@@ -512,13 +512,13 @@ ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 SPHINX_EXECUTABLE:FILEPATH=SPHINX_EXECUTABLE-NOTFOUND
 
 //Output standalone HTML files
-SPHINX_OUTPUT_HTML:BOOL=TRUE
+SPHINX_OUTPUT_HTML:BOOL=ON
 
 //Output man pages
-SPHINX_OUTPUT_MAN:BOOL=TRUE
+SPHINX_OUTPUT_MAN:BOOL=ON
 
 //When building documentation treat warnings as errors
-SPHINX_WARNINGS_AS_ERRORS:BOOL=TRUE
+SPHINX_WARNINGS_AS_ERRORS:BOOL=ON
 
 //Path to a file.
 SQLite3_header_internal_sqlite3.h:FILEPATH=SQLite3_header_internal_sqlite3.h-NOTFOUND
@@ -813,7 +813,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=100
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=48
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1347,18 +1347,14 @@ libwimax-obj:INTERNAL=libwimax-obj
 ns3-all-enabled-modules-ADVANCED:INTERNAL=1
 //list with all enabled modules
 ns3-all-enabled-modules:INTERNAL=antenna;aodv;applications;bridge;brite;buildings;click;config-store;core;csma;csma-layout;dsdv;dsr;energy;fd-net-device;flow-monitor;internet;internet-apps;lr-wpan;lte;mesh;mobility;mpi;netanim;network;nix-vector-routing;olsr;openflow;point-to-point;point-to-point-layout;propagation;sixlowpan;spectrum;stats;tap-bridge;test;topology-read;traffic-control;uan;virtual-net-device;visualizer;wave;wifi;wimax;
-//ADVANCED property for variable: ns3-example-folders
-ns3-example-folders-ADVANCED:INTERNAL=1
-//list of example folders
-ns3-example-folders:INTERNAL=wireless;udp-client-server;udp;tutorial;traffic-control;tcp;stats;socket;routing;realtime;naming;matrix-topology;ipv6;error-model;energy;channel-models;
 //ADVANCED property for variable: ns3-execs
 ns3-execs-ADVANCED:INTERNAL=1
 //list of c++ executables
-ns3-execs:INTERNAL=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/perf/ns3.38-perf-io-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-print-introspected-doxygen-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-bench-packets-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-bench-scheduler-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/subdir/ns3.38-scratch-subdir-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/nested-subdir/ns3.38-scratch-nested-subdir-executable-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-scratch-simulator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-eht-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ofdm-eht-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-wired-bridging-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-vht-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-txop-aggregation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-timing-attributes-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-tcp-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-spectrum-saturation-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-spectrum-per-interference-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-spectrum-per-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-spatial-reuse-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-sleep-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-simple-interference-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-simple-infra-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-simple-ht-hidden-stations-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-simple-adhoc-grid-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-simple-adhoc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-rate-adaptation-distance-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-power-adaptation-interference-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-power-adaptation-distance-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-error-models-comparison-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ofdm-vht-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ofdm-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ofdm-ht-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ofdm-he-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-multirate-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-multi-tos-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-mixed-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ht-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-hidden-terminal-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-he-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-dsss-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-clear-channel-cmu-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-blockack-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-backward-compatibility-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-ap-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-aggregation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-adhoc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-80211n-mimo-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-wifi-80211e-txop-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/wireless/ns3.38-mixed-wired-wireless-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/udp-client-server/ns3.38-udp-trace-client-server-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/udp-client-server/ns3.38-udp-client-server-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/udp/ns3.38-udp-echo-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-seventh-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-sixth-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-fifth-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-fourth-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-third-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-second-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-first-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tutorial/ns3.38-hello-simulator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-cobalt-vs-codel-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-tbf-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-red-vs-nlred-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-red-vs-fengadaptive-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-queue-discs-benchmark-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/traffic-control/ns3.38-traffic-control-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-dctcp-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-validation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-linux-reno-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-pacing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-variants-comparison-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-pcap-nanosec-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-bulk-send-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-bbr-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-star-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-star-server-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/tcp/ns3.38-tcp-large-transfer-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/stats/ns3.38-wifi-example-sim-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/socket/ns3.38-socket-options-ipv6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/socket/ns3.38-socket-options-ipv4-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/socket/ns3.38-socket-bound-tcp-static-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/socket/ns3.38-socket-bound-static-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-simple-multicast-flooding-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-global-routing-multi-switch-plus-router-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-rip-simple-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-ripng-simple-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-manet-routing-compare-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-simple-routing-ping6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-mixed-global-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-simple-alternate-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-simple-global-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-global-injection-slash32-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-global-routing-slash32-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-static-routing-slash32-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/routing/ns3.38-dynamic-global-routing-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/realtime/ns3.38-realtime-udp-echo-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/naming/ns3.38-object-names-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/matrix-topology/ns3.38-matrix-topology-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-fragmentation-ipv6-PMTU-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-wsn-ping6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-test-ipv6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-radvd-two-prefix-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-radvd-one-prefix-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-ping6-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-loose-routing-ipv6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-icmpv6-redirect-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-fragmentation-ipv6-two-MTU-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/ipv6/ns3.38-fragmentation-ipv6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/error-model/ns3.38-simple-error-model-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/energy/ns3.38-energy-model-with-harvesting-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/energy/ns3.38-energy-model-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/examples/channel-models/ns3.38-three-gpp-v2v-channel-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wimax/examples/ns3.38-wimax-simple-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wimax/examples/ns3.38-wimax-multicast-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wimax/examples/ns3.38-wimax-ipv4-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-bianchi-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-phy-configuration-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-trans-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-manager-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-test-interference-helper-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wifi/examples/ns3.38-wifi-phy-test-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wave/examples/ns3.38-vanet-routing-compare-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wave/examples/ns3.38-wave-simple-device-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/wave/examples/ns3.38-wave-simple-80211p-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/virtual-net-device/examples/ns3.38-virtual-net-device-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-6lowpan-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-raw-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-ipv6-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-ipv4-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-rc-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/examples/ns3.38-uan-cw-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-fqcodel-l4s-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-pie-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-codel-vs-pfifo-asymmetric-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-codel-vs-pfifo-basic-test-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-pfifo-vs-red-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-adaptive-red-tests-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-red-vs-ared-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/examples/ns3.38-red-tests-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/topology-read/examples/ns3.38-topology-example-sim-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/ns3.38-tap-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/examples/ns3.38-tap-wifi-dumbbell-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/examples/ns3.38-tap-wifi-virtual-machine-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/examples/ns3.38-tap-csma-virtual-machine-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/examples/ns3.38-tap-csma-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-file-helper-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-file-aggregator-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-gnuplot-helper-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-gnuplot-aggregator-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-double-probe-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-gnuplot-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/stats/examples/ns3.38-time-probe-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-three-gpp-two-ray-channel-calibration-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-three-gpp-channel-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-tv-trans-regional-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-tv-trans-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-adhoc-aloha-ideal-phy-with-microwave-oven-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-adhoc-aloha-ideal-phy-matrix-propagation-loss-model-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/spectrum/examples/ns3.38-adhoc-aloha-ideal-phy-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/sixlowpan/examples/ns3.38-example-ping-lr-wpan-mesh-under-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/sixlowpan/examples/ns3.38-example-ping-lr-wpan-beacon-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/sixlowpan/examples/ns3.38-example-ping-lr-wpan-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/sixlowpan/examples/ns3.38-example-sixlowpan-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/propagation/examples/ns3.38-jakes-propagation-model-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/propagation/examples/ns3.38-main-propagation-loss-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/point-to-point/examples/ns3.38-main-attribute-value-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/olsr/examples/ns3.38-simple-point-to-point-olsr-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/olsr/examples/ns3.38-olsr-hna-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/nix-vector-routing/examples/ns3.38-nix-double-wifi-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/nix-vector-routing/examples/ns3.38-nms-p2p-nix-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/nix-vector-routing/examples/ns3.38-nix-simple-multi-address-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/nix-vector-routing/examples/ns3.38-nix-simple-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/examples/ns3.38-lollipop-comparisions-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/examples/ns3.38-packet-socket-apps-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/examples/ns3.38-main-packet-tag-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/examples/ns3.38-main-packet-header-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/network/examples/ns3.38-bit-serializer-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-uan-animation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-wireless-animation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-resources-counters-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-colors-link-description-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-star-animation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-grid-animation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/netanim/examples/ns3.38-dumbbell-animation-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-reference-point-group-mobility-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-mobility-trace-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-main-grid-topology-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-ns2-mobility-trace-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-main-random-walk-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-main-random-topology-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mobility/examples/ns3.38-bonnmotion-ns2-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/mesh/examples/ns3.38-mesh-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-simple-epc-emu-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-x2-handover-measures-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-x2-handover-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-uplink-power-control-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-simple-epc-backhaul-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-simple-epc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-simple-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-rlc-traces-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-rem-sector-antenna-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-rem-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-radio-link-failure-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-profiling-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-pathloss-traces-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-ipv6-ue-ue-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-ipv6-ue-rh-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-ipv6-addr-conf-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-intercell-interference-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-frequency-reuse-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-fading-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-dual-stripe-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-distributed-ffr-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-deactivate-bearer-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-cqi-threshold-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lte/examples/ns3.38-lena-cc-helper-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-per-plot-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-bootstrap-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-error-model-plot-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-error-distance-plot-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-active-scan-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-ed-scan-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-phy-test-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-packet-print-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-mlme-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/lr-wpan/examples/ns3.38-lr-wpan-data-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet-apps/examples/ns3.38-ping-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet-apps/examples/ns3.38-traceroute-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet-apps/examples/ns3.38-dhcp-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet/examples/ns3.38-neighbor-cache-dynamic-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet/examples/ns3.38-neighbor-cache-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/internet/examples/ns3.38-main-simple-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-tap-ping6-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-tap-ping-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-emu-tc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-emu-send-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-emu-onoff-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-emu-udp-echo-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd-emu-ping-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-realtime-fd2fd-onoff-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-realtime-dummy-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-fd2fd-onoff-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/examples/ns3.38-dummy-network-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/ns3.38-tap-device-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/ns3.38-raw-sock-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/energy/examples/ns3.38-basic-energy-model-test-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/energy/examples/ns3.38-rv-battery-model-test-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/energy/examples/ns3.38-li-ion-energy-source-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/dsr/examples/ns3.38-dsr-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/dsdv/examples/ns3.38-dsdv-manet-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma-layout/examples/ns3.38-csma-star-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-ping-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-raw-ip-socket-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-multicast-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-packet-socket-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-broadcast-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/csma/examples/ns3.38-csma-one-subnet-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-log-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-empirical-random-variable-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-main-random-variable-stream-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-test-string-value-formatting-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-system-path-examples-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-sample-simulator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-sample-show-progress-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-sample-random-variable-stream-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-sample-random-variable-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-sample-log-time-format-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-main-ptr-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-main-callback-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-length-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-hash-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-fatal-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-command-line-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/examples/ns3.38-assert-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/config-store/examples/ns3.38-config-store-save-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/buildings/examples/ns3.38-outdoor-random-walk-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/buildings/examples/ns3.38-outdoor-group-mobility-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/buildings/examples/ns3.38-buildings-pathloss-profiler-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/bridge/examples/ns3.38-csma-bridge-one-hop-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/bridge/examples/ns3.38-csma-bridge-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/examples/ns3.38-three-gpp-http-example-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/aodv/examples/ns3.38-aodv-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/ns3.38-stdlib_pch_exec-debug;
+ns3-execs:INTERNAL=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/perf/ns3.38-perf-io-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-print-introspected-doxygen-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-bench-packets-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/utils/ns3.38-bench-scheduler-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/subdir/ns3.38-scratch-subdir-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/nested-subdir/ns3.38-scratch-nested-subdir-executable-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-scratch-simulator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-my_dumbellTopology_v01-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-my_TrafficControl_Line_v01-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-my_LeafSpineTopology_v01-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-ProducePlots_v02-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-ProducePlots_v01-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-Line_P2P_v01_PrioQueueDisc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-Incast_v01_2Nodes-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-Incast_multiple_nodes_NOT_UPDATED-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-2In2Out_P2P_v01_SharedBuffer_TrafficControl-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-2In2Out_P2P_v01_SharedBufferQueueDisc-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch/ns3.38-2In2Out_P2P_v01-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/tap-bridge/ns3.38-tap-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/ns3.38-tap-device-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/fd-net-device/ns3.38-raw-sock-creator-debug;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/ns3.38-stdlib_pch_exec-debug;
 //ADVANCED property for variable: ns3-execs-clean
 ns3-execs-clean-ADVANCED:INTERNAL=1
 //list of c++ executables without version prefix and build suffix
-ns3-execs-clean:INTERNAL=perf-io;print-introspected-doxygen;bench-packets;bench-scheduler;scratch_subdir_scratch-subdir;scratch_nested-subdir_scratch-nested-subdir-executable;scratch_scratch-simulator;wifi-eht-network;wifi-ofdm-eht-validation;wifi-wired-bridging;wifi-vht-network;wifi-txop-aggregation;wifi-timing-attributes;wifi-tcp;wifi-spectrum-saturation-example;wifi-spectrum-per-interference;wifi-spectrum-per-example;wifi-spatial-reuse;wifi-sleep;wifi-simple-interference;wifi-simple-infra;wifi-simple-ht-hidden-stations;wifi-simple-adhoc-grid;wifi-simple-adhoc;wifi-rate-adaptation-distance;wifi-power-adaptation-interference;wifi-power-adaptation-distance;wifi-error-models-comparison;wifi-ofdm-vht-validation;wifi-ofdm-validation;wifi-ofdm-ht-validation;wifi-ofdm-he-validation;wifi-multirate;wifi-multi-tos;wifi-mixed-network;wifi-ht-network;wifi-hidden-terminal;wifi-he-network;wifi-dsss-validation;wifi-clear-channel-cmu;wifi-blockack;wifi-backward-compatibility;wifi-ap;wifi-aggregation;wifi-adhoc;wifi-80211n-mimo;wifi-80211e-txop;mixed-wired-wireless;udp-trace-client-server;udp-client-server;udp-echo;seventh;sixth;fifth;fourth;third;second;first;hello-simulator;cobalt-vs-codel;tbf-example;red-vs-nlred;red-vs-fengadaptive;queue-discs-benchmark;traffic-control;dctcp-example;tcp-validation;tcp-linux-reno;tcp-pacing;tcp-variants-comparison;tcp-pcap-nanosec-example;tcp-bulk-send;tcp-bbr-example;star;tcp-star-server;tcp-large-transfer;wifi-example-sim;socket-options-ipv6;socket-options-ipv4;socket-bound-tcp-static-routing;socket-bound-static-routing;simple-multicast-flooding;global-routing-multi-switch-plus-router;rip-simple-network;ripng-simple-network;manet-routing-compare;simple-routing-ping6;mixed-global-routing;simple-alternate-routing;simple-global-routing;global-injection-slash32;global-routing-slash32;static-routing-slash32;dynamic-global-routing;realtime-udp-echo;object-names;matrix-topology;fragmentation-ipv6-PMTU;wsn-ping6;test-ipv6;radvd-two-prefix;radvd-one-prefix;ping6-example;loose-routing-ipv6;icmpv6-redirect;fragmentation-ipv6-two-MTU;fragmentation-ipv6;simple-error-model;energy-model-with-harvesting-example;energy-model-example;three-gpp-v2v-channel-example;wimax-simple;wimax-multicast;wimax-ipv4;wifi-bianchi;wifi-phy-configuration;wifi-trans-example;wifi-manager-example;wifi-test-interference-helper;wifi-phy-test;vanet-routing-compare;wave-simple-device;wave-simple-80211p;virtual-net-device-example;uan-6lowpan-example;uan-raw-example;uan-ipv6-example;uan-ipv4-example;uan-rc-example;uan-cw-example;fqcodel-l4s-example;pie-example;codel-vs-pfifo-asymmetric;codel-vs-pfifo-basic-test;pfifo-vs-red;adaptive-red-tests;red-vs-ared;red-tests;topology-example-sim;tap-creator;tap-wifi-dumbbell;tap-wifi-virtual-machine;tap-csma-virtual-machine;tap-csma;file-helper-example;file-aggregator-example;gnuplot-helper-example;gnuplot-aggregator-example;double-probe-example;gnuplot-example;time-probe-example;three-gpp-two-ray-channel-calibration;three-gpp-channel-example;tv-trans-regional-example;tv-trans-example;adhoc-aloha-ideal-phy-with-microwave-oven;adhoc-aloha-ideal-phy-matrix-propagation-loss-model;adhoc-aloha-ideal-phy;example-ping-lr-wpan-mesh-under;example-ping-lr-wpan-beacon;example-ping-lr-wpan;example-sixlowpan;jakes-propagation-model-example;main-propagation-loss;main-attribute-value;simple-point-to-point-olsr;olsr-hna;nix-double-wifi;nms-p2p-nix;nix-simple-multi-address;nix-simple;lollipop-comparisions;packet-socket-apps;main-packet-tag;main-packet-header;bit-serializer;uan-animation;wireless-animation;resources-counters;colors-link-description;star-animation;grid-animation;dumbbell-animation;reference-point-group-mobility-example;mobility-trace-example;main-grid-topology;ns2-mobility-trace;main-random-walk;main-random-topology;bonnmotion-ns2-example;mesh;lena-simple-epc-emu;lena-x2-handover-measures;lena-x2-handover;lena-uplink-power-control;lena-simple-epc-backhaul;lena-simple-epc;lena-simple;lena-rlc-traces;lena-rem-sector-antenna;lena-rem;lena-radio-link-failure;lena-profiling;lena-pathloss-traces;lena-ipv6-ue-ue;lena-ipv6-ue-rh;lena-ipv6-addr-conf;lena-intercell-interference;lena-frequency-reuse;lena-fading;lena-dual-stripe;lena-distributed-ffr;lena-deactivate-bearer;lena-cqi-threshold;lena-cc-helper;lr-wpan-per-plot;lr-wpan-bootstrap;lr-wpan-error-model-plot;lr-wpan-error-distance-plot;lr-wpan-active-scan;lr-wpan-ed-scan;lr-wpan-phy-test;lr-wpan-packet-print;lr-wpan-mlme;lr-wpan-data;ping-example;traceroute-example;dhcp-example;neighbor-cache-dynamic;neighbor-cache-example;main-simple;fd-tap-ping6;fd-tap-ping;fd-emu-tc;fd-emu-send;fd-emu-onoff;fd-emu-udp-echo;fd-emu-ping;realtime-fd2fd-onoff;realtime-dummy-network;fd2fd-onoff;dummy-network;tap-device-creator;raw-sock-creator;basic-energy-model-test;rv-battery-model-test;li-ion-energy-source-example;dsr;dsdv-manet;csma-star;csma-ping;csma-raw-ip-socket;csma-multicast;csma-packet-socket;csma-broadcast;csma-one-subnet;log-example;empirical-random-variable-example;main-random-variable-stream;test-string-value-formatting;system-path-examples;sample-simulator;sample-show-progress;sample-random-variable-stream;sample-random-variable;sample-log-time-format;main-ptr;main-callback;length-example;hash-example;fatal-example;command-line-example;assert-example;config-store-save;outdoor-random-walk-example;outdoor-group-mobility-example;buildings-pathloss-profiler;csma-bridge-one-hop;csma-bridge;three-gpp-http-example;aodv;stdlib_pch_exec;
+ns3-execs-clean:INTERNAL=perf-io;print-introspected-doxygen;bench-packets;bench-scheduler;scratch_subdir_scratch-subdir;scratch_nested-subdir_scratch-nested-subdir-executable;scratch_scratch-simulator;scratch_my_dumbellTopology_v01;scratch_my_TrafficControl_Line_v01;scratch_my_LeafSpineTopology_v01;scratch_ProducePlots_v02;scratch_ProducePlots_v01;scratch_Line_P2P_v01_PrioQueueDisc;scratch_Incast_v01_2Nodes;scratch_Incast_multiple_nodes_NOT_UPDATED;scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl;scratch_2In2Out_P2P_v01_SharedBufferQueueDisc;scratch_2In2Out_P2P_v01;tap-creator;tap-device-creator;raw-sock-creator;stdlib_pch_exec;
 //ADVANCED property for variable: ns3-external-libs
 ns3-external-libs-ADVANCED:INTERNAL=1
 //list of non-ns libraries to link to NS3_STATIC and NS3_MONOLIB

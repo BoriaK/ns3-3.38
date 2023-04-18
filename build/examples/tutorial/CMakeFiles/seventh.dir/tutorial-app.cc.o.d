@@ -715,6 +715,8 @@ examples/tutorial/CMakeFiles/seventh.dir/tutorial-app.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-tag-list.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/trailer.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/trailer.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/customTag.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/header-serialization-test.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/test/header-serialization-test.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/address-utils.h \
@@ -833,6 +835,10 @@ examples/tutorial/CMakeFiles/seventh.dir/tutorial-app.cc.o: \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/application-packet-probe.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/bulk-send-application.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/bulk-send-application.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/custom_onoff-application.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/custom_onoff-application.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/tutorial-app.h \
+ /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/tutorial-app.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-loss-counter.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h \
  /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/packet-sink.h \

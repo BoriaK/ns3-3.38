@@ -30,6 +30,7 @@
     #include <ns3/tag-buffer.h>
     #include <ns3/tag.h>
     #include <ns3/trailer.h>
+    #include <ns3/customTag.h>
     #include <ns3/header-serialization-test.h>
     #include <ns3/address-utils.h>
     #include <ns3/bit-deserializer.h>

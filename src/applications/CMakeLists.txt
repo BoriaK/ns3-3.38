@@ -10,6 +10,10 @@ build_lib(
     model/application-packet-probe.cc
     model/bulk-send-application.cc
     model/onoff-application.cc
+    # added by me ####
+    model/custom_onoff-application.cc
+    model/tutorial-app.cc 
+    ##################
     model/packet-loss-counter.cc
     model/packet-sink.cc
     model/seq-ts-echo-header.cc
@@ -34,6 +38,10 @@ build_lib(
     model/application-packet-probe.h
     model/bulk-send-application.h
     model/onoff-application.h
+    # added by me ####
+    model/custom_onoff-application.h
+    model/tutorial-app.h
+    ##################
     model/packet-loss-counter.h
     model/packet-sink.h
     model/seq-ts-echo-header.h

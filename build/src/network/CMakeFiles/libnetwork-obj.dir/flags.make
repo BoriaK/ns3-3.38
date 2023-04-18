@@ -62,6 +62,8 @@ CXX_FLAGS = -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=depr
 
 # PCH options: src/network/CMakeFiles/libnetwork-obj.dir/model/trailer.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
+# PCH options: src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
+
 # PCH options: src/network/CMakeFiles/libnetwork-obj.dir/utils/address-utils.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
 # PCH options: src/network/CMakeFiles/libnetwork-obj.dir/utils/bit-deserializer.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx

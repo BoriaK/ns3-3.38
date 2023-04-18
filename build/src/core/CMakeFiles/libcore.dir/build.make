@@ -76,7 +76,6 @@ libcore_OBJECTS =
 libcore_EXTERNAL_OBJECTS = \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/model/int64x64-128.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/model/unix-fd-reader.cc.o" \
-"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/helper/csv-reader.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/helper/random-variable-stream-helper.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/core/CMakeFiles/libcore-obj.dir/helper/event-garbage-collector.cc.o" \
@@ -146,7 +145,6 @@ libcore_EXTERNAL_OBJECTS = \
 
 lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/model/int64x64-128.cc.o
 lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/model/unix-fd-reader.cc.o
-lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/model/example-as-test.cc.o
 lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/helper/csv-reader.cc.o
 lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/helper/random-variable-stream-helper.cc.o
 lib/libns3.38-core-debug.so: src/core/CMakeFiles/libcore-obj.dir/helper/event-garbage-collector.cc.o

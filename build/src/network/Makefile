@@ -526,6 +526,30 @@ model/chunk.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/libnetwork-obj.dir/build.make src/network/CMakeFiles/libnetwork-obj.dir/model/chunk.cc.s
 .PHONY : model/chunk.cc.s
 
+model/customTag.o: model/customTag.cc.o
+.PHONY : model/customTag.o
+
+# target to build an object file
+model/customTag.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/libnetwork-obj.dir/build.make src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.o
+.PHONY : model/customTag.cc.o
+
+model/customTag.i: model/customTag.cc.i
+.PHONY : model/customTag.i
+
+# target to preprocess a source file
+model/customTag.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/libnetwork-obj.dir/build.make src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.i
+.PHONY : model/customTag.cc.i
+
+model/customTag.s: model/customTag.cc.s
+.PHONY : model/customTag.s
+
+# target to generate assembly for a file
+model/customTag.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/network/CMakeFiles/libnetwork-obj.dir/build.make src/network/CMakeFiles/libnetwork-obj.dir/model/customTag.cc.s
+.PHONY : model/customTag.cc.s
+
 model/header.o: model/header.cc.o
 .PHONY : model/header.o
 
@@ -1926,6 +1950,9 @@ help:
 	@echo "... model/chunk.o"
 	@echo "... model/chunk.i"
 	@echo "... model/chunk.s"
+	@echo "... model/customTag.o"
+	@echo "... model/customTag.i"
+	@echo "... model/customTag.s"
 	@echo "... model/header.o"
 	@echo "... model/header.i"
 	@echo "... model/header.s"
