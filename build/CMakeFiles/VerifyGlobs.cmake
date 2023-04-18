@@ -47,6 +47,7 @@ endif()
 # scratch_subdirectories at scratch/CMakeLists.txt:64 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES true "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/**")
 set(OLD_GLOB
+  "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/.gitignore"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/2In2Out_P2P_v01.cc"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/2In2Out_P2P_v01_SharedBufferQueueDisc.cc"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc"
