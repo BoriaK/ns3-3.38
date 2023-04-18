@@ -1,0 +1,1 @@
+/usr/bin/g++ -g "CMakeFiles/perf-io.dir/perf/perf-io.cc.o" -o perf/ns3.38-perf-io-debug   -L/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib  -Wl,-rpath,/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib -Wl,--no-as-needed ../lib/libns3.38-core-debug.so -Wl,--as-needed -Wl,--no-as-needed -lpthread 

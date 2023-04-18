@@ -1,0 +1,1 @@
+/usr/bin/g++ -g "CMakeFiles/tap-creator.dir/model/tap-creator.cc.o" "CMakeFiles/tap-creator.dir/model/tap-encode-decode.cc.o" -o ns3.38-tap-creator-debug   -L/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib  -Wl,-rpath,/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib: -Wl,--no-as-needed -Wl,--as-needed 

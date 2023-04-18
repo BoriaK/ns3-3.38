@@ -1,0 +1,492 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "examples/wireless/ns3.38-wifi-mixed-network-debug"
+		}
+	],
+	"backtrace" : 3,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"build_exec",
+			"build_example",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"build_lib",
+			"target_precompile_headers",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/macros-and-definitions.cmake",
+			"examples/wireless/CMakeLists.txt",
+			"CMakeLists.txt",
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/wifi/CMakeLists.txt",
+			"src/applications/CMakeLists.txt",
+			"src/internet/CMakeLists.txt",
+			"src/network/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 96,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 1770,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1586,
+				"parent" : 2
+			},
+			{
+				"file" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 123,
+				"parent" : 4
+			},
+			{
+				"file" : 0,
+				"parent" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 144,
+				"parent" : 6
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 1611,
+				"parent" : 2
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 4,
+				"line" : 313,
+				"parent" : 9
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 192,
+				"parent" : 10
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 6,
+				"file" : 5,
+				"line" : 1,
+				"parent" : 12
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 192,
+				"parent" : 13
+			},
+			{
+				"file" : 6
+			},
+			{
+				"command" : 6,
+				"file" : 6,
+				"line" : 338,
+				"parent" : 15
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 192,
+				"parent" : 16
+			},
+			{
+				"file" : 7
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 153,
+				"parent" : 18
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 192,
+				"parent" : 19
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 1595,
+				"parent" : 2
+			},
+			{
+				"command" : 9,
+				"file" : 2,
+				"line" : 146,
+				"parent" : 4
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 439,
+				"parent" : 22
+			},
+			{
+				"command" : 8,
+				"file" : 0,
+				"line" : 441,
+				"parent" : 22
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 1306,
+				"parent" : 22
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 382,
+				"parent" : 22
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 1301,
+				"parent" : 22
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 6
+			},
+			{
+				"command" : 10,
+				"file" : 0,
+				"line" : 57,
+				"parent" : 6
+			},
+			{
+				"command" : 11,
+				"file" : 0,
+				"line" : 711,
+				"parent" : 22
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fPIE   -fno-semantic-interposition"
+				},
+				{
+					"backtrace" : 23,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 24,
+					"fragment" : "-Werror"
+				},
+				{
+					"backtrace" : 24,
+					"fragment" : "-Wno-error=deprecated-declarations"
+				},
+				{
+					"fragment" : "-std=gnu++17"
+				},
+				{
+					"fragment" : "-Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 25,
+					"define" : "NS3_ASSERT_ENABLE"
+				},
+				{
+					"backtrace" : 26,
+					"define" : "NS3_BUILD_PROFILE_DEBUG"
+				},
+				{
+					"backtrace" : 27,
+					"define" : "NS3_LOG_ENABLE"
+				},
+				{
+					"backtrace" : 28,
+					"define" : "PROJECT_SOURCE_PATH=\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\""
+				},
+				{
+					"backtrace" : 29,
+					"define" : "__LINUX__"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 30,
+					"path" : "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					3
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 21,
+			"id" : "stdlib_pch_exec::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libapplications::@a48e303ef543a0192510"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libenergy::@64b7acd7d729390dea74"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libwifi::@7d28256f07142c24adbf"
+		}
+	],
+	"id" : "wifi-mixed-network::@2cb4e61c97100389e496",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-L/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-wifi-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-applications-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-energy-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "../../lib/libns3.38-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "../../lib/libns3.38-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "../../lib/libns3.38-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "../../lib/libns3.38-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "../../lib/libns3.38-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "wifi-mixed-network",
+	"nameOnDisk" : "ns3.38-wifi-mixed-network-debug",
+	"paths" : 
+	{
+		"build" : "examples/wireless",
+		"source" : "examples/wireless"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Precompile Header File",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "examples/wireless/wifi-mixed-network.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"path" : "build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

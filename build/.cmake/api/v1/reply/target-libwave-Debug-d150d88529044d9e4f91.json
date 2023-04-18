@@ -1,0 +1,514 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "lib/libns3.38-wave-debug.so"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"build_lib",
+			"install",
+			"link_directories",
+			"include",
+			"target_link_libraries",
+			"add_compile_options",
+			"process_options",
+			"add_definitions",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"build-support/custom-modules/ns3-module-macros.cmake",
+			"src/wave/CMakeLists.txt",
+			"build-support/macros-and-definitions.cmake",
+			"CMakeLists.txt",
+			"src/wifi/CMakeLists.txt",
+			"src/propagation/CMakeLists.txt",
+			"src/internet/CMakeLists.txt",
+			"src/network/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 81,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 358,
+				"parent" : 1
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 123,
+				"parent" : 4
+			},
+			{
+				"file" : 2,
+				"parent" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 144,
+				"parent" : 6
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 192,
+				"parent" : 1
+			},
+			{
+				"file" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 313,
+				"parent" : 9
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 192,
+				"parent" : 10
+			},
+			{
+				"file" : 5
+			},
+			{
+				"command" : 1,
+				"file" : 5,
+				"line" : 1,
+				"parent" : 12
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 192,
+				"parent" : 13
+			},
+			{
+				"file" : 6
+			},
+			{
+				"command" : 1,
+				"file" : 6,
+				"line" : 338,
+				"parent" : 15
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 192,
+				"parent" : 16
+			},
+			{
+				"file" : 7
+			},
+			{
+				"command" : 1,
+				"file" : 7,
+				"line" : 153,
+				"parent" : 18
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 192,
+				"parent" : 19
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 146,
+				"parent" : 4
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 439,
+				"parent" : 21
+			},
+			{
+				"command" : 6,
+				"file" : 2,
+				"line" : 441,
+				"parent" : 21
+			},
+			{
+				"command" : 8,
+				"file" : 2,
+				"line" : 1306,
+				"parent" : 21
+			},
+			{
+				"command" : 8,
+				"file" : 2,
+				"line" : 382,
+				"parent" : 21
+			},
+			{
+				"command" : 8,
+				"file" : 2,
+				"line" : 1301,
+				"parent" : 21
+			},
+			{
+				"command" : 8,
+				"file" : 2,
+				"line" : 19,
+				"parent" : 6
+			},
+			{
+				"command" : 8,
+				"file" : 2,
+				"line" : 57,
+				"parent" : 6
+			},
+			{
+				"command" : 9,
+				"file" : 2,
+				"line" : 711,
+				"parent" : 21
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 8,
+			"id" : "libantenna::@000737a0949b1597daab"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libbridge::@e12754a9402ac756973a"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libcore::@0618756b1ff51bca1a0e"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libenergy::@64b7acd7d729390dea74"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libinternet::@cf20f20ea777b8d334b4"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libmobility::@2e8c3d564dbe2f6b990d"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libnetwork::@311edf953348ef8fadde"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libpropagation::@e1205667d4949730ed2e"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libspectrum::@edd78237c376ce4d0dc6"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libstats::@a16f7aa18ccba9be6aba"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libtraffic-control::@5510e62c9c27dee44e6c"
+		},
+		{
+			"id" : "libwave-obj::@fc37df3f93ccae5d0f34"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "libwifi::@7d28256f07142c24adbf"
+		}
+	],
+	"id" : "libwave::@fc37df3f93ccae5d0f34",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			},
+			{
+				"backtrace" : 3,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/local"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 7,
+				"fragment" : "-L/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/lib:",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-wifi-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-internet-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-energy-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-spectrum-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-propagation-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "../../lib/libns3.38-mobility-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "../../lib/libns3.38-antenna-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "../../lib/libns3.38-bridge-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "../../lib/libns3.38-traffic-control-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "../../lib/libns3.38-network-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "../../lib/libns3.38-stats-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "../../lib/libns3.38-core-debug.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--no-as-needed",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 8,
+				"fragment" : "-Wl,--as-needed",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "libwave",
+	"nameOnDisk" : "libns3.38-wave-debug.so",
+	"paths" : 
+	{
+		"build" : "src/wave",
+		"source" : "src/wave"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Object Libraries",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/helper/wave-bsm-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/helper/wave-bsm-stats.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/helper/wave-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/helper/wave-mac-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/helper/wifi-80211p-helper.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/bsm-application.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/channel-coordinator.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/channel-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/channel-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/default-channel-scheduler.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/higher-tx-tag.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/ocb-wifi-mac.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/vendor-specific-action.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/vsa-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"isGenerated" : true,
+			"path" : "build/src/wave/CMakeFiles/libwave-obj.dir/model/wave-net-device.cc.o",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}
