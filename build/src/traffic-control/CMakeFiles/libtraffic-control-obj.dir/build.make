@@ -341,6 +341,22 @@ src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.s"
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -S /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/traffic-control-layer.cc -o CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.s
 
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/flags.make
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o: /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/shared-buffer-queue-disc_v01.cc
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx.gch
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o"
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -MD -MT src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o -MF CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o.d -o CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/shared-buffer-queue-disc_v01.cc
+
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.i"
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -E /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/shared-buffer-queue-disc_v01.cc > CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.i
+
+src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.s"
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -S /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/shared-buffer-queue-disc_v01.cc -o CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.s
+
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/helper/queue-disc-container.cc.o
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/helper/traffic-control-helper.cc.o
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/cobalt-queue-disc.cc.o
@@ -358,6 +374,7 @@ libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.di
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.o
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/tbf-queue-disc.cc.o
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o
+libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o
 libtraffic-control-obj: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make
 .PHONY : libtraffic-control-obj
 

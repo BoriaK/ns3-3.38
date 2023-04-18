@@ -184,6 +184,17 @@ src/csma/CMakeFiles/libcsma-obj.dir/helper/csma-helper.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/trace-helper.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/trace-helper.h \
   include/ns3/output-stream-wrapper.h \
@@ -192,11 +203,6 @@ src/csma/CMakeFiles/libcsma-obj.dir/helper/csma-helper.cc.o: CMakeFiles/stdlib_p
   include/ns3/pcap-file-wrapper.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/config.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/config.h \
   include/ns3/csma-net-device.h \
@@ -679,15 +685,19 @@ src/csma/CMakeFiles/libcsma-obj.dir/model/csma-net-device.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/trace-source-accessor.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h
 
 
 include/ns3/trace-source-accessor.h:
@@ -732,8 +742,6 @@ include/ns3/enum.h:
 
 include/ns3/config.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h:
@@ -747,6 +755,12 @@ include/ns3/pcap-file-wrapper.h:
 include/ns3/output-stream-wrapper.h:
 
 include/ns3/trace-helper.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h:
+
+include/ns3/customTag.h:
 
 include/ns3/traced-value.h:
 
@@ -959,6 +973,8 @@ include/ns3/nstime.h:
 /usr/include/c++/9/bits/allocated_ptr.h:
 
 /usr/include/c++/9/cstdint:
+
+include/ns3/tag.h:
 
 /usr/include/c++/9/vector:
 

@@ -44,7 +44,16 @@ QueueBase::GetTypeId()
                             .AddTraceSource("BytesInQueue",
                                             "Number of bytes currently stored in the queue",
                                             MakeTraceSourceAccessor(&QueueBase::m_nBytes),
-                                            "ns3::TracedValueCallback::Uint32");
+                                            "ns3::TracedValueCallback::Uint32")
+                            // ######## Added by me ##########
+                            .AddTraceSource ("HighPriorityPacketsInQueue",
+                            "Number of High Priority packets currently stored in the queue disc",
+                            MakeTraceSourceAccessor (&QueueBase::m_nPackets_h),
+                            "ns3::TracedValueCallback::Uint32")
+                            .AddTraceSource ("LowPriorityPacketsInQueue",
+                            "Number of Low Priority packets currently stored in the queue disc",
+                            MakeTraceSourceAccessor (&QueueBase::m_nPackets_l),
+                            "ns3::TracedValueCallback::Uint32");
     return tid;
 }
 
@@ -53,6 +62,10 @@ QueueBase::QueueBase()
       m_nTotalReceivedBytes(0),
       m_nPackets(0),
       m_nTotalReceivedPackets(0),
+      m_nPackets_h(0),
+      m_nPackets_l(0),
+      m_nBytes_h(0),
+      m_nBytes_l(0),
       m_nTotalDroppedBytes(0),
       m_nTotalDroppedBytesBeforeEnqueue(0),
       m_nTotalDroppedBytesAfterDequeue(0),
@@ -114,6 +127,38 @@ QueueBase::GetCurrentSize() const
     if (m_maxSize.GetUnit() == QueueSizeUnit::BYTES)
     {
         return QueueSize(QueueSizeUnit::BYTES, m_nBytes);
+    }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+
+QueueSize
+QueueBase::GetNumOfHighPrioPacketsInQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_h);
+    }
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::BYTES)
+    {
+        return QueueSize(QueueSizeUnit::BYTES, m_nBytes_h);
+    }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+
+QueueSize
+QueueBase::GetNumOfLowPrioPacketsInQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_l);
+    }
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::BYTES)
+    {
+        return QueueSize(QueueSizeUnit::BYTES, m_nBytes_l);
     }
     NS_ABORT_MSG("Unknown queue size unit");
 }

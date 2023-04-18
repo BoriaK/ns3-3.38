@@ -42,3 +42,5 @@ CXX_FLAGS = -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=depr
 
 # PCH options: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
+# PCH options: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
+

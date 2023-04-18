@@ -178,6 +178,17 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/adhoc-aloha-noack-ideal-phy-h
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/aloha-noack-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/aloha-noack-net-device.h \
   include/ns3/generic-phy.h \
@@ -242,12 +253,7 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/adhoc-aloha-noack-ideal-phy-h
   include/ns3/spectrum-interference.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-interference.h \
   include/ns3/names.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/names.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/names.h
 
 src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/spectrum-analyzer-helper.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/helper/spectrum-analyzer-helper.cc \
@@ -426,6 +432,17 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/spectrum-analyzer-helper.cc.o
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/antenna-model.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/antenna-model.h \
   include/ns3/angles.h \
@@ -447,11 +464,6 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/spectrum-analyzer-helper.cc.o
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/propagation/model/propagation-delay-model.h \
   include/ns3/random-variable-stream.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/random-variable-stream.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/spectrum-analyzer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-analyzer.h \
   include/ns3/spectrum-channel.h \
@@ -1134,6 +1146,17 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/waveform-generator-helper.cc.
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/antenna-model.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/antenna-model.h \
   include/ns3/angles.h \
@@ -1152,11 +1175,6 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/helper/waveform-generator-helper.cc.
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/propagation/model/propagation-delay-model.h \
   include/ns3/random-variable-stream.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/random-variable-stream.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/spectrum-channel.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-channel.h \
   include/ns3/channel.h \
@@ -1508,15 +1526,19 @@ src/spectrum/CMakeFiles/libspectrum-obj.dir/model/aloha-noack-net-device.cc.o: C
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/trace-source-accessor.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h
 
 src/spectrum/CMakeFiles/libspectrum-obj.dir/model/constant-spectrum-propagation-loss.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/constant-spectrum-propagation-loss.cc \
@@ -5673,8 +5695,6 @@ include/ns3/enum.h:
 
 include/ns3/header.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/aloha-noack-mac-header.cc:
-
 include/ns3/waveform-generator.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/helper/waveform-generator-helper.h:
@@ -5687,6 +5707,16 @@ include/ns3/position-allocator.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/mobility/helper/mobility-helper.h:
 
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/isotropic-antenna-model.h:
+
+/usr/include/c++/9/bits/move.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/waveform-generator.h:
+
+include/ns3/isotropic-antenna-model.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/mobility/model/geographic-positions.h:
+
 /usr/include/c++/9/string_view:
 
 include/ns3/object.h:
@@ -5696,10 +5726,6 @@ include/ns3/object.h:
 /usr/include/c++/9/type_traits:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/net-device-container.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/isotropic-antenna-model.h:
-
-include/ns3/mac48-address.h:
 
 include/ns3/deprecated.h:
 
@@ -5716,10 +5742,6 @@ include/ns3/callback.h:
 include/ns3/buffer.h:
 
 /usr/include/c++/9/bits/functexcept.h:
-
-include/ns3/uinteger.h:
-
-include/ns3/simple-ref-count.h:
 
 include/ns3/simulator.h:
 
@@ -5806,6 +5828,10 @@ include/ns3/phased-array-model.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simple-ref-count.h:
 
 /usr/include/c++/9/vector:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/aloha-noack-mac-header.cc:
+
+include/ns3/tag.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h:
 
@@ -5935,8 +5961,6 @@ include/ns3/queue.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/tv-spectrum-transmitter.h:
 
-/usr/include/c++/9/limits:
-
 /usr/include/c++/9/ext/concurrence.h:
 
 include/ns3/random-variable-stream.h:
@@ -5974,6 +5998,10 @@ include/ns3/phased-array-spectrum-propagation-loss-model.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-accessor-helper.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-value.h:
+
+include/ns3/simple-ref-count.h:
+
+include/ns3/uinteger.h:
 
 include/ns3/integer.h:
 
@@ -6095,6 +6123,28 @@ include/ns3/assert.h:
 
 include/ns3/traced-value.h:
 
+include/ns3/mac48-address.h:
+
+include/ns3/customTag.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h:
+
+include/ns3/angles.h:
+
+/usr/include/c++/9/limits:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h:
+
+/usr/include/c++/9/bits/valarray_before.h:
+
+/usr/include/c++/9/bits/indirect_array.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-converter.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/helper/tv-spectrum-transmitter-helper.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h:
+
 include/ns3/friis-spectrum-propagation-loss.h:
 
 include/ns3/generic-phy.h:
@@ -6114,10 +6164,6 @@ include/ns3/boolean.h:
 include/ns3/antenna-model.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/antenna-model.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file.h:
-
-include/ns3/angles.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/antenna/model/angles.h:
 
@@ -6173,8 +6219,6 @@ include/ns3/matrix-based-channel-model.h:
 
 /usr/include/c++/9/complex:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/mobility/model/geographic-positions.h:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-channel.cc:
 
 /usr/include/c++/9/valarray:
@@ -6200,14 +6244,6 @@ include/ns3/string.h:
 /usr/include/c++/9/ostream:
 
 /usr/include/c++/9/bits/gslice_array.h:
-
-/usr/include/c++/9/bits/valarray_before.h:
-
-/usr/include/c++/9/bits/indirect_array.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/spectrum-converter.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/helper/tv-spectrum-transmitter-helper.h:
 
 include/ns3/spectrum-value.h:
 
@@ -6245,8 +6281,6 @@ include/ns3/spectrum-interference.h:
 
 include/ns3/names.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h:
-
 /usr/include/c++/9/bits/shared_ptr.h:
 
 include/ns3/non-communicating-net-device.h:
@@ -6269,6 +6303,10 @@ include/ns3/pcap-file-wrapper.h:
 
 include/ns3/tv-spectrum-transmitter.h:
 
+include/ns3/mobility-helper.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h:
+
 include/ns3/net-device-container.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/helper/spectrum-helper.cc:
@@ -6278,13 +6316,3 @@ include/ns3/multi-model-spectrum-channel.h:
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 include/ns3/geographic-positions.h:
-
-/usr/include/c++/9/bits/move.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/spectrum/model/waveform-generator.h:
-
-include/ns3/isotropic-antenna-model.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h:
-
-include/ns3/mobility-helper.h:

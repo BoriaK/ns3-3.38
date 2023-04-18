@@ -219,8 +219,8 @@ int main (int argc, char *argv[])
     {
         usedAlgorythm = "FB";
     }
-    float_t alpha_high = 20;
-    float_t alpha_low = 0.5;
+    float_t alpha_high = 10;
+    float_t alpha_low = 1;
     uint32_t flowletTimeout = 50;
     bool eraseOldData = true; // true/false
 

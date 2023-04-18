@@ -634,6 +634,12 @@ StaticCast(const Ptr<T2>& p)
     return Ptr<T1>(static_cast<T1*>(PeekPointer(p)));
 }
 
+template <typename T1, typename T2>
+Ptr<T1>
+ReinterpretCast(const Ptr<T2>& p)
+{
+    return Ptr<T1>(reinterpret_cast<T1*>(PeekPointer(p)));
+}
 /** @} */
 
 /**

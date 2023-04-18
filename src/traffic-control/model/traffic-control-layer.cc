@@ -24,8 +24,16 @@
 #include "ns3/packet.h"
 #include "ns3/queue-disc.h"
 #include "ns3/socket.h"
+////////////////////////////////
+#include "ns3/names.h"
+#include "ns3/queue.h"
+#include "ns3/network-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/string.h"
+//////////////////////////////
 
 #include <tuple>
+#include <string>
 
 namespace ns3
 {
@@ -49,6 +57,56 @@ TrafficControlLayer::GetTypeId()
                 MakeObjectMapAccessor(&TrafficControlLayer::GetNDevices,
                                       &TrafficControlLayer::GetRootQueueDiscOnDeviceByIndex),
                 MakeObjectMapChecker<QueueDisc>())
+/////Added by me////////////////////////////////////////////////////////////////////
+            .AddAttribute("SharedBuffer",
+                "True to use Shared-Buffer all packet flows are managed before the queue-disc",
+                BooleanValue(true),
+                MakeBooleanAccessor(&TrafficControlLayer::m_useSharedBuffer),
+                MakeBooleanChecker())
+            .AddAttribute("MaxSharedBufferSize",
+                   "in case of Shared-Buffer only, The maximum number of packets accepted by traffic-controll layer.",
+                  QueueSizeValue(QueueSize("100p")),
+                  MakeQueueSizeAccessor(&TrafficControlLayer::m_maxSharedBufferSize),
+                  MakeQueueSizeChecker ())
+            .AddAttribute ("Alpha_High",
+                "The Alpha value for high priority packets",
+                UintegerValue(2),
+                MakeUintegerAccessor(&TrafficControlLayer::alpha_h),
+                MakeUintegerChecker<uint8_t>())
+            .AddAttribute ("Alpha_Low",
+                        "The Alpha value for low priority packets",
+                        UintegerValue(1),
+                        MakeUintegerAccessor(&TrafficControlLayer::alpha_l),
+                        MakeUintegerChecker<uint8_t>())
+            .AddAttribute("TrafficControllAlgorythm",
+                        "The Traffic Controll Algorythm to use inorder to manage traffic in Shared Buffer",
+                        StringValue("DT"),
+                        MakeStringAccessor(&TrafficControlLayer::usedAlgorythm),
+                        MakeStringChecker())
+            .AddTraceSource("PacketsInQueue",
+                            "Number of packets currently stored in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_traceSharedBufferPackets),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("BytesInQueue",
+                            "Number of bytes currently stored in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_traceSharedBufferBytes),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("HighPriorityPacketsInQueue",
+                            "Number of packets currently stored in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_nPackets_trace_High_InSharedQueue),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("LowPriorityPacketsInQueue",
+                            "Number of packets currently stored in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_nPackets_trace_Low_InSharedQueue),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("EnqueueingThreshold_High",
+                            "The Threshold for High Priority packets in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_p_trace_threshold_h),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("EnqueueingThreshold_Low",
+                            "The Threshold for Low Priority packets in the Shared Buffer in Traffic Control Layer",
+                            MakeTraceSourceAccessor(&TrafficControlLayer::m_p_trace_threshold_l),
+                            "ns3::TracedValueCallback::Uint32")
             .AddTraceSource("TcDrop",
                             "Trace source indicating a packet has been dropped by the Traffic "
                             "Control layer because no queue disc is installed on the device, the "
@@ -65,7 +123,9 @@ TrafficControlLayer::GetInstanceTypeId() const
 }
 
 TrafficControlLayer::TrafficControlLayer()
-    : Object()
+    : Object(),
+    m_p_threshold_h (m_maxSharedBufferSize.GetValue ()),  // initilize high priority threshold to be max queue size// Added by me
+    m_p_threshold_l (m_maxSharedBufferSize.GetValue ())  // initilize low priority threshold to be max queue size// Added by me
 {
     NS_LOG_FUNCTION(this);
 }
@@ -122,6 +182,419 @@ TrafficControlLayer::RegisterProtocolHandler(Node::ProtocolHandler handler,
     NS_LOG_DEBUG("Handler for NetDevice: " << device << " registered for protocol " << protocolType
                                            << ".");
 }
+
+//////////added by me/////////////////////////////////////
+TrafficControlLayer::TCStats::TCStats()
+    : nTotalDroppedPackets(0),
+      nTotalDroppedPacketsHighPriority (0), // added by me
+      nTotalDroppedPacketsLowPriority (0), // added by me
+      nTotalDroppedBytes(0),
+      nTotalDroppedBytesHighPriority (0), // added by me
+      nTotalDroppedBytesLowPriority (0) // added by me
+{
+}
+
+void
+TrafficControlLayer::TCStats::Print(std::ostream& os) const
+{
+    std::map<std::string, uint32_t>::const_iterator itp;
+    std::map<std::string, uint64_t>::const_iterator itb;
+
+    os << std::endl
+       << "Packets/Bytes dropped by Traffic Control Layer: " << nTotalDroppedPackets << " / " << nTotalDroppedBytes
+       /////////Added by me//////////////////////
+       << std::endl << "High Priority Packets/Bytes dropped by Traffic Control Layer: "
+                    << nTotalDroppedPacketsHighPriority << " / "
+                    << nTotalDroppedBytesHighPriority
+       << std::endl << "Low Priority Packets/Bytes dropped by Traffic Control Layer: "
+                    << nTotalDroppedPacketsLowPriority << " / "
+                    << nTotalDroppedBytesLowPriority;
+       /////////////////////////////////////////                     
+
+
+    os << std::endl;
+}
+
+std::ostream&
+operator<<(std::ostream& os, const TrafficControlLayer::TCStats& stats)
+{
+    stats.Print(os);
+    return os;
+}
+
+QueueSize
+TrafficControlLayer::GetMaxSharedBufferSize() const
+{
+    NS_LOG_FUNCTION(this);
+
+    return m_maxSharedBufferSize;  
+}
+
+QueueSize
+TrafficControlLayer::GetCurrentSharedBufferSize()
+{
+    NS_LOG_FUNCTION(this);
+
+    /// Create a vector to hold pointers to all the NetDevices aggrigated to the Node
+    std::vector<Ptr<NetDevice>> m_netDevicesList;  // a List containing all the net devices on a speciffic Node
+    for (auto const& element : m_netDevices) 
+    {
+    m_netDevicesList.push_back(element.first);
+    }
+    
+    // for debug: Get the number of NetDevices installed on the Node
+    // uint32_t numDevices = m_netDevicesList.size();
+    // std::cout << "Number of NetDevices installed on the Node is: " << numDevices << std::endl;
+
+    // calculate the number of the packets in the Shared Buffer as the sum of all packets currently stored on all the NetDevices on the Node:
+    // erase the Shared Buffer Packets calcultaion from the previous itteration
+    m_sharedBufferPackets = 0;
+    m_sharedBufferBytes = 0;
+
+    /// calculate the number of the packets/bytes in the Shared Buffer 
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
+    for (size_t i = 2; i < m_netDevicesList.size(); i++)
+    {
+        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
+        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+        trafficControllPacketCounter = queue->GetNPackets();
+        trafficControllBytesCounter = queue->GetNBytes();
+        m_sharedBufferPackets += trafficControllPacketCounter;
+        m_sharedBufferBytes += trafficControllBytesCounter;
+    }
+
+    if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_sharedBufferPackets);
+    }
+    if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::BYTES)
+    {
+        return QueueSize(QueueSizeUnit::BYTES, m_sharedBufferBytes);
+    }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+
+/////// not used at the moment/////////////////// 
+QueueSize
+TrafficControlLayer::GetNumOfHighPriorityPacketsInSharedQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    /// Create a vector to hold pointers to all the NetDevices aggrigated to the Node
+    std::vector<Ptr<NetDevice>> m_netDevicesList;  // a List containing all the net devices on a speciffic Node
+    for (auto const& element : m_netDevices) 
+    {
+    m_netDevicesList.push_back(element.first);
+    }
+
+    // calculate the number of the packets in the Shared Buffer as the sum of all packets currently stored on all the NetDevices on the Node:
+    // erase the Shared Buffer Packets calcultaion from the previous itteration
+    m_nPackets_High_InSharedQueue = 0;
+    // m_nBytes_high_InSharedQueue = 0; // not implemented for bytes yet
+
+    /// calculate the number of the packets/bytes in the Shared Buffer 
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
+    for (size_t i = 2; i < m_netDevicesList.size(); i++)
+    {
+        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
+        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+        trafficControllPacketCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();
+        // trafficControllBytesCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+        m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
+        // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+    }
+
+    if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_High_InSharedQueue);
+    }
+    // if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::BYTES)  // not implemented for bytes yet
+    // {
+    //     return QueueSize(QueueSizeUnit::BYTES, m_nBytes_h_InSharedQueue);
+    // }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+
+QueueSize
+TrafficControlLayer::GetNumOfLowPriorityPacketsInSharedQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    /// Create a vector to hold pointers to all the NetDevices aggrigated to the Node
+    std::vector<Ptr<NetDevice>> m_netDevicesList;  // a List containing all the net devices on a speciffic Node
+    for (auto const& element : m_netDevices) 
+    {
+    m_netDevicesList.push_back(element.first);
+    }
+
+    // calculate the number of the packets in the Shared Buffer as the sum of all packets currently stored on all the NetDevices on the Node:
+    // erase the Shared Buffer Packets calcultaion from the previous itteration
+    m_nPackets_Low_InSharedQueue = 0;
+    // m_nBytes_low_InSharedQueue = 0;  // not implemented for bytes yet
+
+    /// calculate the number of the packets/bytes in the Shared Buffer 
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
+    for (size_t i = 2; i < m_netDevicesList.size(); i++)
+    {
+        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
+        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+        trafficControllPacketCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();
+        // trafficControllBytesCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+        m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
+        // m_nBytes_low_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+    }
+
+    if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_Low_InSharedQueue);
+    }
+    // if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::BYTES)  // not implemented for bytes yet
+    // {
+    //     return QueueSize(QueueSizeUnit::BYTES, m_nBytes_low_InSharedQueue);
+    // }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+////////////////////////////////////////////////////////////////
+
+uint32_t 
+TrafficControlLayer::GetNumOfConjestedQueuesInSharedQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    /// Create a vector to hold pointers to all the NetDevices aggrigated to the Node
+    std::vector<Ptr<NetDevice>> m_netDevicesList;  // a List containing all the net devices on a speciffic Node
+    for (auto const& element : m_netDevices) 
+    {
+    m_netDevicesList.push_back(element.first);
+    }
+
+    // calculate the number of the conjested queues in the Shared Buffer as the sum of all non empty queues of priority p on all the NetDevices on the Node:
+    // erase the conjested queues calcultaion from the previous itteration
+    m_nConjestedQueues = 0;
+
+    /// calculate the number of the qunjested queues of priority p in the Shared Buffer 
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario
+     for (size_t i = 2; i < m_netDevicesList.size(); i++)
+    {
+        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
+        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+
+        if (queue->GetNPackets())
+        {
+            m_nConjestedQueues++;
+        }
+    }
+    return m_nConjestedQueues;
+}
+
+uint32_t 
+TrafficControlLayer::GetNumOfPriorityConjestedQueuesInSharedQueue(uint32_t queue_priority)
+{
+    NS_LOG_FUNCTION(this);
+
+    /// Create a vector to hold pointers to all the NetDevices aggrigated to the Node
+    std::vector<Ptr<NetDevice>> m_netDevicesList;  // a List containing all the net devices on a speciffic Node
+    for (auto const& element : m_netDevices) 
+    {
+    m_netDevicesList.push_back(element.first);
+    }
+
+    // calculate the number of the conjested queues in the Shared Buffer as the sum of all non empty queues of priority p on all the NetDevices on the Node:
+    // erase the conjested queues calcultaion from the previous itteration
+    m_nConjestedQueues_p = 0;
+
+    /// calculate the number of the qunjested queues of priority p in the Shared Buffer 
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario
+     for (size_t i = 2; i < m_netDevicesList.size(); i++)
+    {
+        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
+        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+        if (queue_priority == 1)  // 1 is low priority
+        {
+            if (queue->GetNumOfLowPrioPacketsInQueue().GetValue())
+            {
+                m_nConjestedQueues_p++;
+            }
+        }
+        else if (queue_priority == 2)  // 2 is high priority
+        {
+            if (queue->GetNumOfHighPrioPacketsInQueue().GetValue())
+            {
+                m_nConjestedQueues_p++;
+            }
+        }
+        else
+        {
+            NS_ABORT_MSG("Unknown priority");
+        }
+    }
+    return m_nConjestedQueues_p;
+}
+
+QueueSize
+TrafficControlLayer::GetQueueThreshold_DT (int alpha, int alpha_l, int alpha_h)  // added by me!!!!!!!! for DT implementation
+{
+  NS_LOG_FUNCTION (this);
+
+  if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+      if (alpha == alpha_h)
+      {
+        m_p_threshold_h = alpha_h * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+        return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_h);
+      }
+      else if (alpha == alpha_l)
+      {
+        m_p_threshold_l = alpha_l * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+        return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_l);
+      }
+      
+    }
+  if (GetMaxSharedBufferSize ().GetUnit () == QueueSizeUnit::BYTES)
+    {
+      if (alpha == alpha_h)
+      {
+        m_b_threshold_h = alpha_h * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+        return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_h);
+      }
+      else if (alpha == alpha_l)
+      {
+        m_p_threshold_l = alpha_l * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+        return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_l);
+      }
+    }
+  NS_ABORT_MSG ("Unknown Threshod unit");
+}
+
+QueueSize
+TrafficControlLayer::GetQueueThreshold_FB (int alpha, int alpha_l, int alpha_h)  // added by me!!!!!!!! for FB implementation
+{
+    NS_LOG_FUNCTION (this);
+
+    // set condition for FB: if there are ANY packets currently in queue, that queue is conjested!
+    numConjestedQueuesHigh = 0;  // initilize to 0 EACH TIME A NEW PACKET ARRIVES
+    numConjestedQueuesLow = 0;
+
+    if ((GetNumOfHighPriorityPacketsInSharedQueue().GetValue() == 0) && (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() == 0))  // if queue is compleatly empty -> Threshold should be as high as possible (Infinity)
+    {
+        if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+        {
+            if (alpha == alpha_h)
+            {
+                m_p_threshold_h = alpha_h * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_h);
+            }
+            else if (alpha == alpha_l)
+            {
+                m_p_threshold_l = alpha_l * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_l);
+            }
+            
+        }
+        if (GetMaxSharedBufferSize ().GetUnit () == QueueSizeUnit::BYTES)
+        {
+            if (alpha == alpha_h)
+            {
+                m_b_threshold_h = alpha_h * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_h);
+            }
+            else if (alpha == alpha_l)
+            {
+                m_p_threshold_l = alpha_l * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_l);
+            }
+        }
+        NS_ABORT_MSG ("Unknown Threshod unit");
+    }
+    else
+    {
+        numConjestedQueues = GetNumOfConjestedQueuesInSharedQueue();
+        if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
+        {
+            // queue_priority = [2, 1]
+            if (alpha == alpha_h)
+            {
+                // numConjestedQueuesHigh = GetNumOfPriorityConjestedQueuesInSharedQueue(2);  // 2 is high 
+                numConjestedQueuesHigh = numConjestedQueues;
+                m_p_threshold_h = alpha_h * (1 / numConjestedQueuesHigh) * gamma * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_h);
+            }
+            else if (alpha == alpha_l)
+            {
+                // numConjestedQueuesLow = GetNumOfPriorityConjestedQueuesInSharedQueue(1);  // 1 is low priority
+                numConjestedQueuesLow = numConjestedQueues;
+                m_p_threshold_l = alpha_l * (1 / numConjestedQueuesLow) * gamma * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ());
+                return QueueSize (QueueSizeUnit::PACKETS, m_p_threshold_l);
+            }
+            
+        }
+        if (GetMaxSharedBufferSize ().GetUnit () == QueueSizeUnit::BYTES)
+        {
+            if (alpha == alpha_h)
+            {
+                // numConjestedQueuesHigh = GetNumOfPriorityConjestedQueuesInSharedQueue(2);  // 2 is high priority
+                numConjestedQueuesHigh = numConjestedQueues;
+                m_b_threshold_h = std::ceil(alpha_h *(1 / numConjestedQueuesHigh) * gamma * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ()));
+                return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_h);
+            }
+            else if (alpha == alpha_l)
+            {
+                // numConjestedQueuesLow = GetNumOfPriorityConjestedQueuesInSharedQueue(1);  // 1 is low priority
+                numConjestedQueuesLow = numConjestedQueues;
+                m_p_threshold_l = std::ceil(alpha_l * (1 / numConjestedQueuesLow) * gamma * (GetMaxSharedBufferSize ().GetValue () - GetCurrentSharedBufferSize ().GetValue ()));
+                return QueueSize (QueueSizeUnit::PACKETS, m_b_threshold_l);
+            }
+        }
+        NS_ABORT_MSG ("Unknown Threshod unit");
+    }
+       
+}
+
+const TrafficControlLayer::TCStats&
+TrafficControlLayer::GetStats()
+{
+
+    return m_stats;
+}
+
+void
+TrafficControlLayer::DropBeforeEnqueue(Ptr<const QueueDiscItem> item)
+{
+    NS_LOG_FUNCTION(this << item);
+
+    m_stats.nTotalDroppedPackets++;
+    m_stats.nTotalDroppedBytes += item->GetSize();
+
+    if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
+        {
+        flow_priority = flowPrioTag.GetSimpleValue();
+        }
+    
+    if (flow_priority == 0)
+        {
+        m_stats.nTotalDroppedPacketsHighPriority++;
+        m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();
+        }
+    else
+        {
+        m_stats.nTotalDroppedPacketsLowPriority++;
+        m_stats.nTotalDroppedBytesLowPriority += item->GetSize ();
+        }
+
+    NS_LOG_DEBUG ("Total High Priority packets/bytes dropped by Traffic Controll Layer: "
+                    << m_stats.nTotalDroppedPacketsHighPriority << " / "
+                    << m_stats.nTotalDroppedBytesHighPriority);
+    NS_LOG_DEBUG ("Total Low Priority packets/bytes dropped by Traffic Controll Layer: "
+                    << m_stats.nTotalDroppedPacketsLowPriority << " / "
+                    << m_stats.nTotalDroppedBytesLowPriority);                
+    NS_LOG_DEBUG("Total packets/bytes dropped by Traffic Controll Layer: "
+                 << m_stats.nTotalDroppedPackets << " / "
+                 << m_stats.nTotalDroppedBytes);
+    NS_LOG_LOGIC("m_dropped (p)");
+    
+    m_dropped(item->GetPacket());
+}
+////////////////////////////////////////////////////////////
 
 void
 TrafficControlLayer::ScanDevices()
@@ -399,7 +872,126 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                 SocketPriorityTag priorityTag;
                 item->GetPacket()->RemovePacketTag(priorityTag);
             }
-            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+            
+            ///for Shared Buffer. in case no queue-disc is installed on the NetDevice////////
+            std::string nodeName = Names::FindName(m_node);  // Get the name of the Node
+            if (nodeName.compare("Router") == 0)
+            {
+                // std::cout << "Packet: " << item->GetPacket() << " is sent to Port on NetDevice: " << device << std::endl;
+                std::cout << "Current Shared Buffer size is " << GetCurrentSharedBufferSize().GetValue() << " out of: " << GetMaxSharedBufferSize().GetValue() << std::endl;
+
+                // for tracing
+                m_traceSharedBufferPackets = GetCurrentSharedBufferSize().GetValue();
+                m_nPackets_trace_High_InSharedQueue = GetNumOfHighPriorityPacketsInSharedQueue().GetValue();
+                m_nPackets_trace_Low_InSharedQueue = GetNumOfLowPriorityPacketsInSharedQueue().GetValue();
+
+                // set a besic Packet clasification based on arbitrary Tag from recieved packet:
+                // flow_priority = 1 is high priority, flow_priority = 2 is low priority
+                
+                Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(device);
+                Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+                
+                // for debug:
+                // std::cout << "Number of High Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                // std::cout << "Number of Low Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                // std::cout << "Num of High Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(2) << std::endl;
+                // std::cout << "Num of Low Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(1) << std::endl;
+                std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
+
+                if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
+                    {
+                    flow_priority = flowPrioTag.GetSimpleValue();
+                    }
+                
+                // std::cout << "Num of congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(flow_priority) << std::endl;
+                
+                // perform enqueueing process based on incoming flow priority 
+                if (flow_priority == 1)
+                {
+                    alpha = alpha_h;
+                    if (usedAlgorythm.compare("DT") == 0)
+                    {
+                        if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_h = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                        }
+                        else
+                        {
+                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else if (usedAlgorythm.compare("FB") == 0)
+                    {
+                        if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_h = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                        }
+                        else
+                        {
+                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else
+                    {
+                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                    }  
+                }
+                else
+                {
+                    alpha = alpha_l;
+                    if (usedAlgorythm.compare("DT") == 0)
+                    {
+                        if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                        }
+                        else
+                        {
+                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else if (usedAlgorythm.compare("FB") == 0)
+                    {
+                        if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                        }
+                        else
+                        {
+                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else
+                    {
+                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                    }
+                }
+            }
+            //////////////////////////////////////////////////////////////////////////////////
+            else // if not router
+            {
+                device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+            }
         }
         else
         {

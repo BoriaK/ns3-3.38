@@ -23,6 +23,9 @@
 #include "ns3/ptr.h"
 #include "ns3/simple-ref-count.h"
 #include <ns3/address.h>
+////////////////////////
+#include "ns3/net-device.h"
+////////////////////////
 
 namespace ns3
 {
@@ -140,6 +143,17 @@ class QueueDiscItem : public QueueItem
      */
     QueueDiscItem(Ptr<Packet> p, const Address& addr, uint16_t protocol);
 
+///////////Added by me for SharedBuffer////////////////////////////////////////////
+    /**
+     * \brief Create a queue disc item.
+     * \param p the packet included in the created item.
+     * \param addr the destination MAC address
+     * \param protocol the L3 protocol number
+     * \param device the NetDevice the packet is being enqueued in
+     */
+    QueueDiscItem(Ptr<Packet> p, const Address& addr, uint16_t protocol, Ptr<NetDevice> device);
+////////////////////////////////////////////////////////////////////////////////////////
+
     ~QueueDiscItem() override;
 
     // Delete default constructor, copy constructor and assignment operator to avoid misuse
@@ -147,6 +161,20 @@ class QueueDiscItem : public QueueItem
     QueueDiscItem(const QueueDiscItem&) = delete;
     QueueDiscItem& operator=(const QueueDiscItem&) = delete;
 
+  ///////////////////////Added by me for SharedBuffer////////////////////////////////////////////////
+  /**
+   * \brief Set the NetDevice on which this queue discipline is installed.
+   * \param device the NetDevice on which this queue discipline is installed.
+   */
+  void SetNetDevice (Ptr<NetDevice> device);
+
+  /**
+   * \brief Get the NetDevice on which this queue discipline is installed
+   * \return the NetDevice on which this queue discipline is installed.
+   */
+  Ptr<NetDevice> GetNetDevice (void) const;
+////////////////////////////////////////////////////////////////////////////////////
+    
     /**
      * \brief Get the MAC address included in this item
      * \return the MAC address included in this item.
@@ -222,6 +250,9 @@ class QueueDiscItem : public QueueItem
     uint16_t m_protocol; //!< L3 Protocol number
     uint8_t m_txq;       //!< Transmission queue index
     Time m_tstamp;       //!< timestamp when the packet was enqueued
+////////////Added by me////////////////////////////////////////////////////////
+    Ptr<NetDevice> m_netDevice; //!< the NetDevice that the packet was enqueued in
+///////////////////////////////////////////////////////////////////////////
 };
 
 } // namespace ns3

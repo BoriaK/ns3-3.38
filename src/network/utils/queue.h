@@ -30,6 +30,8 @@
 #include "ns3/queue-size.h"
 #include "ns3/traced-callback.h"
 #include "ns3/traced-value.h"
+//////Added by me///////////
+#include "ns3/customTag.h"
 
 #include <sstream>
 #include <string>
@@ -103,6 +105,26 @@ class QueueBase : public Object
      *         size is specified in packets, or bytes, otherwise
      */
     QueueSize GetCurrentSize() const;
+
+/////////////////Added by me /////////////
+    /**
+     * \brief Get the current number of High Priority Packets in the queue, in bytes, if
+     *        operating in bytes mode, or packets, otherwise.
+     *
+     *
+     * \returns The number of high priority packets in queue in bytes or packets.
+     */
+    QueueSize GetNumOfHighPrioPacketsInQueue();
+
+    /**
+     * \brief Get the current number of High Priority Packets in the queue, in bytes, if
+     *        operating in bytes mode, or packets, otherwise.
+     *
+     *
+     * \returns The number of high priority packets in queue in bytes or packets.
+     */
+    QueueSize GetNumOfLowPrioPacketsInQueue();
+///////////////////////////////////////
 
     /**
      * \return The total number of bytes received by this Queue since the
@@ -218,6 +240,10 @@ class QueueBase : public Object
     uint32_t m_nTotalReceivedBytes;               //!< Total received bytes
     TracedValue<uint32_t> m_nPackets;             //!< Number of packets in the queue
     uint32_t m_nTotalReceivedPackets;             //!< Total received packets
+    TracedValue<uint32_t> m_nPackets_h; //!< Number of High Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nPackets_l; //!< Number of Low Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nBytes_h; //!< Number of High Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nBytes_l; //!< Number of Low Priority packets in the queue ######## Added by me!######   
     uint32_t m_nTotalDroppedBytes;                //!< Total dropped bytes
     uint32_t m_nTotalDroppedBytesBeforeEnqueue;   //!< Total dropped bytes before enqueue
     uint32_t m_nTotalDroppedBytesAfterDequeue;    //!< Total dropped bytes after dequeue
@@ -226,6 +252,10 @@ class QueueBase : public Object
     uint32_t m_nTotalDroppedPacketsAfterDequeue;  //!< Total dropped packets after dequeue
 
     QueueSize m_maxSize; //!< max queue size
+
+    SharedPriorityTag flowPrioTag;    //< a tag that's added to each sent packet based on the priority assigned by the Sender application
+    SharedRouterTag routerPacketTag;  //< a tag that's added to each packet that's sent to a port on the router, to track the number of High/Low priority packets in each queue
+    uint8_t flow_priority;   //< Flow priority assigned to each recieved packet, based on the flow priority assigned by sender
 };
 
 /**
@@ -538,6 +568,48 @@ Queue<Item, Container>::DoEnqueue(ConstIterator pos, Ptr<Item> item, Iterator& r
     NS_LOG_LOGIC("m_traceEnqueue (p)");
     m_traceEnqueue(item);
 
+    Ptr<Item> temp_item = item;
+
+    Ptr<Packet> temp_packet = DynamicCast<Packet>(temp_item);
+    if (temp_packet != nullptr)
+    {
+        // std::cout << "item is a packet " << temp_packet << std::endl;
+        // std::cout << "this is a shared buffer packet" << std::endl;
+
+
+        if (temp_packet->PeekPacketTag(flowPrioTag))
+        {
+            //Added by me for Shared Buffer High/Low Priority Packets tracing:
+            flow_priority = flowPrioTag.GetSimpleValue();
+            if (flow_priority == 1)
+                {
+                m_nPackets_h++;
+                }
+            else
+                {
+                m_nPackets_l++;
+                }
+        }
+
+    }
+    else
+    {
+        Ptr<QueueItem> temp_queueItem = ReinterpretCast<QueueItem>(temp_item);
+        if (temp_queueItem->GetPacket()->PeekPacketTag(flowPrioTag))
+        {
+            //Added by me for Shared Buffer High/Low Priority Packets tracing:
+            flow_priority = flowPrioTag.GetSimpleValue();
+            if (flow_priority == 1)
+                {
+                m_nPackets_h++;
+                }
+            else
+                {
+                m_nPackets_l++;
+                }
+        }
+    }
+
     return true;
 }
 
@@ -566,6 +638,44 @@ Queue<Item, Container>::DoDequeue(ConstIterator pos)
 
         NS_LOG_LOGIC("m_traceDequeue (p)");
         m_traceDequeue(item);
+
+        Ptr<Item> temp_item = item;
+
+        Ptr<Packet> temp_packet = DynamicCast<Packet>(temp_item);
+        if (temp_packet != nullptr)
+        {
+            // std::cout << "item is a packet " << temp_packet << std::endl;
+            if (temp_packet->PeekPacketTag(flowPrioTag))
+            {
+                //Added by me for Shared Buffer High/Low Priority Packets tracing:
+                flow_priority = flowPrioTag.GetSimpleValue();
+                if (flow_priority == 1)
+                    {
+                    m_nPackets_h--;
+                    }
+                else
+                    {
+                    m_nPackets_l--;
+                    }
+            }
+        }
+        else
+        {
+            Ptr<QueueItem> temp_queueItem = ReinterpretCast<QueueItem>(temp_item);
+            if (temp_queueItem->GetPacket()->PeekPacketTag(flowPrioTag))
+            {
+                //Added by me for Shared Buffer High/Low Priority Packets tracing:
+                flow_priority = flowPrioTag.GetSimpleValue();
+                if (flow_priority == 1)
+                    {
+                    m_nPackets_h--;
+                    }
+                else
+                    {
+                    m_nPackets_l--;
+                    }
+            }
+        }
     }
     return item;
 }

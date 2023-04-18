@@ -628,6 +628,10 @@ src/wave/CMakeFiles/libwave-obj.dir/helper/wave-helper.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -1272,14 +1276,16 @@ src/wave/CMakeFiles/libwave-obj.dir/model/bsm-application.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-information-element.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -1704,6 +1710,12 @@ src/wave/CMakeFiles/libwave-obj.dir/model/channel-scheduler.cc.o: CMakeFiles/std
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-fwd.h \
   include/ns3/queue-item.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/traced-callback.h \
@@ -1716,6 +1728,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/channel-scheduler.cc.o: CMakeFiles/std
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -1723,8 +1746,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/channel-scheduler.cc.o: CMakeFiles/std
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -1743,12 +1764,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/channel-scheduler.cc.o: CMakeFiles/std
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/vsa-manager.h \
   include/ns3/wifi-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-net-device.h \
-  include/ns3/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
-  include/ns3/ipv6-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/qos-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/qos-utils.h
 
@@ -1945,6 +1960,12 @@ src/wave/CMakeFiles/libwave-obj.dir/model/default-channel-scheduler.cc.o: CMakeF
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-fwd.h \
   include/ns3/queue-item.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/traced-callback.h \
@@ -1957,6 +1978,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/default-channel-scheduler.cc.o: CMakeF
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -1964,8 +1996,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/default-channel-scheduler.cc.o: CMakeF
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -1984,17 +2014,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/default-channel-scheduler.cc.o: CMakeF
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/vsa-manager.h \
   include/ns3/wifi-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-net-device.h \
-  include/ns3/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
-  include/ns3/ipv6-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-phy.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-phy.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/phy-entity.h \
@@ -2339,6 +2358,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/ocb-wifi-mac.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -2346,8 +2376,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/ocb-wifi-mac.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -2364,8 +2392,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/ocb-wifi-mac.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/vht/vht-capabilities.h \
   /usr/include/c++/9/array \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/higher-tx-tag.h \
-  include/ns3/tag.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/wifi-tx-vector.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-vector.h \
   include/ns3/he-ru.h \
@@ -2405,11 +2431,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/ocb-wifi-mac.cc.o: CMakeFiles/stdlib_p
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-psdu.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-parameters.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-timer.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/channel-access-manager.h \
   /usr/include/c++/9/algorithm \
   include/ns3/wifi-ack-manager.h \
@@ -2772,6 +2793,12 @@ src/wave/CMakeFiles/libwave-obj.dir/model/vsa-manager.cc.o: CMakeFiles/stdlib_pc
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-fwd.h \
   include/ns3/queue-item.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/traced-callback.h \
@@ -2784,6 +2811,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/vsa-manager.cc.o: CMakeFiles/stdlib_pc
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -2791,8 +2829,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/vsa-manager.cc.o: CMakeFiles/stdlib_pc
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -2810,24 +2846,11 @@ src/wave/CMakeFiles/libwave-obj.dir/model/vsa-manager.cc.o: CMakeFiles/stdlib_pc
   /usr/include/c++/9/array \
   include/ns3/wifi-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-net-device.h \
-  include/ns3/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
-  include/ns3/ipv6-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/higher-tx-tag.h \
-  include/ns3/tag.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/wifi-tx-vector.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-vector.h \
   include/ns3/he-ru.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/he/he-ru.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/socket.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.h \
   include/ns3/inet-socket-address.h \
@@ -3047,6 +3070,12 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-fwd.h \
   include/ns3/queue-item.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/traced-callback.h \
@@ -3059,6 +3088,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -3066,8 +3106,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -3086,12 +3124,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/vsa-manager.h \
   include/ns3/wifi-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-net-device.h \
-  include/ns3/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
-  include/ns3/ipv6-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/qos-frame-exchange-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/qos-frame-exchange-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/frame-exchange-manager.h \
@@ -3128,11 +3160,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-psdu.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-parameters.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-timer.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/channel-access-manager.h \
   /usr/include/c++/9/algorithm \
   include/ns3/wifi-ack-manager.h \
@@ -3143,8 +3170,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-frame-exchange-manager.cc.o: CMak
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-protection-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-protection.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/higher-tx-tag.h \
-  include/ns3/tag.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/wifi-tx-vector.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-vector.h \
   include/ns3/qos-blocked-destinations.h \
@@ -3346,6 +3371,12 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-net-device.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-fwd.h \
   include/ns3/queue-item.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-item.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/traced-callback.h \
@@ -3358,6 +3389,17 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-net-device.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/ssid.h \
@@ -3365,8 +3407,6 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-net-device.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-manager.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-remote-station-info.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-utils.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/block-ack-type.h \
   include/ns3/data-rate.h \
@@ -3385,15 +3425,7 @@ src/wave/CMakeFiles/libwave-obj.dir/model/wave-net-device.cc.o: CMakeFiles/stdli
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/vsa-manager.h \
   include/ns3/wifi-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-net-device.h \
-  include/ns3/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
-  include/ns3/ipv6-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wave/model/higher-tx-tag.h \
-  include/ns3/tag.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/wifi-tx-vector.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-tx-vector.h \
   include/ns3/he-ru.h \
@@ -3630,6 +3662,8 @@ include/ns3/object.h:
 /usr/include/c++/9/type_traits:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/net-device-container.h:
+
+include/ns3/customTag.h:
 
 include/ns3/mac48-address.h:
 
@@ -3914,6 +3948,8 @@ include/ns3/wifi-mac-helper.h:
 include/ns3/queue.h:
 
 /usr/include/c++/9/debug/debug.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h:
 
 /usr/include/c++/9/limits:
 

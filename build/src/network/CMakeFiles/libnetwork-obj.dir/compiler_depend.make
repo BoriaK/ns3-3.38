@@ -907,6 +907,17 @@ src/network/CMakeFiles/libnetwork-obj.dir/helper/simple-net-device-helper.cc.o: 
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/simple-channel.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-channel.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac48-address.h \
@@ -920,11 +931,6 @@ src/network/CMakeFiles/libnetwork-obj.dir/helper/simple-net-device-helper.cc.o: 
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/names.h \
   include/ns3/net-device-queue-interface.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/net-device-queue-interface.h \
-  include/ns3/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/simple-net-device.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-net-device.h \
   include/ns3/data-rate.h \
@@ -3656,6 +3662,12 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/drop-tail-queue.cc.o: CMakeFiles
   /usr/include/c++/9/bits/std_abs.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-name.h \
   /usr/include/c++/9/set \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/abort.h \
@@ -3669,7 +3681,19 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/drop-tail-queue.cc.o: CMakeFiles
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/enum.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h
 
 src/network/CMakeFiles/libnetwork-obj.dir/utils/dynamic-queue-limits.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/dynamic-queue-limits.cc \
@@ -7462,9 +7486,9 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/queue-item.cc.o: CMakeFiles/stdl
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag-buffer.h \
   include/ns3/assert.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/assert.h \
-  include/ns3/log.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log.h \
-  include/ns3/packet.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/buffer.h \
   /usr/include/c++/9/cstring \
@@ -7537,7 +7561,17 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/queue-item.cc.o: CMakeFiles/stdl
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac8-address.h \
   include/ns3/ipv4-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
+  include/ns3/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-construction-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h \
+  include/ns3/log.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log.h \
+  include/ns3/packet.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h
 
 src/network/CMakeFiles/libnetwork-obj.dir/utils/queue-limits.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-limits.cc \
@@ -7815,6 +7849,12 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/queue.cc.o: CMakeFiles/stdlib_pc
   /usr/include/c++/9/bits/std_abs.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-name.h \
   /usr/include/c++/9/set \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
   include/ns3/queue-size.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h \
   include/ns3/abort.h \
@@ -7829,12 +7869,22 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/queue.cc.o: CMakeFiles/stdlib_pc
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
   include/ns3/enum.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/enum.h \
   include/ns3/trace-source-accessor.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h
 
 src/network/CMakeFiles/libnetwork-obj.dir/utils/radiotap-header.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/radiotap-header.cc \
@@ -8307,6 +8357,12 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/simple-net-device.cc.o: CMakeFil
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
@@ -8314,8 +8370,6 @@ src/network/CMakeFiles/libnetwork-obj.dir/utils/simple-net-device.cc.o: CMakeFil
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/string.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/string.h \
-  include/ns3/tag.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
   include/ns3/trace-source-accessor.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h
 
@@ -8727,6 +8781,10 @@ include/ns3/inet-socket-address.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.h:
 
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-net-device.cc:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.cc:
+
 include/ns3/object.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.cc:
@@ -9059,10 +9117,6 @@ include/ns3/address.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/delay-jitter-estimation.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/simple-net-device.cc:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.cc:
-
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-factory.h:
@@ -9342,5 +9396,7 @@ include/ns3/boolean.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.cc:
 
 include/ns3/mac48-address.h:
+
+include/ns3/customTag.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket-factory.cc:

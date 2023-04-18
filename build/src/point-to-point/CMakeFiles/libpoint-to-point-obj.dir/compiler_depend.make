@@ -197,6 +197,12 @@ src/point-to-point/CMakeFiles/libpoint-to-point-obj.dir/helper/point-to-point-he
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/trace-helper.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/trace-helper.h \
   include/ns3/output-stream-wrapper.h \
@@ -561,15 +567,19 @@ src/point-to-point/CMakeFiles/libpoint-to-point-obj.dir/model/point-to-point-net
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/integer.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
   include/ns3/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
   include/ns3/trace-source-accessor.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
-  include/ns3/uinteger.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h
 
 src/point-to-point/CMakeFiles/libpoint-to-point-obj.dir/model/ppp-header.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/point-to-point/model/ppp-header.cc \
@@ -700,6 +710,8 @@ include/ns3/output-stream-wrapper.h:
 
 include/ns3/trace-helper.h:
 
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h:
+
 include/ns3/traced-value.h:
 
 include/ns3/queue-size.h:
@@ -723,6 +735,8 @@ include/ns3/queue-fwd.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/point-to-point/model/ppp-header.cc:
+
+include/ns3/customTag.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/point-to-point/model/point-to-point-net-device.h:
 
@@ -935,6 +949,8 @@ include/ns3/packet.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64.h:
 
 include/ns3/ipv6-address.h:
+
+include/ns3/tag.h:
 
 /usr/include/c++/9/vector:
 

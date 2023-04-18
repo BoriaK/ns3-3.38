@@ -29,6 +29,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/libtraffic-control-obj.dir/model/queue-disc.cc.o.d"
   "CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.o"
   "CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.o.d"
+  "CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o"
+  "CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o.d"
   "CMakeFiles/libtraffic-control-obj.dir/model/tbf-queue-disc.cc.o"
   "CMakeFiles/libtraffic-control-obj.dir/model/tbf-queue-disc.cc.o.d"
   "CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o"

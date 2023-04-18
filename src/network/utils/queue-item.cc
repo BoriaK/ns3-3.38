@@ -83,10 +83,38 @@ QueueDiscItem::QueueDiscItem(Ptr<Packet> p, const Address& addr, uint16_t protoc
     NS_LOG_FUNCTION(this << p << addr << protocol);
 }
 
+/////Added by me for SharedBuffer//////////////////////////////////
+QueueDiscItem::QueueDiscItem(Ptr<Packet> p, const Address& addr, uint16_t protocol, Ptr<NetDevice> device)
+    : QueueItem(p),
+      m_address(addr),
+      m_protocol(protocol),
+      m_txq(0),
+      m_netDevice(device)
+{
+    NS_LOG_FUNCTION(this << p << addr << protocol << device);
+}
+/////////////////////////////////////////////////////////////////
+
 QueueDiscItem::~QueueDiscItem()
 {
     NS_LOG_FUNCTION(this);
 }
+
+/////////////////Added by me for SharedBuffer/////////////////////////
+void
+QueueDiscItem::SetNetDevice (Ptr<NetDevice> device)
+{
+  NS_LOG_FUNCTION (this << device);
+  m_netDevice = device;
+}
+
+Ptr<NetDevice>
+QueueDiscItem::GetNetDevice (void) const
+{
+  NS_LOG_FUNCTION (this);
+  return m_netDevice;
+}
+//////////////////////////////////////////////////////////
 
 Address
 QueueDiscItem::GetAddress() const

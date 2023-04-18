@@ -1,10 +1,10 @@
 Performing C++ SOURCE FILE Test MISSING_OSTREAM_NULLPTR_OPERATOR failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_d7384/fast && /usr/bin/make  -f CMakeFiles/cmTC_d7384.dir/build.make CMakeFiles/cmTC_d7384.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_c82b7/fast && /usr/bin/make  -f CMakeFiles/cmTC_c82b7.dir/build.make CMakeFiles/cmTC_c82b7.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d7384.dir/src.cxx.o
-/usr/bin/g++ -DMISSING_OSTREAM_NULLPTR_OPERATOR  -fPIE -std=gnu++17 -o CMakeFiles/cmTC_d7384.dir/src.cxx.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx
+Building CXX object CMakeFiles/cmTC_c82b7.dir/src.cxx.o
+/usr/bin/g++ -DMISSING_OSTREAM_NULLPTR_OPERATOR  -fPIE -std=gnu++17 -o CMakeFiles/cmTC_c82b7.dir/src.cxx.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx:11:12: error: ambiguous overload for ‘operator<<’ (operand types are ‘std::ostream’ {aka ‘std::basic_ostream<char>’} and ‘std::nullptr_t’)
    11 |         os << std::nullptr_t();
@@ -52,9 +52,9 @@ In file included from /usr/include/c++/9/iostream:39,
 /usr/include/c++/9/ostream:583:5: note: candidate: ‘std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*) [with _Traits = std::char_traits<char>]’
   583 |     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
       |     ^~~~~~~~
-make[1]: *** [CMakeFiles/cmTC_d7384.dir/build.make:78: CMakeFiles/cmTC_d7384.dir/src.cxx.o] Error 1
+make[1]: *** [CMakeFiles/cmTC_c82b7.dir/build.make:78: CMakeFiles/cmTC_c82b7.dir/src.cxx.o] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_d7384/fast] Error 2
+make: *** [Makefile:127: cmTC_c82b7/fast] Error 2
 
 
 Source file was:
@@ -75,22 +75,22 @@ Source file was:
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_e340d/fast && /usr/bin/make  -f CMakeFiles/cmTC_e340d.dir/build.make CMakeFiles/cmTC_e340d.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_41d5d/fast && /usr/bin/make  -f CMakeFiles/cmTC_41d5d.dir/build.make CMakeFiles/cmTC_41d5d.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e340d.dir/src.c.o
-/usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_e340d.dir/src.c.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_e340d
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e340d.dir/link.txt --verbose=1
-/usr/bin/gcc CMakeFiles/cmTC_e340d.dir/src.c.o -o cmTC_e340d 
-/usr/bin/ld: CMakeFiles/cmTC_e340d.dir/src.c.o: in function `main':
+Building C object CMakeFiles/cmTC_41d5d.dir/src.c.o
+/usr/bin/gcc -DCMAKE_HAVE_LIBC_PTHREAD  -fPIE -o CMakeFiles/cmTC_41d5d.dir/src.c.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_41d5d
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_41d5d.dir/link.txt --verbose=1
+/usr/bin/gcc CMakeFiles/cmTC_41d5d.dir/src.c.o -o cmTC_41d5d 
+/usr/bin/ld: CMakeFiles/cmTC_41d5d.dir/src.c.o: in function `main':
 src.c:(.text+0x46): undefined reference to `pthread_create'
 /usr/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
 /usr/bin/ld: src.c:(.text+0x5e): undefined reference to `pthread_cancel'
 /usr/bin/ld: src.c:(.text+0x6f): undefined reference to `pthread_join'
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_e340d.dir/build.make:99: cmTC_e340d] Error 1
+make[1]: *** [CMakeFiles/cmTC_41d5d.dir/build.make:99: cmTC_41d5d] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_e340d/fast] Error 2
+make: *** [Makefile:127: cmTC_41d5d/fast] Error 2
 
 
 Source file was:
@@ -117,28 +117,28 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_3a21c/fast && /usr/bin/make  -f CMakeFiles/cmTC_3a21c.dir/build.make CMakeFiles/cmTC_3a21c.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_25d46/fast && /usr/bin/make  -f CMakeFiles/cmTC_25d46.dir/build.make CMakeFiles/cmTC_25d46.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_3a21c.dir/CheckFunctionExists.c.o
-/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE -o CMakeFiles/cmTC_3a21c.dir/CheckFunctionExists.c.o -c /usr/local/share/cmake-3.24/Modules/CheckFunctionExists.c
-Linking C executable cmTC_3a21c
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a21c.dir/link.txt --verbose=1
-/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_3a21c.dir/CheckFunctionExists.c.o -o cmTC_3a21c  -lpthreads 
+Building C object CMakeFiles/cmTC_25d46.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create -fPIE -o CMakeFiles/cmTC_25d46.dir/CheckFunctionExists.c.o -c /usr/local/share/cmake-3.24/Modules/CheckFunctionExists.c
+Linking C executable cmTC_25d46
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_25d46.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_25d46.dir/CheckFunctionExists.c.o -o cmTC_25d46  -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_3a21c.dir/build.make:99: cmTC_3a21c] Error 1
+make[1]: *** [CMakeFiles/cmTC_25d46.dir/build.make:99: cmTC_25d46] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_3a21c/fast] Error 2
+make: *** [Makefile:127: cmTC_25d46/fast] Error 2
 
 
 
 Performing C++ SOURCE FILE Test HAVE_UINT128_T failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_bd395/fast && /usr/bin/make  -f CMakeFiles/cmTC_bd395.dir/build.make CMakeFiles/cmTC_bd395.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_91274/fast && /usr/bin/make  -f CMakeFiles/cmTC_91274.dir/build.make CMakeFiles/cmTC_91274.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_bd395.dir/src.cxx.o
-/usr/bin/g++ -DHAVE_UINT128_T  -fPIE -std=gnu++17 -o CMakeFiles/cmTC_bd395.dir/src.cxx.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx
+Building CXX object CMakeFiles/cmTC_91274.dir/src.cxx.o
+/usr/bin/g++ -DHAVE_UINT128_T  -fPIE -std=gnu++17 -o CMakeFiles/cmTC_91274.dir/src.cxx.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘int main()’:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/src.cxx:4:18: error: ‘uint128_t’ was not declared in this scope; did you mean ‘uint32_t’?
     4 |             if ((uint128_t *) 0) return 0;
@@ -155,9 +155,9 @@ Building CXX object CMakeFiles/cmTC_bd395.dir/src.cxx.o
     5 |             if (sizeof (uint128_t)) return 0;
       |                         ^~~~~~~~~
       |                         uint32_t
-make[1]: *** [CMakeFiles/cmTC_bd395.dir/build.make:78: CMakeFiles/cmTC_bd395.dir/src.cxx.o] Error 1
+make[1]: *** [CMakeFiles/cmTC_91274.dir/build.make:78: CMakeFiles/cmTC_91274.dir/src.cxx.o] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_bd395/fast] Error 2
+make: *** [Makefile:127: cmTC_91274/fast] Error 2
 
 
 Source file was:
@@ -171,17 +171,17 @@ Source file was:
 Determining if files boost/units/quantity.hpp;boost/units/systems/si.hpp exist failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_60216/fast && /usr/bin/make  -f CMakeFiles/cmTC_60216.dir/build.make CMakeFiles/cmTC_60216.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_e9418/fast && /usr/bin/make  -f CMakeFiles/cmTC_e9418.dir/build.make CMakeFiles/cmTC_e9418.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_60216.dir/HAVE_BOOST_UNITS.cpp.o
-/usr/bin/g++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_60216.dir/HAVE_BOOST_UNITS.cpp.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CheckIncludeFiles/HAVE_BOOST_UNITS.cpp
+Building CXX object CMakeFiles/cmTC_e9418.dir/HAVE_BOOST_UNITS.cpp.o
+/usr/bin/g++   -fPIE -std=gnu++17 -o CMakeFiles/cmTC_e9418.dir/HAVE_BOOST_UNITS.cpp.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CheckIncludeFiles/HAVE_BOOST_UNITS.cpp
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CheckIncludeFiles/HAVE_BOOST_UNITS.cpp:2:10: fatal error: boost/units/quantity.hpp: No such file or directory
     2 | #include <boost/units/quantity.hpp>
       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
 compilation terminated.
-make[1]: *** [CMakeFiles/cmTC_60216.dir/build.make:78: CMakeFiles/cmTC_60216.dir/HAVE_BOOST_UNITS.cpp.o] Error 1
+make[1]: *** [CMakeFiles/cmTC_e9418.dir/build.make:78: CMakeFiles/cmTC_e9418.dir/HAVE_BOOST_UNITS.cpp.o] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_60216/fast] Error 2
+make: *** [Makefile:127: cmTC_e9418/fast] Error 2
 
 
 Source:
@@ -195,17 +195,17 @@ int main(void){return 0;}
 Determining if the include file net/netmap_user.h exists failed with the following output:
 Change Dir: /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make -f Makefile cmTC_c1652/fast && /usr/bin/make  -f CMakeFiles/cmTC_c1652.dir/build.make CMakeFiles/cmTC_c1652.dir/build
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_76e03/fast && /usr/bin/make  -f CMakeFiles/cmTC_76e03.dir/build.make CMakeFiles/cmTC_76e03.dir/build
 make[1]: Entering directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c1652.dir/CheckIncludeFile.c.o
-/usr/bin/gcc   -fPIE -o CMakeFiles/cmTC_c1652.dir/CheckIncludeFile.c.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Building C object CMakeFiles/cmTC_76e03.dir/CheckIncludeFile.c.o
+/usr/bin/gcc   -fPIE -o CMakeFiles/cmTC_76e03.dir/CheckIncludeFile.c.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: net/netmap_user.h: No such file or directory
     1 | #include <net/netmap_user.h>
       |          ^~~~~~~~~~~~~~~~~~~
 compilation terminated.
-make[1]: *** [CMakeFiles/cmTC_c1652.dir/build.make:78: CMakeFiles/cmTC_c1652.dir/CheckIncludeFile.c.o] Error 1
+make[1]: *** [CMakeFiles/cmTC_76e03.dir/build.make:78: CMakeFiles/cmTC_76e03.dir/CheckIncludeFile.c.o] Error 1
 make[1]: Leaving directory '/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:127: cmTC_c1652/fast] Error 2
+make: *** [Makefile:127: cmTC_76e03/fast] Error 2
 
 
 

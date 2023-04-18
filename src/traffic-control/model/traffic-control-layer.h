@@ -24,9 +24,15 @@
 #include "ns3/object.h"
 #include "ns3/queue-item.h"
 #include "ns3/traced-callback.h"
+////////added by me//////////////
+#include "ns3/queue-size.h"
+#include "ns3/traced-value.h"
+#include "ns3/customTag.h"
+////////////////////////////////
 
 #include <map>
 #include <vector>
+#include <string>
 
 namespace ns3
 {
@@ -92,6 +98,31 @@ class NetDeviceQueueInterface;
 class TrafficControlLayer : public Object
 {
   public:
+    struct TCStats
+    {
+        /// Total packets dropped before enqueue
+        uint32_t nTotalDroppedPackets;
+        /// Total High Pririty packets dropped before enqueue
+        uint32_t nTotalDroppedPacketsHighPriority;  // added by me
+        /// Total Low Pririty packets dropped before enqueue
+        uint32_t nTotalDroppedPacketsLowPriority;  // added by me        
+        /// Total bytes dropped before enqueue
+        uint64_t nTotalDroppedBytes;
+        /// Total High Pririty bytes dropped before enqueue
+        uint64_t nTotalDroppedBytesHighPriority;  // added by me;
+        /// Total Low Pririty bytes dropped before enqueue
+        uint64_t nTotalDroppedBytesLowPriority;  // added by me;   
+
+        /// constructor
+        TCStats();
+        
+        /**
+         * \brief Print the statistics.
+         * \param os output stream in which the data should be printed.
+         */
+        void Print(std::ostream& os) const;
+    };
+    
     /**
      * \brief Get the type ID.
      * \return the object TypeId
@@ -205,6 +236,14 @@ class TrafficControlLayer : public Object
      */
     virtual void Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item);
 
+  ///////Added by me to monitor dropped packets from TrafficControl Layer
+    /**
+     * \brief Retrieve all the collected statistics.
+     * \return the collected statistics.
+     */
+    const TCStats& GetStats();
+  /////////////////////////////////////////////////////////////////////
+
   protected:
     void DoDispose() override;
     void DoInitialize() override;
@@ -248,11 +287,130 @@ class TrafficControlLayer : public Object
      */
     Ptr<QueueDisc> GetRootQueueDiscOnDeviceByIndex(uint32_t index) const;
 
+    //////////////Added by me//////////////////////////////////////////////////
+    /**
+     * \brief Get the current size of the shared queue disc in bytes, if
+     *        operating in bytes mode, or packets, otherwise.
+     * it iterates over all the NetDevices that are aggregated to the Node
+     * and sums all the packets on all of them
+     *
+     * \returns The Shared Buffer size in bytes or packets.
+     */
+    QueueSize GetCurrentSharedBufferSize();
+
+    /**
+     * \brief Get the maximum size of the Shared Buffer.
+     *
+     * \returns the maximum size of the queue disc.
+     */
+    QueueSize GetMaxSharedBufferSize() const;
+
+    /**
+     * \brief Get the queueing limit of the current queue for each priority alpha, for DT Algorithm.
+     *
+     * \returns the maximum number of packets allowed in the queue.
+     */
+    QueueSize GetQueueThreshold_DT (int alpha, int alpha_h, int alpha_l);
+
+        /**
+     * \brief Get the queueing limit of the current queue for each priority alpha, for FB Algorithm.
+     *
+     * \returns the maximum number of packets allowed in the queue.
+     */
+    QueueSize GetQueueThreshold_FB (int alpha, int alpha_h, int alpha_l);
+
+    /**
+     * \brief Get the current number of High Priority Packets in the net-device (port) queue that the current packet is sent to, 
+     *        in bytes, ifoperating in bytes mode, or packets, otherwise.
+     *
+     *
+     * \returns The number of high priority packets in queue disc in bytes or packets.
+     */
+    QueueSize GetNumOfHighPriorityPacketsInSharedQueue();
+
+    /**
+     * \brief Get the current number of Low Priority Packets in the net-device (port) queue that the current packet is sent to, 
+     *        in bytes, ifoperating in bytes mode, or packets, otherwise..
+     *
+     *
+     * \returns The number of high priority packets in queue disc in bytes or packets.
+     */
+    QueueSize GetNumOfLowPriorityPacketsInSharedQueue();
+
+    /**
+     * \brief Get the current number of conjested (non empty) queues on the shared buffer, 
+     *        in bytes, ifoperating in bytes mode, or packets, otherwise. for a SINGLE QUEUE PER PORT architecture
+     * \returns The number of high priority packets in queue disc in bytes or packets.
+     */
+    uint32_t GetNumOfConjestedQueuesInSharedQueue();
+
+    /**
+     * \brief Get the current number of conjested (non empty) queues of priority p on the shared buffer, 
+     *        in bytes, ifoperating in bytes mode, or packets, otherwise. for a MULTIQUEUE PER PORT architecture.
+     * \param queue_priority the priority of the queue that's currently being checked
+     * \returns The number of high priority packets in queue disc in bytes or packets.
+     */
+    uint32_t GetNumOfPriorityConjestedQueuesInSharedQueue(uint32_t queue_priority);
+
+    /**
+     * \brief Perform the actions required when the queue disc is notified of
+     *        a packet dropped before enqueue
+     * \param item item that was dropped
+     * \param reason the reason why the item was dropped
+     * This method must be called by subclasses to record that a packet was
+     * dropped before enqueue for the specified reason
+     */
+    void DropBeforeEnqueue(Ptr<const QueueDiscItem> item);
+    /////////////////////////////////////////////////////////////////////////////
+
     /// The node this TrafficControlLayer object is aggregated to
     Ptr<Node> m_node;
     /// Map storing the required information for each device with a queue disc installed
     std::map<Ptr<NetDevice>, NetDeviceInfo> m_netDevices;
     ProtocolHandlerList m_handlers; //!< List of upper-layer handlers
+    ///// for Shared Buffer Queue. trace the packets in queue ///////////////////
+    bool m_useSharedBuffer; // !< True if Shared-Buffer is used
+    QueueSize m_maxSharedBufferSize; // !< only in case of Shared-Buffer, the max size of shared buffer queue
+    uint32_t trafficControllPacketCounter = 0;
+    uint32_t trafficControllBytesCounter = 0;
+    uint32_t m_sharedBufferPackets = 0;
+    uint32_t m_sharedBufferBytes = 0;
+    TracedValue<uint32_t> m_traceSharedBufferPackets;
+    TracedValue<uint32_t> m_traceSharedBufferBytes;
+    uint32_t m_nPackets_High_InSharedQueue; //!< Number of High Priority packets in the shared-queue ######## Added by me!######
+    uint32_t m_nPackets_Low_InSharedQueue; //!< Number of Low Priority packets in the queue ######## Added by me!######
+    uint32_t m_nBytes_High_InSharedQueue; //!< Number of High Priority packets in the shared-queue ######## Added by me!######
+    uint32_t m_nBytes_Low_InSharedQueue; //!< Number of Low Priority packets in the queue ######## Added by me!######  
+    TracedValue<uint32_t> m_nPackets_trace_High_InSharedQueue;
+    TracedValue<uint32_t> m_nPackets_trace_Low_InSharedQueue;
+    // DT queue disc parameters:
+    float_t alpha;  //!< The selected alpha parameter for the arriving packet
+    float_t alpha_h; //!< The pre-determined alpha parameter for high priority packets
+    float_t alpha_l;  //!< The pre-determined alpha parameter for low priority packets
+    // FB queue disc parameters:
+    uint8_t gamma = 1;  //!< Normalized de-queue rate per port/queue in a single FIFO per port scenario.
+    // uint8_t queue_priority;   //< the priority of the queue that's currently being checked
+    uint32_t m_nConjestedQueues;   //!< number of queues that are conjested at current time instance
+    uint32_t m_nConjestedQueues_p;   //!< number of queues of priority p that are conjested at current time instance
+    float_t numConjestedQueues;  //!< total number of queues that are conjested at current time instance
+    float_t numConjestedQueuesHigh;  //!< number of queues that are conjested at current time instance
+    float_t numConjestedQueuesLow;  //!< number of queues that are conjested at current time instance
+    float_t numOfClasses;  //!< total number of classes. for now it's only High Priority/ Low Priority
+    // general parameters:
+    std::string usedAlgorythm; // the Traffic Controll algorythm to be used to manage traffic in shared buffer
+    float_t m_p_threshold_h; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
+    float_t m_p_threshold_l; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_h; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_l; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
+    // TracedValue<float_t> m_p_threshold_temp; //!< calculated in case both thresholds reach 0 ### Added BY ME ####
+    TracedValue<float_t> m_b_threshold_h; //!< Maximum number of bytes enqueued for high priority stream ### Added BY ME ####
+    TracedValue<float_t> m_b_threshold_l; //!< Maximum number of bytes enqueued for low priority stream ### Added BY ME ####
+    // Flow Classification Parameters
+    SharedPriorityTag flowPrioTag;    //< a tag that's added to each sent packet based on the priority assigned by the Sender application
+    uint8_t flow_priority;   //< Flow priority assigned to each recieved packet, based on the flow priority assigned by sender
+    // to collect statistics at the end of the flow
+    TCStats m_stats;    //!< The collected statistics
+//////////////////////////////////////////////////////////////////////
 
     /**
      * The trace source fired when the Traffic Control layer drops a packet because
@@ -261,6 +419,15 @@ class TrafficControlLayer : public Object
      */
     TracedCallback<Ptr<const Packet>> m_dropped;
 };
+
+/**
+ * \brief Stream insertion operator.
+ *
+ * \param os the stream
+ * \param stats the queue disc statistics
+ * \returns a reference to the stream
+ */
+std::ostream& operator<<(std::ostream& os, const TrafficControlLayer::TCStats& stats);
 
 } // namespace ns3
 

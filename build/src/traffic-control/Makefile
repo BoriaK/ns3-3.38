@@ -550,6 +550,30 @@ model/red-queue-disc.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.s
 .PHONY : model/red-queue-disc.cc.s
 
+model/shared-buffer-queue-disc_v01.o: model/shared-buffer-queue-disc_v01.cc.o
+.PHONY : model/shared-buffer-queue-disc_v01.o
+
+# target to build an object file
+model/shared-buffer-queue-disc_v01.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o
+.PHONY : model/shared-buffer-queue-disc_v01.cc.o
+
+model/shared-buffer-queue-disc_v01.i: model/shared-buffer-queue-disc_v01.cc.i
+.PHONY : model/shared-buffer-queue-disc_v01.i
+
+# target to preprocess a source file
+model/shared-buffer-queue-disc_v01.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.i
+.PHONY : model/shared-buffer-queue-disc_v01.cc.i
+
+model/shared-buffer-queue-disc_v01.s: model/shared-buffer-queue-disc_v01.cc.s
+.PHONY : model/shared-buffer-queue-disc_v01.s
+
+# target to generate assembly for a file
+model/shared-buffer-queue-disc_v01.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.s
+.PHONY : model/shared-buffer-queue-disc_v01.cc.s
+
 model/tbf-queue-disc.o: model/tbf-queue-disc.cc.o
 .PHONY : model/tbf-queue-disc.o
 
@@ -657,6 +681,9 @@ help:
 	@echo "... model/red-queue-disc.o"
 	@echo "... model/red-queue-disc.i"
 	@echo "... model/red-queue-disc.s"
+	@echo "... model/shared-buffer-queue-disc_v01.o"
+	@echo "... model/shared-buffer-queue-disc_v01.i"
+	@echo "... model/shared-buffer-queue-disc_v01.s"
 	@echo "... model/tbf-queue-disc.o"
 	@echo "... model/tbf-queue-disc.i"
 	@echo "... model/tbf-queue-disc.s"

@@ -18,6 +18,9 @@ build_lib(
     model/red-queue-disc.cc
     model/tbf-queue-disc.cc
     model/traffic-control-layer.cc
+    # adde by me #######
+    model/shared-buffer-queue-disc_v01.cc
+    ####################
   HEADER_FILES
     helper/queue-disc-container.h
     helper/traffic-control-helper.h
@@ -36,6 +39,9 @@ build_lib(
     model/red-queue-disc.h
     model/tbf-queue-disc.h
     model/traffic-control-layer.h
+    # adde by me #######
+    model/shared-buffer-queue-disc_v01.h
+    ####################
   LIBRARIES_TO_LINK ${libnetwork}
                     ${libcore}
   TEST_SOURCES

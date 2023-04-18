@@ -90,7 +90,8 @@ libtraffic__control_EXTERNAL_OBJECTS = \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/queue-disc.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/tbf-queue-disc.cc.o" \
-"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o"
+"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o" \
+"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o"
 
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/helper/queue-disc-container.cc.o
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/helper/traffic-control-helper.cc.o
@@ -109,6 +110,7 @@ lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffi
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.o
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/tbf-queue-disc.cc.o
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/traffic-control-layer.cc.o
+lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/shared-buffer-queue-disc_v01.cc.o
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control.dir/build.make
 lib/libns3.38-traffic-control-debug.so: src/traffic-control/CMakeFiles/libtraffic-control.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Linking CXX shared library ../../lib/libns3.38-traffic-control-debug.so"
