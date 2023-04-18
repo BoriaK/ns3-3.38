@@ -48,7 +48,7 @@
 #include "ns3/flow-monitor-module.h"
 #include "ns3/tutorial-app.h"
 #include "ns3/custom_onoff-application.h"
-#include "ns3/link-monitor-module.h"
+// #include "ns3/link-monitor-module.h"
 
 #include "ns3/gnuplot.h"
 
@@ -154,20 +154,20 @@ DoGnuPlot (uint32_t flowletTimeout)
     flowBThroughputFile.close ();
 }
 
-std::string
-DefaultFormat (struct LinkProbe::LinkStats stat)
-{
-  std::ostringstream oss;
-  //oss << stat.txLinkUtility << "/"
-      //<< stat.packetsInQueue << "/"
-      //<< stat.bytesInQueue << "/"
-      //<< stat.packetsInQueueDisc << "/"
-      //<< stat.bytesInQueueDisc;
-  /*oss << stat.packetsInQueue;*/
-  oss << stat.txLinkUtility << ",";
-  oss << stat.packetsInQueueDisc;
-  return oss.str ();
-}
+// std::string
+// DefaultFormat (struct LinkProbe::LinkStats stat)
+// {
+//   std::ostringstream oss;
+//   //oss << stat.txLinkUtility << "/"
+//       //<< stat.packetsInQueue << "/"
+//       //<< stat.bytesInQueue << "/"
+//       //<< stat.packetsInQueueDisc << "/"
+//       //<< stat.bytesInQueueDisc;
+//   /*oss << stat.packetsInQueue;*/
+//   oss << stat.txLinkUtility << ",";
+//   oss << stat.packetsInQueueDisc;
+//   return oss.str ();
+// }
 
 int main (int argc, char *argv[])
 {
@@ -439,28 +439,28 @@ int main (int argc, char *argv[])
 
     NS_LOG_INFO ("Enabling link monitor");
 
-    Ptr<LinkMonitor> linkMonitor = Create<LinkMonitor> ();
-    for (int i = 0; i < SPINE_COUNT; i++)
-    {
-        std::stringstream name;
-        name << "Spine " << i;
-        Ptr<Ipv4LinkProbe> spineLinkProbe = Create<Ipv4LinkProbe> (spines.Get (i), linkMonitor);
-        spineLinkProbe->SetProbeName (name.str ());
-        spineLinkProbe->SetCheckTime (Seconds (0.001));
-        spineLinkProbe->SetDataRateAll (DataRate (SPINE_LEAF_CAPACITY));
-    }
-    for (int i = 0; i < LEAF_COUNT; i++)
-    {
-        std::stringstream name;
-        name << "Leaf " << i;
-        Ptr<Ipv4LinkProbe> leafLinkProbe = Create<Ipv4LinkProbe> (leaves.Get (i), linkMonitor);
-        leafLinkProbe->SetProbeName (name.str ());
-        leafLinkProbe->SetCheckTime (Seconds (0.001));
-        leafLinkProbe->SetDataRateAll (DataRate (SPINE_LEAF_CAPACITY));
-    }
+    // Ptr<LinkMonitor> linkMonitor = Create<LinkMonitor> ();
+    // for (int i = 0; i < SPINE_COUNT; i++)
+    // {
+    //     std::stringstream name;
+    //     name << "Spine " << i;
+    //     Ptr<Ipv4LinkProbe> spineLinkProbe = Create<Ipv4LinkProbe> (spines.Get (i), linkMonitor);
+    //     spineLinkProbe->SetProbeName (name.str ());
+    //     spineLinkProbe->SetCheckTime (Seconds (0.001));
+    //     spineLinkProbe->SetDataRateAll (DataRate (SPINE_LEAF_CAPACITY));
+    // }
+    // for (int i = 0; i < LEAF_COUNT; i++)
+    // {
+    //     std::stringstream name;
+    //     name << "Leaf " << i;
+    //     Ptr<Ipv4LinkProbe> leafLinkProbe = Create<Ipv4LinkProbe> (leaves.Get (i), linkMonitor);
+    //     leafLinkProbe->SetProbeName (name.str ());
+    //     leafLinkProbe->SetCheckTime (Seconds (0.001));
+    //     leafLinkProbe->SetDataRateAll (DataRate (SPINE_LEAF_CAPACITY));
+    // }
 
-    linkMonitor->Start (Seconds (START_TIME));
-    linkMonitor->Stop (Seconds (END_TIME));
+    // linkMonitor->Start (Seconds (START_TIME));
+    // linkMonitor->Stop (Seconds (END_TIME));
 
     NS_LOG_INFO ("Enable Throughput Tracing");
 
@@ -488,7 +488,7 @@ int main (int argc, char *argv[])
     linkMonitorFilename << "spine-leaf" << flowletTimeout << "-test-link-monitor.out";
 
     flowMonitor->SerializeToXmlFile(flowMonitorFilename.str (), true, true);
-    linkMonitor->OutputToFile (linkMonitorFilename.str (), &DefaultFormat);
+    // linkMonitor->OutputToFile (linkMonitorFilename.str (), &DefaultFormat);
 
     Simulator::Destroy ();
     NS_LOG_INFO ("Stop simulation");

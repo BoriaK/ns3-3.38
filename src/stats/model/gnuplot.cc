@@ -916,6 +916,12 @@ GnuplotCollection::SetTerminal(const std::string& terminal)
 }
 
 void
+GnuplotCollection::SetTitle(const std::string& title)
+{
+    m_title = title;
+}
+
+void
 GnuplotCollection::AddPlot(const Gnuplot& plot)
 {
     m_plots.push_back(plot);
@@ -949,6 +955,8 @@ GnuplotCollection::GenerateOutput(std::ostream& os)
     {
         os << "set output \"" << m_outputFilename << "\"" << std::endl;
     }
+
+    os << "set multiplot layout " << m_plots.size() << ", " << 1 << " title \"" << m_title << "\"" << std::endl;
 
     for (Plots::iterator i = m_plots.begin(); i != m_plots.end(); ++i)
     {

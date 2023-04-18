@@ -491,6 +491,11 @@ class GnuplotCollection
     GnuplotCollection(const std::string& outputFilename);
 
     /**
+     * \param title set new plot title string to use for this plot.
+     */
+    void SetTitle(const std::string& title);
+
+    /**
      * \param terminal terminal setting string for output. The default terminal
      * string is guessed from the output filename's extension.
      */
@@ -531,6 +536,7 @@ class GnuplotCollection
 
     std::string m_outputFilename; //!< Output file name
     std::string m_terminal;       //!< Gnuplot "terminal" to use
+    std::string m_title;   //!< Plot title
 
     Plots m_plots; //!< Plots in the collection
 };
