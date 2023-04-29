@@ -121,6 +121,8 @@ PrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
         SocketPriorityTag priorityTag;
         if (item->GetPacket()->PeekPacketTag(priorityTag))
         {
+            // for debug:
+            std::cout << "Packet ToS is: " << (priorityTag.GetPriority() & 0x0f) << std::endl;
             band = m_prio2band[priorityTag.GetPriority() & 0x0f];
         }
     }

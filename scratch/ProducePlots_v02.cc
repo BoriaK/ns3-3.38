@@ -34,7 +34,7 @@ ToString (uint32_t value)
   return ss.str();
 }
 
-std::string usedAlgorythm = "FB";  // "DT"/"FB"
+std::string usedAlgorythm = "DT";  // "DT"/"FB"
 
 void
 CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot with N data-sets

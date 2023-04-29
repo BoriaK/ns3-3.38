@@ -1,0 +1,10 @@
+Topology: Line
+Queueing Algorithm: FifoQueueDisc
+Application: standardClient
+
+*** Flow monitor statistics ***
+  Tx Packets/Bytes:   20 / 21040
+  Rx Packets/Bytes:   20 / 21040
+  Packets/Bytes Dropped by Queue Disc:   0 / 0
+  Packets/Bytes Dropped by NetDevice:   0 / 0
+  Throughput: 0.0885895 Mbps

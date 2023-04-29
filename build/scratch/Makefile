@@ -233,6 +233,20 @@ scratch_Incast_v01_2Nodes/fast:
 .PHONY : scratch_Incast_v01_2Nodes/fast
 
 # Convenience name for target.
+scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/rule:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/rule
+.PHONY : scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/rule
+
+# Convenience name for target.
+scratch_Line_P2P_v01_PFIFOQueueDisc: scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/rule
+.PHONY : scratch_Line_P2P_v01_PFIFOQueueDisc
+
+# fast build rule for target.
+scratch_Line_P2P_v01_PFIFOQueueDisc/fast:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/build.make scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/build
+.PHONY : scratch_Line_P2P_v01_PFIFOQueueDisc/fast
+
+# Convenience name for target.
 scratch/CMakeFiles/scratch_Line_P2P_v01_PrioQueueDisc.dir/rule:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_Line_P2P_v01_PrioQueueDisc.dir/rule
 .PHONY : scratch/CMakeFiles/scratch_Line_P2P_v01_PrioQueueDisc.dir/rule
@@ -463,6 +477,30 @@ Incast_v01_2Nodes.s: Incast_v01_2Nodes.cc.s
 Incast_v01_2Nodes.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_Incast_v01_2Nodes.dir/build.make scratch/CMakeFiles/scratch_Incast_v01_2Nodes.dir/Incast_v01_2Nodes.cc.s
 .PHONY : Incast_v01_2Nodes.cc.s
+
+Line_P2P_v01_PFIFOQueueDisc.o: Line_P2P_v01_PFIFOQueueDisc.cc.o
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.o
+
+# target to build an object file
+Line_P2P_v01_PFIFOQueueDisc.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/build.make scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/Line_P2P_v01_PFIFOQueueDisc.cc.o
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.cc.o
+
+Line_P2P_v01_PFIFOQueueDisc.i: Line_P2P_v01_PFIFOQueueDisc.cc.i
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.i
+
+# target to preprocess a source file
+Line_P2P_v01_PFIFOQueueDisc.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/build.make scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/Line_P2P_v01_PFIFOQueueDisc.cc.i
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.cc.i
+
+Line_P2P_v01_PFIFOQueueDisc.s: Line_P2P_v01_PFIFOQueueDisc.cc.s
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.s
+
+# target to generate assembly for a file
+Line_P2P_v01_PFIFOQueueDisc.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/build.make scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/Line_P2P_v01_PFIFOQueueDisc.cc.s
+.PHONY : Line_P2P_v01_PFIFOQueueDisc.cc.s
 
 Line_P2P_v01_PrioQueueDisc.o: Line_P2P_v01_PrioQueueDisc.cc.o
 .PHONY : Line_P2P_v01_PrioQueueDisc.o
@@ -697,6 +735,7 @@ help:
 	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl"
 	@echo "... scratch_Incast_multiple_nodes_NOT_UPDATED"
 	@echo "... scratch_Incast_v01_2Nodes"
+	@echo "... scratch_Line_P2P_v01_PFIFOQueueDisc"
 	@echo "... scratch_Line_P2P_v01_PrioQueueDisc"
 	@echo "... scratch_ProducePlots_v01"
 	@echo "... scratch_ProducePlots_v02"
@@ -720,6 +759,9 @@ help:
 	@echo "... Incast_v01_2Nodes.o"
 	@echo "... Incast_v01_2Nodes.i"
 	@echo "... Incast_v01_2Nodes.s"
+	@echo "... Line_P2P_v01_PFIFOQueueDisc.o"
+	@echo "... Line_P2P_v01_PFIFOQueueDisc.i"
+	@echo "... Line_P2P_v01_PFIFOQueueDisc.s"
 	@echo "... Line_P2P_v01_PrioQueueDisc.o"
 	@echo "... Line_P2P_v01_PrioQueueDisc.i"
 	@echo "... Line_P2P_v01_PrioQueueDisc.s"

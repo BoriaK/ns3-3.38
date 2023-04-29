@@ -4881,6 +4881,11 @@
 },
 {
   "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch",
+  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIE   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx -o CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/Line_P2P_v01_PFIFOQueueDisc.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/Line_P2P_v01_PFIFOQueueDisc.cc",
+  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/Line_P2P_v01_PFIFOQueueDisc.cc"
+},
+{
+  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/scratch",
   "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIE   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch_exec.dir/cmake_pch.hxx -o CMakeFiles/scratch_Line_P2P_v01_PrioQueueDisc.dir/Line_P2P_v01_PrioQueueDisc.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/Line_P2P_v01_PrioQueueDisc.cc",
   "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/scratch/Line_P2P_v01_PrioQueueDisc.cc"
 },

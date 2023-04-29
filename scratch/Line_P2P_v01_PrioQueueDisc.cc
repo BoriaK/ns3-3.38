@@ -48,7 +48,7 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/Line_Topology/";
-std::string queue_disc_type = "FifoQueueDisc"; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_v01"/"FifoQueueDisc"
+std::string queue_disc_type = "PrioQueueDisc"; // "PrioQueueDisc"
 
 uint32_t prev = 0;
 Time prevTime = Seconds (0);
@@ -56,9 +56,9 @@ Time prevTime = Seconds (0);
 NS_LOG_COMPONENT_DEFINE ("Line_v01_with_CustomApp_SharedBuffer");
 
 void
-TcPacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)
+TrafficControllPacketsInQueue_Trace (std::size_t index, uint32_t oldValue, uint32_t newValue)
 {
-  std::cout << "TrafficControlPacketsInQueue " << newValue << std::endl;
+  std::cout << "TrafficControllPacketsInQueueP" << index << ": " << newValue << std::endl;
 }
 
 // Trace the number of High Priority packets in the Queue
@@ -121,13 +121,10 @@ int main (int argc, char *argv[])
 { 
   // Set up some default values for the simulation.
   double simulationTime = 50; //seconds
-  std::string applicationType = "OnOff"; // "standardClient"/"OnOff"/"customApplication"/"customOnOff"
+  std::string applicationType = "standardClient"; // "standardClient"/"OnOff"/"customApplication"/"customOnOff"
   std::string transportProt = "Udp";
   std::string socketType;
   std::string queue_capacity;
-  uint32_t alpha_high = 2;
-  uint32_t alpha_low = 1;
-  bool enablePcap = false;  // true/false
   bool eraseOldData = true; // true/false
 
 
@@ -230,10 +227,20 @@ int main (int argc, char *argv[])
 
   // Create a TrafficControlHelper object:
   TrafficControlHelper tch;
-  uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc");
+  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1"));
+  // try different priomaps
+  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
+  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
 
-  // Add queues to traffic control layer
-  tch.AddInternalQueues(handle, 2, "ns3::DropTailQueue", "MaxSize", QueueSizeValue (QueueSize("100p")));
+  // priomap with low priority for value "0" and high priority for rest of the 15 values (1-15) ?
+  uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")); 
+
+  TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
+
+  tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue("10p")); // cid[0] is band "0" - the Highest Priority band
+  tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue("10p")); // cid[1] is Low Priority
+
+  
   QueueDiscContainer qdisc = tch.Install(dev1.Get(0));
 
 /////////////////////////////Monitor the NetDevice/////////////////////////////////////
@@ -245,7 +252,11 @@ int main (int argc, char *argv[])
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////extract data from q-disc//////////////////////////////
-  qdisc.Get(0)->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TcPacketsInQueueTrace));
+  for (size_t i = 0; i < qdisc.Get(0)->GetNQueueDiscClasses(); i++)
+  {
+      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TrafficControllPacketsInQueue_Trace, i));
+  }
+
 /////////////////////////////////////////////////////////////////////////////////
 
   // Later, we add IP addresses.
@@ -258,84 +269,110 @@ int main (int argc, char *argv[])
   // and setup ip routing tables to get total ip-level connectivity.
   Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
-  uint16_t servPort = 50000;
-  Address sinkLocalAddress (InetSocketAddress (Ipv4Address::GetAny (), servPort));
-  // Create a packet sink to receive these packets on n2
-  PacketSinkHelper sink (socketType, sinkLocalAddress);                       
-  ApplicationContainer sinkApp = sink.Install (n1n2.Get (1));
-  sinkApp.Start (Seconds (0.0));
-  sinkApp.Stop (Seconds (simulationTime + 0.1));
+  uint16_t servPortP0 = 50000;
+  uint16_t servPortP1 = 50001;
+  
+  Address sinkLocalAddressP0 (InetSocketAddress (Ipv4Address::GetAny (), servPortP0));
+  Address sinkLocalAddressP1 (InetSocketAddress (Ipv4Address::GetAny (), servPortP1));
+
+  // Create packet sinks to receive packets with distinct priorities on n2
+  PacketSinkHelper sinkP0 (socketType, sinkLocalAddressP0);
+  PacketSinkHelper sinkP1 (socketType, sinkLocalAddressP1);                       
+  
+  ApplicationContainer sinkApps;
+  sinkApps.Add(sinkP0.Install (n1n2.Get (1)));
+  sinkApps.Add(sinkP1.Install (n1n2.Get (1)));
+
+  sinkApps.Start (Seconds (0.0));
+  sinkApps.Stop (Seconds (simulationTime + 0.1));
 
   uint32_t payloadSize = 1024;
-  uint32_t numOfPackets = 100;  // number of packets to send in one stream for custom application
+  // uint32_t numOfPackets = 100;  // number of packets to send in one stream for custom application
+  uint32_t ipTos_LP = 0x00; //Low priority: Best Effort
+	uint32_t ipTos_HP = 0x10;  //High priority: Maximize Throughput
 
   if (applicationType.compare("standardClient") == 0)
   {
     // Install UDP application on the sender  
-    UdpClientHelper clientHelper (ipInterfs.GetAddress(1), servPort);
-    clientHelper.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
-    clientHelper.SetAttribute ("PacketSize", UintegerValue (payloadSize));
-    ApplicationContainer sourceApps = clientHelper.Install (n0n1.Get (0));
+    InetSocketAddress socketAddressP0 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP0);
+    socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
+    
+    InetSocketAddress socketAddressP1 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP1);
+    socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
+    
+    UdpClientHelper clientHelperP0 (socketAddressP0);
+    clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+    clientHelperP0.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+    
+    UdpClientHelper clientHelperP1 (socketAddressP1);
+    clientHelperP1.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+    clientHelperP1.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+
+    ApplicationContainer sourceApps;
+    sourceApps.Add(clientHelperP0.Install (n0n1.Get (0)));
+    sourceApps.Add(clientHelperP1.Install (n0n1.Get (0)));
+
     sourceApps.Start (Seconds (1.0));
     sourceApps.Stop (Seconds(3.0));
   }
   
-  else if (applicationType.compare("OnOff") == 0)
-  {
-    // Create the OnOff applications to send TCP/UDP to the server
-    InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);
-    OnOffHelper clientHelper (socketType, Address ());
-    clientHelper.SetAttribute ("Remote", AddressValue (socketAddressUp));
-    clientHelper.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
-    clientHelper.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-    clientHelper.SetAttribute ("PacketSize", UintegerValue (payloadSize));
-    clientHelper.SetAttribute ("DataRate", StringValue ("2Mb/s"));
-    ApplicationContainer sourceApps = clientHelper.Install (n0n1.Get (0));
-    sourceApps.Start (Seconds (1.0));
-    sourceApps.Stop (Seconds(3.0));
-  }
+  // else if (applicationType.compare("OnOff") == 0)
+  // {
+  //   // Create the OnOff applications to send TCP/UDP to the server
+  //   InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);
+  //   OnOffHelper clientHelper (socketType, socketAddressUp);
+  //   // OnOffHelper clientHelper (socketType, Address ());
+  //   clientHelper.SetAttribute ("Remote", AddressValue (socketAddressUp));
+  //   clientHelper.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+  //   clientHelper.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+  //   clientHelper.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+  //   clientHelper.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+  //   ApplicationContainer sourceApps = clientHelper.Install (n0n1.Get (0));
+  //   sourceApps.Start (Seconds (1.0));
+  //   sourceApps.Stop (Seconds(3.0));
+  // }
   
-  else if (applicationType.compare("customOnOff") == 0)
-  {
-    // Create the Custom application to send TCP/UDP to the server
-    Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
-    // ns3UdpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
+  // else if (applicationType.compare("customOnOff") == 0)
+  // {
+  //   // Create the Custom application to send TCP/UDP to the server
+  //   Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
+  //   // ns3UdpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
     
-    InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);
-    Ptr<CustomOnOffApplication> customOnOffApp = CreateObject<CustomOnOffApplication> ();
-    customOnOffApp->Setup(ns3UdpSocket);
-    customOnOffApp->SetAttribute("Remote", AddressValue (socketAddressUp));
-    customOnOffApp->SetAttribute("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-    customOnOffApp->SetAttribute("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-    customOnOffApp->SetAttribute("PacketSize", UintegerValue (payloadSize));
-    customOnOffApp->SetAttribute("DataRate", StringValue ("2Mb/s"));
-    customOnOffApp->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
-    customOnOffApp->SetStartTime (Seconds (1.0));
-    /////////////////////
-    // Hook trace source after application starts
-    // Simulator::Schedule (Seconds (1.0) + MilliSeconds (1), &TraceCwnd, 0, 0);
-    ////////////////////////////
-    customOnOffApp->SetStopTime (Seconds(3.0));
-    n0n1.Get (0)->AddApplication (customOnOffApp);
-  }
+  //   InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);
+  //   Ptr<CustomOnOffApplication> customOnOffApp = CreateObject<CustomOnOffApplication> ();
+  //   customOnOffApp->Setup(ns3UdpSocket);
+  //   customOnOffApp->SetAttribute("Remote", AddressValue (socketAddressUp));
+  //   customOnOffApp->SetAttribute("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+  //   customOnOffApp->SetAttribute("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+  //   customOnOffApp->SetAttribute("PacketSize", UintegerValue (payloadSize));
+  //   customOnOffApp->SetAttribute("DataRate", StringValue ("2Mb/s"));
+  //   customOnOffApp->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
+  //   customOnOffApp->SetStartTime (Seconds (1.0));
+  //   /////////////////////
+  //   // Hook trace source after application starts
+  //   // Simulator::Schedule (Seconds (1.0) + MilliSeconds (1), &TraceCwnd, 0, 0);
+  //   ////////////////////////////
+  //   customOnOffApp->SetStopTime (Seconds(3.0));
+  //   n0n1.Get (0)->AddApplication (customOnOffApp);
+  // }
   
-  else if (applicationType.compare("customApplication") == 0)
-  {
-    // Create the Custom application to send TCP/UDP to the server
-    Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
-    // ns3UdpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
+  // else if (applicationType.compare("customApplication") == 0)
+  // {
+  //   // Create the Custom application to send TCP/UDP to the server
+  //   Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
+  //   // ns3UdpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
     
-    Ptr<TutorialApp> customApp = CreateObject<TutorialApp> ();
-    InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);  // sink IpV4 Address
-    customApp->Setup (ns3UdpSocket, socketAddressUp, payloadSize, numOfPackets, DataRate ("1Mbps"));
-    customApp->SetStartTime (Seconds (1.0));
-    /////////////////////
-    // Hook trace source after application starts
-    // Simulator::Schedule (Seconds (1.0) + MilliSeconds (1), &TraceCwnd, 0, 0);
-    ////////////////////////////
-    customApp->SetStopTime (Seconds(3.0));
-    n0n1.Get (0)->AddApplication (customApp);
-  }
+  //   Ptr<TutorialApp> customApp = CreateObject<TutorialApp> ();
+  //   InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);  // sink IpV4 Address
+  //   customApp->Setup (ns3UdpSocket, socketAddressUp, payloadSize, numOfPackets, DataRate ("1Mbps"));
+  //   customApp->SetStartTime (Seconds (1.0));
+  //   /////////////////////
+  //   // Hook trace source after application starts
+  //   // Simulator::Schedule (Seconds (1.0) + MilliSeconds (1), &TraceCwnd, 0, 0);
+  //   ////////////////////////////
+  //   customApp->SetStopTime (Seconds(3.0));
+  //   n0n1.Get (0)->AddApplication (customApp);
+  // }
   
   FlowMonitorHelper flowmon;
   Ptr<FlowMonitor> monitor = flowmon.InstallAll();
@@ -347,92 +384,134 @@ int main (int argc, char *argv[])
       exit (1);
     }  
   
-  // Generate PCAP traces if it is enabled
-  if (enablePcap)
+  NS_LOG_INFO ("Start simulation");
+    Simulator::Stop (Seconds (simulationTime + 10));
+    Simulator::Run ();
+
+    // print the tested scenario at the top of the terminal: Topology, Queueing Algorithm and Application.
+    std::cout << std::endl << "Topology: Line" << std::endl;
+    std::cout << std::endl << "Queueing Algorithm: " + queue_disc_type << std::endl;
+    std::cout << std::endl << "Application: " + applicationType << std::endl;
+
+    Ptr<Ipv4FlowClassifier> classifier = DynamicCast<Ipv4FlowClassifier> (flowmon.GetClassifier ());
+    std::map<FlowId, FlowMonitor::FlowStats> stats = monitor->GetFlowStats ();
+    std::cout << std::endl << "*** Flow monitor statistics ***" << std::endl;
+    // a loop to sum the Tx/Rx Packets/Bytes from all nodes
+    uint32_t statTxPackets = 0; 
+    uint64_t statTxBytes = 0;
+    uint32_t statRxPackets = 0; 
+    uint64_t statRxBytes = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
+    // stats indexing needs to start from 1
     {
-      // NS_LOG_INFO ("Enable pcap tracing.");
-      if (system ((dirToSave + "/pcap/").c_str ()) == -1)
+        statTxPackets = statTxPackets + stats[i].txPackets;
+        statTxBytes = statTxBytes + stats[i].txBytes;
+        statRxPackets = statRxPackets + stats[i].rxPackets;
+        statRxBytes = statRxBytes + stats[i].rxBytes;
+    }
+
+    std::cout << "  Tx Packets/Bytes:   " << statTxPackets
+                << " / " << statTxBytes << std::endl;
+    std::cout << "  Rx Packets/Bytes:   " << statRxPackets
+                << " / " << statRxBytes << std::endl;
+
+    uint32_t packetsDroppedByQueueDisc = 0;
+    uint64_t bytesDroppedByQueueDisc = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
+    // stats indexing needs to start from 1
+    {
+        if (stats[i].packetsDropped.size () > Ipv4FlowProbe::DROP_QUEUE_DISC)
         {
-          exit (1);
+        packetsDroppedByQueueDisc = packetsDroppedByQueueDisc + stats[i].packetsDropped[Ipv4FlowProbe::DROP_QUEUE_DISC];
+        bytesDroppedByQueueDisc = bytesDroppedByQueueDisc + stats[i].bytesDropped[Ipv4FlowProbe::DROP_QUEUE_DISC];
         }
-      p2p2.EnablePcapAll (dir + queue_disc_type + "/pcap/dt", true);
     }
-
-  Simulator::Stop (Seconds (simulationTime + 10));
-  Simulator::Run ();
-
-  // print the tested scenario at the top of the terminal: Topology, Queueing Algorithm and Application.
-  std::cout << std::endl << "Topology: Line" << std::endl;
-  std::cout << std::endl << "Queueing Algorithm: " + queue_disc_type << std::endl;
-  std::cout << std::endl << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
-  std::cout << std::endl << "Application: " + applicationType << std::endl;
-
-  Ptr<Ipv4FlowClassifier> classifier = DynamicCast<Ipv4FlowClassifier> (flowmon.GetClassifier ());
-  std::map<FlowId, FlowMonitor::FlowStats> stats = monitor->GetFlowStats ();
-  std::cout << std::endl << "*** Flow monitor statistics ***" << std::endl;
-  std::cout << "  Tx Packets/Bytes:   " << stats[1].txPackets
-            << " / " << stats[1].txBytes << std::endl;
-  std::cout << "  Offered Load: " << stats[1].txBytes * 8.0 / (stats[1].timeLastTxPacket.GetSeconds () - stats[1].timeFirstTxPacket.GetSeconds ()) / 1000000 << " Mbps" << std::endl;
-  std::cout << "  Rx Packets/Bytes:   " << stats[1].rxPackets
-            << " / " << stats[1].rxBytes << std::endl;
-  uint32_t packetsDroppedByQueueDisc = 0;
-  uint64_t bytesDroppedByQueueDisc = 0;
-  if (stats[1].packetsDropped.size () > Ipv4FlowProbe::DROP_QUEUE_DISC)
+    std::cout << "  Packets/Bytes Dropped by Queue Disc:   " << packetsDroppedByQueueDisc
+                << " / " << bytesDroppedByQueueDisc << std::endl;
+    
+    uint32_t packetsDroppedByNetDevice = 0;
+    uint64_t bytesDroppedByNetDevice = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
+    // stats indexing needs to start from 1
     {
-      packetsDroppedByQueueDisc = stats[1].packetsDropped[Ipv4FlowProbe::DROP_QUEUE_DISC];
-      bytesDroppedByQueueDisc = stats[1].bytesDropped[Ipv4FlowProbe::DROP_QUEUE_DISC];
+        if (stats[i].packetsDropped.size () > Ipv4FlowProbe::DROP_QUEUE)
+        {
+            packetsDroppedByNetDevice = packetsDroppedByNetDevice + stats[i].packetsDropped[Ipv4FlowProbe::DROP_QUEUE];
+            bytesDroppedByNetDevice = bytesDroppedByNetDevice + stats[i].bytesDropped[Ipv4FlowProbe::DROP_QUEUE];
+        }
     }
-  std::cout << "  Packets/Bytes Dropped by Queue Disc:   " << packetsDroppedByQueueDisc
-            << " / " << bytesDroppedByQueueDisc << std::endl;
-  uint32_t packetsDroppedByNetDevice = 0;
-  uint64_t bytesDroppedByNetDevice = 0;
-  if (stats[1].packetsDropped.size () > Ipv4FlowProbe::DROP_QUEUE)
+    std::cout << "  Packets/Bytes Dropped by NetDevice:   " << packetsDroppedByNetDevice
+                << " / " << bytesDroppedByNetDevice << std::endl;
+    
+    double TpT = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
+    // stats indexing needs to start from 1
     {
-      packetsDroppedByNetDevice = stats[1].packetsDropped[Ipv4FlowProbe::DROP_QUEUE];
-      bytesDroppedByNetDevice = stats[1].bytesDropped[Ipv4FlowProbe::DROP_QUEUE];
+        TpT = TpT + (stats[i].rxBytes * 8.0 / (stats[i].timeLastRxPacket.GetSeconds () - stats[i].timeFirstRxPacket.GetSeconds ())) / 1000000;
     }
-  std::cout << "  Packets/Bytes Dropped by NetDevice:   " << packetsDroppedByNetDevice
-            << " / " << bytesDroppedByNetDevice << std::endl;
-  std::cout << "  Throughput: " << stats[1].rxBytes * 8.0 / (stats[1].timeLastRxPacket.GetSeconds () - stats[1].timeFirstRxPacket.GetSeconds ()) / 1000000 << " Mbps" << std::endl;
-  std::cout << "  Mean delay:   " << stats[1].delaySum.GetSeconds () / stats[1].rxPackets << std::endl;
-  std::cout << "  Mean jitter:   " << stats[1].jitterSum.GetSeconds () / (stats[1].rxPackets - 1) << std::endl;
-  auto dscpVec = classifier->GetDscpCounts (1);
-  for (auto p : dscpVec)
+    std::cout << "  Throughput: " << TpT << " Mbps" << std::endl;
+                                    
+    double AVGDelaySum = 0;
+    double AVGDelay = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
     {
-      std::cout << "  DSCP value:   0x" << std::hex << static_cast<uint32_t> (p.first) << std::dec
-                << "  count:   "<< p.second << std::endl;
+        AVGDelaySum = AVGDelaySum + stats[i].delaySum.GetSeconds () / stats[i].rxPackets;
+    }
+    AVGDelay = AVGDelaySum / stats.size();
+    std::cout << "  Mean delay:   " << AVGDelay << std::endl;
+    
+    double AVGJitterSum = 0;
+    double AVGJitter = 0;
+    for (size_t i = 1; i <= stats.size(); i++)
+    {
+        AVGJitterSum = AVGJitterSum + stats[i].jitterSum.GetSeconds () / (stats[i].rxPackets - 1);
+    }
+    AVGJitter = AVGJitterSum / stats.size();
+    std::cout << "  Mean jitter:   " << AVGJitter << std::endl;
+
+    // Simulator::Destroy ();
+    
+    std::cout << std::endl << "*** Application statistics ***" << std::endl;
+    double goodTpT = 0;
+
+    uint64_t totalBytesRx = 0;
+    for (size_t i = 0; i < sinkApps.GetN(); i++)
+    {
+        totalBytesRx = totalBytesRx + DynamicCast<PacketSink> (sinkApps.Get (i))->GetTotalRx ();
     }
 
-  // Simulator::Destroy ();
-   
-  std::cout << std::endl << "*** Application statistics ***" << std::endl;
-  double thr = 0;
-  uint64_t totalPacketsThr = DynamicCast<PacketSink> (sinkApp.Get (0))->GetTotalRx ();
-  thr = totalPacketsThr * 8 / (simulationTime * 1000000.0); //Mbit/s
-  std::cout << "  Rx Bytes: " << totalPacketsThr << std::endl;
-  std::cout << "  Average Goodput: " << thr << " Mbit/s" << std::endl;
-  // std::cout << std::endl << "*** TC Layer statistics ***" << std::endl;
-  // std::cout << q->GetStats () << std::endl;
-  
-  // Added to create a .txt file with the summary of the tested scenario statistics
-  std::ofstream testFlowStatistics (dir + queue_disc_type + "/Statistics.txt", std::ios::out | std::ios::app);
-  testFlowStatistics << "Topology: Line" << std::endl;
-  testFlowStatistics << "Queueing Algorithm: " + queue_disc_type << std::endl;
-  testFlowStatistics << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
-  testFlowStatistics << "Application: " + applicationType << std::endl; 
-  testFlowStatistics << std::endl << "*** Flow monitor statistics ***" << std::endl;
-  testFlowStatistics << "  Tx Packets/Bytes:   " << stats[1].txPackets
-                     << " / " << stats[1].txBytes << std::endl;
-  testFlowStatistics << "  Rx Packets/Bytes:   " << stats[1].rxPackets
-                     << " / " << stats[1].rxBytes << std::endl;
-  testFlowStatistics << "  Packets/Bytes Dropped by Queue Disc:   " << packetsDroppedByQueueDisc
-            << " / " << bytesDroppedByQueueDisc << std::endl;
-  testFlowStatistics << "  Packets/Bytes Dropped by NetDevice:   " << packetsDroppedByNetDevice
-            << " / " << bytesDroppedByNetDevice << std::endl;
-  testFlowStatistics << "  Throughput: " << stats[1].rxBytes * 8.0 / (stats[1].timeLastRxPacket.GetSeconds () - stats[1].timeFirstRxPacket.GetSeconds ()) / 1000000 << " Mbps" << std::endl;                   
-  // testFlowStatistics << std::endl << "*** TC Layer statistics ***" << std::endl;
-  // testFlowStatistics << q->GetStats () << std::endl;
-  testFlowStatistics.close ();
+    goodTpT = totalBytesRx * 8 / (simulationTime * 1000000.0); //Mbit/s
+    std::cout << "  Rx Bytes: " << totalBytesRx << std::endl;
+    std::cout << "  Average Goodput: " << goodTpT << " Mbit/s" << std::endl;
+
+    std::cout << std::endl << "*** TC Layer statistics ***" << std::endl;
+    for (size_t i = 0; i < qdisc.GetN(); i++)
+    {
+        std::cout << "Queue Disceplene " << i << ":" << std::endl;
+        std::cout << qdisc.Get(i)->GetStats () << std::endl;
+    }
+
+    
+    // Added to create a .txt file with the summary of the tested scenario statistics
+    std::ofstream testFlowStatistics (dir + queue_disc_type + "/Statistics.txt", std::ios::out | std::ios::app);
+    testFlowStatistics << "Topology: 2In2Out" << std::endl;
+    testFlowStatistics << "Queueing Algorithm: " + queue_disc_type << std::endl;
+    testFlowStatistics << "Application: " + applicationType << std::endl; 
+    testFlowStatistics << std::endl << "*** Flow monitor statistics ***" << std::endl;
+    testFlowStatistics << "  Tx Packets/Bytes:   " << statTxPackets << " / " << statTxBytes << std::endl;
+    testFlowStatistics << "  Rx Packets/Bytes:   " << statRxPackets << " / " << statRxBytes << std::endl;
+    testFlowStatistics << "  Packets/Bytes Dropped by Queue Disc:   " << packetsDroppedByQueueDisc
+                        << " / " << bytesDroppedByQueueDisc << std::endl;
+    testFlowStatistics << "  Packets/Bytes Dropped by NetDevice:   " << packetsDroppedByNetDevice
+                        << " / " << bytesDroppedByNetDevice << std::endl;
+    testFlowStatistics << "  Throughput: " << TpT << " Mbps" << std::endl;                   
+    testFlowStatistics << std::endl << "*** TC Layer statistics ***" << std::endl;
+    for (size_t i = 0; i < qdisc.GetN(); i++)
+    {
+        testFlowStatistics << "Queue Disceplene " << i << ":" << std::endl;
+        testFlowStatistics << qdisc.Get(i)->GetStats () << std::endl;
+    }
+    testFlowStatistics.close ();
 
   // command line needs to be in ./scratch/ inorder for the script to produce gnuplot correctly///
   // system (("gnuplot " + dir + "gnuplotScriptTcHighPriorityPacketsInQueue").c_str ());

@@ -72,7 +72,7 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/basic_2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_DT_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"
+std::string traffic_control_type = "FifoQueueDisc"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"
 
 uint32_t prev = 0;
 Time prevTime = Seconds (0);
@@ -242,19 +242,19 @@ int main (int argc, char *argv[])
     InternetStackHelper internet;
     internet.InstallAll ();
 
-    // NS_LOG_INFO ("Install QueueDisc");
-    // TrafficControlHelper tch;
-    // tch.SetRootQueueDisc ("ns3::" + queue_disc_type, "MaxSize", StringValue (ToString(BUFFER_SIZE)+"p"));
+    NS_LOG_INFO ("Install QueueDisc");
+    TrafficControlHelper tch;
+    tch.SetRootQueueDisc ("ns3::" + traffic_control_type, "MaxSize", StringValue (ToString(BUFFER_SIZE)+"p"));
     
-    // QueueDiscContainer qdiscs = tch.Install (switchDevicesOut);  // in this option we installed TCH on switchDevicesOut. to send data from switch to reciever
+    QueueDiscContainer qdiscs = tch.Install (switchDevicesOut);  // in this option we installed TCH on switchDevicesOut. to send data from switch to reciever
     // QueueDiscContainer qdiscs = tch.Install (switchDevicesIn); // in this option we installed TCH on switchDevicesIn. to send Tx Ack from reciever to server. TCP only
 
     //////////////monitor q-discs//////////////////////////////
-    // for (size_t i = 0; i < RECIEVER_COUNT; i++)
-    // {
-        // Ptr<QueueDisc> queue = qdiscs.Get (i); // look at the router queue
-    //     queue->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TrafficControllPacketsInQueue_Trace, i));
-    // }
+    for (size_t i = 0; i < RECIEVER_COUNT; i++)
+    {
+        Ptr<QueueDisc> queue = qdiscs.Get (i); // look at the router queue
+        queue->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TrafficControllPacketsInQueue_Trace, i));
+    }
 
     /////////////////////////////Monitor the NetDevice//////////////////////////////
     for (size_t i = 0; i < RECIEVER_COUNT; i++)
@@ -315,19 +315,6 @@ int main (int argc, char *argv[])
 
     // and setup ip routing tables to get total ip-level connectivity.
     Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
-
-    ///UnInstall all queue-discs from switch net devices:
-    TrafficControlHelper tch;
-    tch.Uninstall(switchDevicesOut);
-
-///////// set the Traffic Controll layer to be a shared buffer////////////////////////
-    Ptr<TrafficControlLayer> tc;
-    tc = router.Get(0)->GetObject<TrafficControlLayer>();
-    tc->SetAttribute("SharedBuffer", BooleanValue(true));
-    tc->SetAttribute("MaxSharedBufferSize", StringValue (ToString(BUFFER_SIZE)+"p"));
-    tc->SetAttribute("Alpha_High", UintegerValue (alpha_high));
-    tc->SetAttribute("Alpha_Low", UintegerValue (alpha_low));
-/////////////////////////////////////////////////////////////////////////////
 
     NS_LOG_INFO ("Create Sockets, Applications and Sinks");
 
@@ -554,7 +541,7 @@ int main (int argc, char *argv[])
     //     std::cout << "Queue Disceplene " << i << ":" << std::endl;
     //     std::cout << qdiscs.Get(i)->GetStats () << std::endl;
     // }
-    std::cout << tc->GetStats() << std::endl;
+    // std::cout << tc->GetStats() << std::endl;
 
     
     // Added to create a .txt file with the summary of the tested scenario statistics
@@ -572,12 +559,11 @@ int main (int argc, char *argv[])
                         << " / " << bytesDroppedByNetDevice << std::endl;
     testFlowStatistics << "  Throughput: " << TpT << " Mbps" << std::endl;                   
     testFlowStatistics << std::endl << "*** TC Layer statistics ***" << std::endl;
-    // for (size_t i = 0; i < qdiscs.GetN(); i++)
-    // {
-    //     testFlowStatistics << "Queue Disceplene " << i << ":" << std::endl;
-    //     testFlowStatistics << qdiscs.Get(i)->GetStats () << std::endl;
-    // }
-    testFlowStatistics << tc->GetStats () << std::endl;
+    for (size_t i = 0; i < qdiscs.GetN(); i++)
+    {
+        testFlowStatistics << "Queue Disceplene " << i << ":" << std::endl;
+        testFlowStatistics << qdiscs.Get(i)->GetStats () << std::endl;
+    }
     testFlowStatistics.close ();
 
     // command line needs to be in ./scratch/ inorder for the script to produce gnuplot correctly///

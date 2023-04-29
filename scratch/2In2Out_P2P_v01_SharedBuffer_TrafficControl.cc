@@ -72,7 +72,7 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_FB_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string traffic_control_type = "SharedBuffer_DT_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
 std::string usedAlgorythm;  // "DT"/"FB"
 
 uint32_t prev = 0;
@@ -242,9 +242,9 @@ int main (int argc, char *argv[])
     {
       queue_capacity = "20p"; // B, the total space on the buffer.
     }
-    else if (applicationType.compare("OnOff") == 0 || applicationType.compare("customOnOff") == 0 || applicationType.compare("customApplication") == 0)
+    else
     {
-      queue_capacity = BUFFER_SIZE; // B, the total space on the buffer [packets]
+      queue_capacity = ToString(BUFFER_SIZE) + "p"; // B, the total space on the buffer [packets]
     }
   
     // client type dependant parameters:
@@ -301,7 +301,7 @@ int main (int argc, char *argv[])
     uint64_t switchRecieverCapacity = SWITCH_RECIEVER_CAPACITY / RECIEVER_COUNT;
     s2r.SetDeviceAttribute ("DataRate", DataRateValue (DataRate (switchRecieverCapacity)));
     s2r.SetChannelAttribute ("Delay", TimeValue(LINK_LATENCY));
-    s2r.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue (ToString(BUFFER_SIZE) + "p"));
+    s2r.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue (queue_capacity));
 
     NS_LOG_INFO ("Create NetDevices");
     NetDeviceContainer serverDevices;
@@ -409,7 +409,7 @@ int main (int argc, char *argv[])
     Ptr<TrafficControlLayer> tc;
     tc = router.Get(0)->GetObject<TrafficControlLayer>();
     tc->SetAttribute("SharedBuffer", BooleanValue(true));
-    tc->SetAttribute("MaxSharedBufferSize", StringValue (ToString(BUFFER_SIZE)+"p"));
+    tc->SetAttribute("MaxSharedBufferSize", StringValue (queue_capacity));
     tc->SetAttribute("Alpha_High", UintegerValue (alpha_high));
     tc->SetAttribute("Alpha_Low", UintegerValue (alpha_low));
     tc->SetAttribute("TrafficControllAlgorythm", StringValue (usedAlgorythm));
