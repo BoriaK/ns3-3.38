@@ -17,8 +17,8 @@
  * Authors:  Stefano Avallone <stavallo@unina.it>
  */
 
-#ifndef PRIO_QUEUE_DISC_H
-#define PRIO_QUEUE_DISC_H
+#ifndef ROUND_ROBIN_PRIO_QUEUE_DISC_H
+#define ROUND_ROBIN_PRIO_QUEUE_DISC_H
 
 #include "ns3/queue-disc.h"
 #include "ns3/data-rate.h"
@@ -49,7 +49,7 @@ typedef std::array<uint16_t, 16> Priomap;
  * packet is assigned the priority band specified by the first element of the
  * priomap array.
  */
-class PrioQueueDisc : public QueueDisc
+class RoundRobinPrioQueueDisc : public QueueDisc
 {
   public:
     /**
@@ -60,9 +60,9 @@ class PrioQueueDisc : public QueueDisc
     /**
      * \brief PrioQueueDisc constructor
      */
-    PrioQueueDisc();
+    RoundRobinPrioQueueDisc();
 
-    ~PrioQueueDisc() override;
+    ~RoundRobinPrioQueueDisc() override;
 
     /**
      * Set the band (class) assigned to packets with specified priority.
@@ -88,6 +88,13 @@ class PrioQueueDisc : public QueueDisc
     void InitializeParams() override;
 
     Priomap m_prio2band; //!< Priority to band mapping
+    // Added by me:
+    // for WFQ
+    DataRate m_linkBandwidth; //!< Link bandwidth
+    // double m_weights[5] = {0.3, 0.2, 0.15, 0.1, 0.25};
+    double m_weights[2] = {0.5, 0.5};
+    // for Round-Robin
+    uint32_t m_lastDequeuedClass;
 };
 
 /**
@@ -114,4 +121,4 @@ ATTRIBUTE_HELPER_HEADER(Priomap);
 
 } // namespace ns3
 
-#endif /* PRIO_QUEUE_DISC_H */
+#endif /* ROUND_ROBIN_PRIO_QUEUE_DISC_H */

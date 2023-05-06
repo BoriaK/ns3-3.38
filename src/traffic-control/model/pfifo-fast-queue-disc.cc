@@ -107,6 +107,9 @@ PfifoFastQueueDisc::DoDequeue()
 
     for (uint32_t i = 0; i < GetNInternalQueues(); i++)
     {
+        // for debug:
+        std::cout << "current number of packets in band " << i << ": " << GetInternalQueue(i)->GetNPackets() << std::endl;
+        /////////
         if ((item = GetInternalQueue(i)->Dequeue()))
         {
             NS_LOG_LOGIC("Popped from band " << i << ": " << item);

@@ -478,30 +478,6 @@ model/pie-queue-disc.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/pie-queue-disc.cc.s
 .PHONY : model/pie-queue-disc.cc.s
 
-model/prio-queue-disc.o: model/prio-queue-disc.cc.o
-.PHONY : model/prio-queue-disc.o
-
-# target to build an object file
-model/prio-queue-disc.cc.o:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/prio-queue-disc.cc.o
-.PHONY : model/prio-queue-disc.cc.o
-
-model/prio-queue-disc.i: model/prio-queue-disc.cc.i
-.PHONY : model/prio-queue-disc.i
-
-# target to preprocess a source file
-model/prio-queue-disc.cc.i:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/prio-queue-disc.cc.i
-.PHONY : model/prio-queue-disc.cc.i
-
-model/prio-queue-disc.s: model/prio-queue-disc.cc.s
-.PHONY : model/prio-queue-disc.s
-
-# target to generate assembly for a file
-model/prio-queue-disc.cc.s:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/prio-queue-disc.cc.s
-.PHONY : model/prio-queue-disc.cc.s
-
 model/queue-disc.o: model/queue-disc.cc.o
 .PHONY : model/queue-disc.o
 
@@ -549,6 +525,30 @@ model/red-queue-disc.s: model/red-queue-disc.cc.s
 model/red-queue-disc.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/red-queue-disc.cc.s
 .PHONY : model/red-queue-disc.cc.s
+
+model/round-robin-prio-queue-disc.o: model/round-robin-prio-queue-disc.cc.o
+.PHONY : model/round-robin-prio-queue-disc.o
+
+# target to build an object file
+model/round-robin-prio-queue-disc.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/round-robin-prio-queue-disc.cc.o
+.PHONY : model/round-robin-prio-queue-disc.cc.o
+
+model/round-robin-prio-queue-disc.i: model/round-robin-prio-queue-disc.cc.i
+.PHONY : model/round-robin-prio-queue-disc.i
+
+# target to preprocess a source file
+model/round-robin-prio-queue-disc.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/round-robin-prio-queue-disc.cc.i
+.PHONY : model/round-robin-prio-queue-disc.cc.i
+
+model/round-robin-prio-queue-disc.s: model/round-robin-prio-queue-disc.cc.s
+.PHONY : model/round-robin-prio-queue-disc.s
+
+# target to generate assembly for a file
+model/round-robin-prio-queue-disc.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/build.make src/traffic-control/CMakeFiles/libtraffic-control-obj.dir/model/round-robin-prio-queue-disc.cc.s
+.PHONY : model/round-robin-prio-queue-disc.cc.s
 
 model/shared-buffer-queue-disc_v01.o: model/shared-buffer-queue-disc_v01.cc.o
 .PHONY : model/shared-buffer-queue-disc_v01.o
@@ -672,15 +672,15 @@ help:
 	@echo "... model/pie-queue-disc.o"
 	@echo "... model/pie-queue-disc.i"
 	@echo "... model/pie-queue-disc.s"
-	@echo "... model/prio-queue-disc.o"
-	@echo "... model/prio-queue-disc.i"
-	@echo "... model/prio-queue-disc.s"
 	@echo "... model/queue-disc.o"
 	@echo "... model/queue-disc.i"
 	@echo "... model/queue-disc.s"
 	@echo "... model/red-queue-disc.o"
 	@echo "... model/red-queue-disc.i"
 	@echo "... model/red-queue-disc.s"
+	@echo "... model/round-robin-prio-queue-disc.o"
+	@echo "... model/round-robin-prio-queue-disc.i"
+	@echo "... model/round-robin-prio-queue-disc.s"
 	@echo "... model/shared-buffer-queue-disc_v01.o"
 	@echo "... model/shared-buffer-queue-disc_v01.i"
 	@echo "... model/shared-buffer-queue-disc_v01.s"

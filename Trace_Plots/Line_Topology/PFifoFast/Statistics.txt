@@ -1,0 +1,24 @@
+Topology: 2In2Out
+Queueing Algorithm: PFifoFast
+Application: standardClient
+
+*** Flow monitor statistics ***
+  Tx Packets/Bytes:   40 / 42080
+  Rx Packets/Bytes:   40 / 42080
+  Packets/Bytes Dropped by Queue Disc:   0 / 0
+  Packets/Bytes Dropped by NetDevice:   0 / 0
+  Throughput: 0.113566 Mbps
+
+*** TC Layer statistics ***
+Queue Disceplene 0:
+
+Packets/Bytes received: 40 / 42080
+Packets/Bytes enqueued: 40 / 42080
+Packets/Bytes dequeued: 40 / 42080
+Packets/Bytes requeued: 0 / 0
+Packets/Bytes dropped: 0 / 0
+Packets/Bytes dropped before enqueue: 0 / 0
+Packets/Bytes dropped after dequeue: 0 / 0
+Packets/Bytes sent: 40 / 42080
+Packets/Bytes marked: 0 / 0
+

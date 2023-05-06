@@ -56,9 +56,9 @@ Time prevTime = Seconds (0);
 NS_LOG_COMPONENT_DEFINE ("Line_v01_with_CustomApp_SharedBuffer");
 
 void
-TrafficControllPacketsInQueue_Trace (std::size_t index, uint32_t oldValue, uint32_t newValue)
+QueueDiscPacketsInQueue_Trace (std::size_t index, uint32_t oldValue, uint32_t newValue)
 {
-  std::cout << "TrafficControllPacketsInQueueP" << index << ": " << newValue << std::endl;
+  std::cout << "QueueDiscPacketsInQueue " << index << ": " << newValue << std::endl;
 }
 
 // Trace the number of High Priority packets in the Queue
@@ -149,7 +149,7 @@ int main (int argc, char *argv[])
   // Application type dependent parameters
   if (applicationType.compare("standardClient") == 0)
     {
-      queue_capacity = "20p"; // B, the total space on the buffer
+      queue_capacity = "10p"; // B, the total space on the buffer
     }
   else if (applicationType.compare("OnOff") == 0 || applicationType.compare("customOnOff") == 0 || applicationType.compare("customApplication") == 0)
     {
@@ -228,17 +228,20 @@ int main (int argc, char *argv[])
   // Create a TrafficControlHelper object:
   TrafficControlHelper tch;
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1"));
-  // try different priomaps
-  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
+  // try different priomaps:
+  // equal priority for all classes
+  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
+  
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
 
-  // priomap with low priority for value "0" and high priority for rest of the 15 values (1-15) ?
-  uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")); 
+  // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15) ?
+  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
+    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")); 
 
   TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
 
-  tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue("10p")); // cid[0] is band "0" - the Highest Priority band
-  tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue("10p")); // cid[1] is Low Priority
+  tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue (queue_capacity)); // cid[0] is band "0" - the Highest Priority band
+  tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); // cid[1] is Low Priority
 
   
   QueueDiscContainer qdisc = tch.Install(dev1.Get(0));
@@ -254,7 +257,7 @@ int main (int argc, char *argv[])
 //////////////extract data from q-disc//////////////////////////////
   for (size_t i = 0; i < qdisc.Get(0)->GetNQueueDiscClasses(); i++)
   {
-      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TrafficControllPacketsInQueue_Trace, i));
+      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&QueueDiscPacketsInQueue_Trace, i));
   }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -291,14 +294,21 @@ int main (int argc, char *argv[])
   uint32_t ipTos_LP = 0x00; //Low priority: Best Effort
 	uint32_t ipTos_HP = 0x10;  //High priority: Maximize Throughput
 
-  if (applicationType.compare("standardClient") == 0)
-  {
     // Install UDP application on the sender  
     InetSocketAddress socketAddressP0 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP0);
     socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
     
     InetSocketAddress socketAddressP1 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP1);
     socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
+
+  if (applicationType.compare("standardClient") == 0)
+  {
+    // // Install UDP application on the sender  
+    // InetSocketAddress socketAddressP0 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP0);
+    // socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
+    
+    // InetSocketAddress socketAddressP1 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP1);
+    // socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
     
     UdpClientHelper clientHelperP0 (socketAddressP0);
     clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
@@ -316,21 +326,31 @@ int main (int argc, char *argv[])
     sourceApps.Stop (Seconds(3.0));
   }
   
-  // else if (applicationType.compare("OnOff") == 0)
-  // {
-  //   // Create the OnOff applications to send TCP/UDP to the server
-  //   InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);
-  //   OnOffHelper clientHelper (socketType, socketAddressUp);
-  //   // OnOffHelper clientHelper (socketType, Address ());
-  //   clientHelper.SetAttribute ("Remote", AddressValue (socketAddressUp));
-  //   clientHelper.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
-  //   clientHelper.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-  //   clientHelper.SetAttribute ("PacketSize", UintegerValue (payloadSize));
-  //   clientHelper.SetAttribute ("DataRate", StringValue ("2Mb/s"));
-  //   ApplicationContainer sourceApps = clientHelper.Install (n0n1.Get (0));
-  //   sourceApps.Start (Seconds (1.0));
-  //   sourceApps.Stop (Seconds(3.0));
-  // }
+  else if (applicationType.compare("OnOff") == 0)
+  {
+    // Create the OnOff applications to send TCP/UDP to the server
+    OnOffHelper clientHelperP0 (socketType, socketAddressP0);
+    // OnOffHelper clientHelper (socketType, Address ());
+    clientHelperP0.SetAttribute ("Remote", AddressValue (socketAddressP0));
+    clientHelperP0.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+    clientHelperP0.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+    clientHelperP0.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+    clientHelperP0.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+    
+    OnOffHelper clientHelperP1 (socketType, socketAddressP1);
+    clientHelperP1.SetAttribute ("Remote", AddressValue (socketAddressP1));
+    clientHelperP1.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+    clientHelperP1.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+    clientHelperP1.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+    clientHelperP1.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+    
+    ApplicationContainer sourceApps;
+    sourceApps.Add(clientHelperP0.Install (n0n1.Get (0)));
+    sourceApps.Add(clientHelperP1.Install (n0n1.Get (0)));
+    
+    sourceApps.Start (Seconds (1.0));
+    sourceApps.Stop (Seconds(3.0));
+  }
   
   // else if (applicationType.compare("customOnOff") == 0)
   // {

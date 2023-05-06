@@ -79,12 +79,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/packet-filter.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/pfifo-fast-queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/pie-queue-disc.h"
-    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/prio-queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/red-queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/tbf-queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/traffic-control-layer.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/shared-buffer-queue-disc_v01.h"
+    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/round-robin-prio-queue-disc.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include/ns3/traffic-control-module.h"
     )
 endif()

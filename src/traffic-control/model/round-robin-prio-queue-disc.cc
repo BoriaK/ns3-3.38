@@ -17,12 +17,15 @@
  * Authors:  Stefano Avallone <stavallo@unina.it>
  */
 
-#include "prio-queue-disc.h"
+#include "round-robin-prio-queue-disc.h"
 
 #include "ns3/log.h"
 #include "ns3/object-factory.h"
 #include "ns3/pointer.h"
 #include "ns3/socket.h"
+// for modifyed dequeue:
+#include "ns3/simulator.h"
+#include "ns3/error-model.h"
 
 #include <algorithm>
 #include <iterator>
@@ -30,9 +33,9 @@
 namespace ns3
 {
 
-NS_LOG_COMPONENT_DEFINE("PrioQueueDisc");
+NS_LOG_COMPONENT_DEFINE("RoundRobinPrioQueueDisc");
 
-NS_OBJECT_ENSURE_REGISTERED(PrioQueueDisc);
+NS_OBJECT_ENSURE_REGISTERED(RoundRobinPrioQueueDisc);
 
 ATTRIBUTE_HELPER_CPP(Priomap);
 
@@ -59,34 +62,35 @@ operator>>(std::istream& is, Priomap& priomap)
 }
 
 TypeId
-PrioQueueDisc::GetTypeId()
+RoundRobinPrioQueueDisc::GetTypeId()
 {
     static TypeId tid =
-        TypeId("ns3::PrioQueueDisc")
+        TypeId("ns3::RoundRobinPrioQueueDisc")
             .SetParent<QueueDisc>()
             .SetGroupName("TrafficControl")
-            .AddConstructor<PrioQueueDisc>()
+            .AddConstructor<RoundRobinPrioQueueDisc>()
             .AddAttribute("Priomap",
                           "The priority to band mapping.",
                           PriomapValue(Priomap{{1, 2, 2, 2, 1, 2, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1}}),
-                          MakePriomapAccessor(&PrioQueueDisc::m_prio2band),
+                          MakePriomapAccessor(&RoundRobinPrioQueueDisc::m_prio2band),
                           MakePriomapChecker());
     return tid;
 }
 
-PrioQueueDisc::PrioQueueDisc()
-    : QueueDisc(QueueDiscSizePolicy::NO_LIMITS)
+RoundRobinPrioQueueDisc::RoundRobinPrioQueueDisc()
+    : QueueDisc(QueueDiscSizePolicy::NO_LIMITS),
+        m_lastDequeuedClass(0)  // initilze the dequeued class to 0 at the creation of the prio-queue-disc
 {
     NS_LOG_FUNCTION(this);
 }
 
-PrioQueueDisc::~PrioQueueDisc()
+RoundRobinPrioQueueDisc::~RoundRobinPrioQueueDisc()
 {
     NS_LOG_FUNCTION(this);
 }
 
 void
-PrioQueueDisc::SetBandForPriority(uint8_t prio, uint16_t band)
+RoundRobinPrioQueueDisc::SetBandForPriority(uint8_t prio, uint16_t band)
 {
     NS_LOG_FUNCTION(this << prio << band);
 
@@ -96,7 +100,7 @@ PrioQueueDisc::SetBandForPriority(uint8_t prio, uint16_t band)
 }
 
 uint16_t
-PrioQueueDisc::GetBandForPriority(uint8_t prio) const
+RoundRobinPrioQueueDisc::GetBandForPriority(uint8_t prio) const
 {
     NS_LOG_FUNCTION(this << prio);
 
@@ -106,7 +110,7 @@ PrioQueueDisc::GetBandForPriority(uint8_t prio) const
 }
 
 bool
-PrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
+RoundRobinPrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
 {
     NS_LOG_FUNCTION(this << item);
 
@@ -149,34 +153,83 @@ PrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
     return retval;
 }
 
-Ptr<QueueDiscItem>
-PrioQueueDisc::DoDequeue()
-{
-    NS_LOG_FUNCTION(this);
+// original DoDequeue function
+// Ptr<QueueDiscItem>
+// RoundRobinPrioQueueDisc::DoDequeue()
+// {
+//     NS_LOG_FUNCTION(this);
 
+//     Ptr<QueueDiscItem> item;
+
+//     for (uint32_t i = 0; i < GetNQueueDiscClasses(); i++)
+//     {
+//         if ((item = GetQueueDiscClass(i)->GetQueueDisc()->Dequeue()))
+//         {
+//             NS_LOG_LOGIC("Popped from band " << i << ": " << item);
+//             NS_LOG_LOGIC("Number packets band "
+//                          << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets());
+//             // for debug:
+//             std::cout << "Packet dequeued from band: " << i << std::endl;
+//             std::cout << "Number of packets in band " << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets() << std::endl;
+//             //////////////
+//             return item;
+//         }
+//     }
+
+//     NS_LOG_LOGIC("Queue empty");
+//     return item;
+// }
+
+
+// Calculate the total weight of all non-empty queues
+// double totalWeight = 0.0;
+// for (size_t i = 0; i < GetNQueueDiscClasses(); i++) 
+// {
+//     if (!GetQueueDiscClass(i)->GetQueueDisc()->Peek() == 0) 
+//     {
+//         totalWeight += m_weights[i];
+//     }
+// }
+
+
+// Round-Robbin DoDequeue:
+Ptr<QueueDiscItem>
+RoundRobinPrioQueueDisc::DoDequeue()
+{
     Ptr<QueueDiscItem> item;
 
-    for (uint32_t i = 0; i < GetNQueueDiscClasses(); i++)
+    uint8_t nextQueue = m_lastDequeuedClass + 1;
+    if (nextQueue >= GetNQueueDiscClasses()) 
     {
-        if ((item = GetQueueDiscClass(i)->GetQueueDisc()->Dequeue()))
+        nextQueue = 0;
+    }
+
+    for (uint8_t i = 0; i < GetNQueueDiscClasses(); i++) 
+    {
+        uint8_t queueIndex = (nextQueue + i) % GetNQueueDiscClasses();
+        if ((item = GetQueueDiscClass(queueIndex)->GetQueueDisc()->Dequeue()))
+        // if (!GetQueueDiscClass(queueIndex)->GetQueueDisc()->Peek() == 0) // check if class queue is not empty
         {
-            NS_LOG_LOGIC("Popped from band " << i << ": " << item);
-            NS_LOG_LOGIC("Number packets band "
-                         << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets());
+            m_lastDequeuedClass = queueIndex;
+            // item = GetQueueDiscClass(queueIndex)->GetQueueDisc()->Dequeue();
+            NS_LOG_LOGIC("Popped from band " << queueIndex << ": " << item);
+            NS_LOG_LOGIC("Number of packets in band "
+                        << queueIndex << ": " << GetQueueDiscClass(queueIndex)->GetQueueDisc()->GetNPackets());
             // for debug:
-            std::cout << "Packet dequeued from band: " << i << std::endl;
-            std::cout << "Number of packets in band " << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets() << std::endl;
+            std::cout << "Packet dequeued from band: " << int(queueIndex) << std::endl;
+            std::cout << "Number of packets in band " << int(queueIndex) << ": " << GetQueueDiscClass(queueIndex)->GetQueueDisc()->GetNPackets() << std::endl;
             //////////////
             return item;
         }
     }
-
     NS_LOG_LOGIC("Queue empty");
     return item;
 }
 
+
+
 Ptr<const QueueDiscItem>
-PrioQueueDisc::DoPeek()
+RoundRobinPrioQueueDisc::DoPeek()
 {
     NS_LOG_FUNCTION(this);
 
@@ -198,7 +251,7 @@ PrioQueueDisc::DoPeek()
 }
 
 bool
-PrioQueueDisc::CheckConfig()
+RoundRobinPrioQueueDisc::CheckConfig()
 {
     NS_LOG_FUNCTION(this);
     if (GetNInternalQueues() > 0)
@@ -232,7 +285,7 @@ PrioQueueDisc::CheckConfig()
 }
 
 void
-PrioQueueDisc::InitializeParams()
+RoundRobinPrioQueueDisc::InitializeParams()
 {
     NS_LOG_FUNCTION(this);
 }

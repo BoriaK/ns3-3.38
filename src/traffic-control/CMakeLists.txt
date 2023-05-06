@@ -13,13 +13,14 @@ build_lib(
     model/packet-filter.cc
     model/pfifo-fast-queue-disc.cc
     model/pie-queue-disc.cc
-    model/prio-queue-disc.cc
+    # model/prio-queue-disc.cc
     model/queue-disc.cc
     model/red-queue-disc.cc
     model/tbf-queue-disc.cc
     model/traffic-control-layer.cc
     # adde by me #######
     model/shared-buffer-queue-disc_v01.cc
+    model/round-robin-prio-queue-disc.cc
     ####################
   HEADER_FILES
     helper/queue-disc-container.h
@@ -34,13 +35,14 @@ build_lib(
     model/packet-filter.h
     model/pfifo-fast-queue-disc.h
     model/pie-queue-disc.h
-    model/prio-queue-disc.h
+    # model/prio-queue-disc.h
     model/queue-disc.h
     model/red-queue-disc.h
     model/tbf-queue-disc.h
     model/traffic-control-layer.h
     # adde by me #######
     model/shared-buffer-queue-disc_v01.h
+    model/round-robin-prio-queue-disc.h
     ####################
   LIBRARIES_TO_LINK ${libnetwork}
                     ${libcore}

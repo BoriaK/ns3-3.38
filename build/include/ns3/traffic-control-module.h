@@ -15,10 +15,10 @@
     #include <ns3/packet-filter.h>
     #include <ns3/pfifo-fast-queue-disc.h>
     #include <ns3/pie-queue-disc.h>
-    #include <ns3/prio-queue-disc.h>
     #include <ns3/queue-disc.h>
     #include <ns3/red-queue-disc.h>
     #include <ns3/tbf-queue-disc.h>
     #include <ns3/traffic-control-layer.h>
     #include <ns3/shared-buffer-queue-disc_v01.h>
+    #include <ns3/round-robin-prio-queue-disc.h>
 #endif 

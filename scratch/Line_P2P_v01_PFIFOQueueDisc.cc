@@ -149,11 +149,11 @@ int main (int argc, char *argv[])
   // Application type dependent parameters
   if (applicationType.compare("standardClient") == 0)
     {
-      queue_capacity = "5p"; // B, the total space on the buffer
+      queue_capacity = "10p"; // B, the total space on the buffer
     }
   else
     {
-      queue_capacity = "10p"; // B, the total space on the buffer [packets]
+      queue_capacity = "20p"; // B, the total space on the buffer [packets]
     }
   // client type dependant parameters:
   if (transportProt.compare ("Tcp") == 0)
@@ -212,7 +212,7 @@ int main (int argc, char *argv[])
   p2p2.SetDeviceAttribute  ("DataRate", StringValue ("100Kbps"));
   p2p2.SetChannelAttribute ("Delay", StringValue ("10ms"));
   // min value for NetDevice buffer is 1p. we set it in order to observe Traffic Controll effects only.
-  p2p2.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue ("10p"));
+  p2p2.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue (queue_capacity));
 
   // And then install devices and channels connecting our topology.
   NetDeviceContainer dev0 = p2p1.Install (n0n1);
@@ -228,6 +228,7 @@ int main (int argc, char *argv[])
   // Create a TrafficControlHelper object:
   TrafficControlHelper tch;
   tch.SetRootQueueDisc("ns3::PfifoFastQueueDisc", "MaxSize", StringValue(queue_capacity));
+  
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PfifoFastQueueDisc", "MaxSize", StringValue(queue_capacity));
   // tch.AddInternalQueues(handle, 3, "ns3::DropTailQueue", "MaxSize", StringValue(queue_capacity));
   
