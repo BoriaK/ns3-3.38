@@ -228,11 +228,6 @@ int main (int argc, char *argv[])
   // Create a TrafficControlHelper object:
   TrafficControlHelper tch;
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1"));
-  // try different priomaps:
-  // equal priority for all classes
-  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
-  
-  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
 
   // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15) ?
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));

@@ -27,8 +27,8 @@ TutorialApp::TutorialApp ()
     m_dataRate (0),
     m_sendEvent (),
     m_running (false),
-    m_packetsSent (0),
-    m_threshold (10)  // Flow classfication Threshold (length), Added by me!
+    // m_threshold (10)  // Flow classfication Threshold (length), Added by me!
+    m_packetsSent (0)
 {
 }
 
@@ -44,6 +44,20 @@ TypeId TutorialApp::GetTypeId (void)
     .SetParent<Application> ()
     .SetGroupName ("Tutorial")
     .AddConstructor<TutorialApp> ()
+    .AddAttribute ("NumOfPacketsHighPrioThreshold", 
+                    "The number of packets in a single sequence, up to which, "
+                    "the flow will be tagged as High Priority. "
+                    "If a generated flow is longer than this threshold, packets from it will be labaled as low priority",
+                    UintegerValue (10),
+                    MakeUintegerAccessor (&TutorialApp::m_threshold),
+                    MakeUintegerChecker<uint8_t> ())
+    .AddAttribute ("FlowPriority", 
+                    "The priority assigned to all the packets created by this Application, "
+                    "1 = high priority, 2 = low priority"
+                    "if this attribute is added, it overrides other methods to define priority",
+                    UintegerValue (0),
+                    MakeUintegerAccessor (&TutorialApp::m_userSetPriority),
+                    MakeUintegerChecker<uint32_t> ())
     ;
   return tid;
 }
@@ -90,19 +104,34 @@ TutorialApp::SendPacket (void)
 {
   Ptr<Packet> packet = Create<Packet> (m_packetSize);
   // create a tag.
-  // set Tag value to depend on the number of previously sent packets
+
+  // option 1: set the priority tag arbitrarly from a user requested param:
+
+  // option 2: set Tag value to depend on the number of previously sent packets:
   // if m_packetsSent < m_threshold: TagValue->0x0 (High Priority)
   // if m_packetsSent >= m_threshold: TagValue->0x1 (Low Priority)
 
-  if (m_packetsSent < m_threshold)
+  if (m_userSetPriority)
   {
-    flowPrioTag.SetSimpleValue (0x1);
+    m_priority = m_userSetPriority;
   }
-  else 
-    flowPrioTag.SetSimpleValue (0x2);
+  else
+  {
+    if (m_packetsSent < m_threshold)
+    {
+      m_priority = 0x1;
+      // flowPrioTag.SetSimpleValue (0x1);
+    }
+    else 
+      m_priority = 0x2;
+      // flowPrioTag.SetSimpleValue (0x2);
+  }
 
+  flowPrioTag.SetSimpleValue (m_priority);
   // store the tag in a packet.
   packet->AddPacketTag (flowPrioTag);
+/////////////////////////
+
   m_socket->Send (packet);
 
   if (++m_packetsSent < m_nPackets)

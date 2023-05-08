@@ -570,7 +570,7 @@ TrafficControlLayer::DropBeforeEnqueue(Ptr<const QueueDiscItem> item)
         flow_priority = flowPrioTag.GetSimpleValue();
         }
     
-    if (flow_priority == 0)
+    if (flow_priority == 1)
         {
         m_stats.nTotalDroppedPacketsHighPriority++;
         m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();

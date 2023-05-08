@@ -505,6 +505,8 @@ int main (int argc, char *argv[])
             priorityOnOffApp->SetAttribute("PacketSize", UintegerValue (PACKET_SIZE));
             priorityOnOffApp->SetAttribute("DataRate", StringValue ("2Mb/s"));
             priorityOnOffApp->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
+            priorityOnOffApp->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10));  // relevant only if "FlowPriority" NOT set by user
+            priorityOnOffApp->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
             servers.Get(serverIndex)->AddApplication(priorityOnOffApp);
             priorityOnOffApp->SetStartTime (Seconds (1.0));
             priorityOnOffApp->SetStopTime (Seconds(3.0));
@@ -516,6 +518,8 @@ int main (int argc, char *argv[])
             Ptr<TutorialApp> priorityApp = CreateObject<TutorialApp> ();
             InetSocketAddress socketAddressUp = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT);  // sink IpV4 Address
             priorityApp->Setup (sockptr, socketAddressUp, PACKET_SIZE, numOfPackets, DataRate ("1Mbps"));
+            priorityApp->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+            priorityApp->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
             servers.Get(serverIndex)->AddApplication (priorityApp);
             priorityApp->SetStartTime (Seconds (1.0));
             priorityApp->SetStopTime (Seconds(3.0));

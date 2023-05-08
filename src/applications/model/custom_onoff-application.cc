@@ -101,6 +101,20 @@ CustomOnOffApplication::GetTypeId (void)
                    BooleanValue (false),
                    MakeBooleanAccessor (&CustomOnOffApplication::m_enableSeqTsSizeHeader),
                    MakeBooleanChecker ())
+    .AddAttribute ("NumOfPacketsHighPrioThreshold", 
+                   "The number of packets in a single sequence, up to which, "
+                   "the flow will be tagged as High Priority. "
+                   "If a generated flow is longer than this threshold, packets from it will be labaled as low priority",
+                   UintegerValue (10),
+                   MakeUintegerAccessor (&CustomOnOffApplication::m_threshold),
+                   MakeUintegerChecker<uint8_t> ())
+    .AddAttribute ("FlowPriority", 
+                   "The priority assigned to all the packets created by this Application, "
+                   "1 = high priority, 2 = low priority"
+                   "if this attribute is added, it overrides other methods to define priority",
+                   UintegerValue (0),
+                   MakeUintegerAccessor (&CustomOnOffApplication::m_userSetPriority),
+                   MakeUintegerChecker<uint32_t> ())
     .AddTraceSource ("Tx", "A new packet is created and is sent",
                      MakeTraceSourceAccessor (&CustomOnOffApplication::m_txTrace),
                      "ns3::Packet::TracedCallback")
@@ -122,7 +136,8 @@ CustomOnOffApplication::CustomOnOffApplication ()
     m_totBytes (0),
     m_packetsSent (0), // total number of sent packets, added by me
     m_packetSeqCount(1), // number of sent packets per sequence, always start with 1, added by me!
-    m_threshold (10),  // Flow classfication Threshold (length), Added by me!
+    // m_priority(1),  // the priority of the generated flow.
+    // m_threshold (10),  // Flow classfication Threshold (length), Added by me!
     m_unsentPacket (0)
 {
   NS_LOG_FUNCTION (this);
@@ -327,37 +342,40 @@ void CustomOnOffApplication::SendPacket ()
       m_txTraceWithSeqTsSize (packet, from, to, header);
       packet->AddHeader (header);
     }
-    // else if (m_enableCustomHeader)
-    // {
-    //   packet = Create<Packet> (m_pktSize);
-    //   Ptr<CustomHeader> customHeader = Create<CustomHeader>(node);
-    //   customHeader->SetNetDevice(netDevice);
-    //   packet->AddHeader(customHeader);
-    // }
-    
   else
     {
       packet = Create<Packet> (m_pktSize);
     }
   
-  /////////////////////// option1: add priority tag to packet
+   ////////////////// option 1: set the priority tag arbitrarly from a user requested param
+  
+  /////////////////////// option 2: add priority tag to packet
   // create a tag.
   // set Tag value to depend on the number of previously sent packets
   // if m_packetSeqCount < m_threshold: TagValue->0x1 (High Priority)
   // if m_packetSeqCount >= m_threshold: TagValue->0x2 (Low Priority)
-
-  if (m_packetSeqCount < m_threshold)
+  if (m_userSetPriority)
   {
-    flowPrioTag.SetSimpleValue (0x1);
+    m_priority = m_userSetPriority;
   }
-  else 
-    flowPrioTag.SetSimpleValue (0x2);
+  else
+  {
+    if (m_packetSeqCount < m_threshold)
+    {
+      m_priority = 0x1;
+      // flowPrioTag.SetSimpleValue (0x1);
+    }
+    else 
+      m_priority = 0x2;
+      // flowPrioTag.SetSimpleValue (0x2);
+  }
 
+  flowPrioTag.SetSimpleValue (m_priority);
   // store the tag in a packet.
   packet->AddPacketTag (flowPrioTag);
 /////////////////////////
 
-// /////////////////////// option2: add sequence conter tag to packet. Currently not used!
+// /////////////////////// option 3: add sequence conter tag to packet. Currently not used!
 //   // create a tag.
 //   MyTag flowPacketCounterTag;
 // // add a Flow Packet Counter Tag to each packet in Tx
@@ -367,6 +385,11 @@ void CustomOnOffApplication::SendPacket ()
 //   // store the tag in a packet.
 //   packet->AddPacketTag (flowPacketCounterTag);
 // ///////////////////////////
+
+/////////////////////// option 4: add a priority to a packet based on ToS value.
+// Tos 0x0 -> Low Priority -> TagValue->0x2 (Low Priority)
+// ToS 0x6 -> High Priority -> TagValue->0x1 (High Priority)
+////////////////////////////////////////////////////////////////////
 
   int actual = m_socket->Send (packet);
   if ((unsigned) actual == m_pktSize)

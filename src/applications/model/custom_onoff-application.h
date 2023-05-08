@@ -190,7 +190,9 @@ private:
   
   // flow prioritization Parameters
   uint8_t         m_threshold;     //< [packets], max number of packets per flow to be considered mouse flow
-  SharedPriorityTag           flowPrioTag;   //< a tag that's added to each sent packet based on the priority assigned by the SendPacket () function
+  uint32_t        m_userSetPriority;     //!< the priority assigned to each flow. defined externaly by the user
+  uint32_t        m_priority;     //!< the priority assigned to each packet/ flow. can be user defined or based on flow length.
+  SharedPriorityTag  flowPrioTag;   //< a tag that's added to each sent packet based on the priority assigned by the SendPacket () function
   
   EventId         m_startStopEvent;     //!< Event id for next start or stop event
   EventId         m_sendEvent;    //!< Event id of pending "send packet" event

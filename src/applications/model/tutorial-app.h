@@ -69,6 +69,8 @@ private:
   EventId         m_sendEvent;    //!< Send event.
   bool            m_running;      //!< True if the application is running.
   uint32_t        m_packetsSent;  //!< The number of pacts sent.
+  uint32_t        m_userSetPriority;     //!< the priority assigned to each flow. defined externaly by the user
+  uint32_t        m_priority;     //!< the priority assigned to each packet/ flow. can be user defined or based on flow length.
 
   // flow prioritization Parameters
   uint8_t         m_threshold;     //< [packets], max number of packets per flow to be considered mouse flow
