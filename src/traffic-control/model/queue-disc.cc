@@ -314,13 +314,24 @@ QueueDisc::GetTypeId()
             .AddTraceSource("SojournTime",
                             "Sojourn time of the last packet dequeued from the queue disc",
                             MakeTraceSourceAccessor(&QueueDisc::m_sojourn),
-                            "ns3::Time::TracedCallback");
+                            "ns3::Time::TracedCallback")
+            //######## Added by me ##########
+            .AddTraceSource("HighPriorityPacketsInQueue",
+                            "Number of High Priority packets currently stored in the queue disc",
+                            MakeTraceSourceAccessor(&QueueDisc::m_nPackets_h),
+                            "ns3::TracedValueCallback::Uint32")
+            .AddTraceSource("LowPriorityPacketsInQueue",
+                            "Number of Low Priority packets currently stored in the queue disc",
+                            MakeTraceSourceAccessor(&QueueDisc::m_nPackets_l),
+                            "ns3::TracedValueCallback::Uint32");
     return tid;
 }
 
 QueueDisc::QueueDisc(QueueDiscSizePolicy policy)
     : m_nPackets(0),
       m_nBytes(0),
+      m_nPackets_h(0),  // added by me
+      m_nPackets_l(0),  // added by me
       m_maxSize(QueueSize("1p")), // to avoid that setting the mode at construction time is ignored
       m_running(false),
       m_peeked(false),
@@ -531,6 +542,40 @@ QueueDisc::GetCurrentSize()
     NS_ABORT_MSG("Unknown queue size unit");
 }
 
+//// Added by me/////////////////////////////////////////
+QueueSize
+QueueDisc::GetNumOfHighPrioPacketsInQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_h);
+    }
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::BYTES)
+    {
+        return QueueSize(QueueSizeUnit::BYTES, m_nBytes_h);
+    }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+
+QueueSize
+QueueDisc::GetNumOfLowPrioPacketsInQueue()
+{
+    NS_LOG_FUNCTION(this);
+
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::PACKETS)
+    {
+        return QueueSize(QueueSizeUnit::PACKETS, m_nPackets_l);
+    }
+    if (GetMaxSize().GetUnit() == QueueSizeUnit::BYTES)
+    {
+        return QueueSize(QueueSizeUnit::BYTES, m_nBytes_l);
+    }
+    NS_ABORT_MSG("Unknown queue size unit");
+}
+//////////////////////////////////////////////////////////
+
 void
 QueueDisc::SetNetDeviceQueueInterface(Ptr<NetDeviceQueueInterface> ndqi)
 {
@@ -698,6 +743,21 @@ QueueDisc::PacketEnqueued(Ptr<const QueueDiscItem> item)
 
     NS_LOG_LOGIC("m_traceEnqueue (p)");
     m_traceEnqueue(item);
+
+    // added for tracing the number of High/Low priority packets in queue:
+    if (item->GetPacket()->PeekPacketTag(flowPrioTag))
+    {
+        //Added by me for Shared Buffer High/Low Priority Packets tracing:
+        flow_priority = flowPrioTag.GetSimpleValue();
+        if (flow_priority == 1)
+        {
+            m_nPackets_h++;
+        }
+        else
+        {
+            m_nPackets_l++;
+        }
+    }
 }
 
 void
@@ -719,6 +779,21 @@ QueueDisc::PacketDequeued(Ptr<const QueueDiscItem> item)
 
         NS_LOG_LOGIC("m_traceDequeue (p)");
         m_traceDequeue(item);
+
+        // added for tracing the number of High/Low priority packets in queue:
+        if (item->GetPacket()->PeekPacketTag(flowPrioTag))
+        {
+            //Added by me for Shared Buffer High/Low Priority Packets tracing:
+            flow_priority = flowPrioTag.GetSimpleValue();
+            if (flow_priority == 1)
+            {
+                m_nPackets_h--;
+            }
+            else
+            {
+                m_nPackets_l--;
+            }
+        }
     }
 }
 

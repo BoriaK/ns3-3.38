@@ -1983,17 +1983,30 @@ scratch_2In2Out_P2P_v01_SharedBufferQueueDisc/fast:
 .PHONY : scratch_2In2Out_P2P_v01_SharedBufferQueueDisc/fast
 
 #=============================================================================
-# Target rules for targets named scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl
+# Target rules for targets named scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO
 
 # Build rule for target.
-scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl
-.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO
 
 # fast build rule for target.
-scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl/fast:
-	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build
-.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl/fast
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO/fast:
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO/fast
+
+#=============================================================================
+# Target rules for targets named scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice
+
+# Build rule for target.
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice
+
+# fast build rule for target.
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice/fast:
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice/fast
 
 #=============================================================================
 # Target rules for targets named scratch_Incast_multiple_nodes_NOT_UPDATED
@@ -2435,7 +2448,8 @@ help:
 	@echo "... scratch-nested-subdir-lib"
 	@echo "... scratch_2In2Out_P2P_v01"
 	@echo "... scratch_2In2Out_P2P_v01_SharedBufferQueueDisc"
-	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl"
+	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO"
+	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice"
 	@echo "... scratch_Incast_multiple_nodes_NOT_UPDATED"
 	@echo "... scratch_Incast_v01_2Nodes"
 	@echo "... scratch_Line_P2P_v01_PFIFOQueueDisc"

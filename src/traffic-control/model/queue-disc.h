@@ -27,6 +27,8 @@
 #include "ns3/queue-size.h"
 #include "ns3/traced-callback.h"
 #include "ns3/traced-value.h"
+//////Added by me///////////
+#include "ns3/customTag.h"
 
 #include <functional>
 #include <map>
@@ -336,6 +338,26 @@ class QueueDisc : public Object
      * \returns The queue disc size in bytes or packets.
      */
     QueueSize GetCurrentSize();
+
+    /////////////////Added by me /////////////
+    /**
+     * \brief Get the current number of High Priority Packets in the queue, in bytes, if
+     *        operating in bytes mode, or packets, otherwise.
+     *
+     *
+     * \returns The number of high priority packets in queue in bytes or packets.
+     */
+    QueueSize GetNumOfHighPrioPacketsInQueue();
+
+    /**
+     * \brief Get the current number of High Priority Packets in the queue, in bytes, if
+     *        operating in bytes mode, or packets, otherwise.
+     *
+     *
+     * \returns The number of high priority packets in queue in bytes or packets.
+     */
+    QueueSize GetNumOfLowPrioPacketsInQueue();
+///////////////////////////////////////
 
     /**
      * \brief Retrieve all the collected statistics.
@@ -693,9 +715,13 @@ class QueueDisc : public Object
 
     TracedValue<uint32_t> m_nPackets; //!< Number of packets in the queue
     TracedValue<uint32_t> m_nBytes;   //!< Number of bytes in the queue
+    TracedValue<uint32_t> m_nPackets_h; //!< Number of High Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nPackets_l; //!< Number of Low Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nBytes_h; //!< Number of High Priority packets in the queue ######## Added by me!######
+    TracedValue<uint32_t> m_nBytes_l; //!< Number of Low Priority packets in the queue ######## Added by me!###### 
     TracedCallback<Time> m_sojourn;   //!< Sojourn time of the latest dequeued packet
     QueueSize m_maxSize;              //!< max queue size
-
+    
     Stats m_stats;    //!< The collected statistics
     uint32_t m_quota; //!< Maximum number of packets dequeued in a qdisc run
     Ptr<NetDeviceQueueInterface> m_devQueueIface; //!< NetDevice queue interface
@@ -707,6 +733,10 @@ class QueueDisc : public Object
     std::string m_childQueueDiscMarkMsg; //!< Reason why a packet was marked by a child queue disc
     QueueDiscSizePolicy m_sizePolicy;    //!< The queue disc size policy
     bool m_prohibitChangeMode;           //!< True if changing mode is prohibited
+    
+    // for packet tracing in SharedBuffer QueueDisc:
+    SharedPriorityTag flowPrioTag;    //< a tag that's added to each sent packet based on the priority assigned by the Sender application
+    uint8_t flow_priority;   //< Flow priority assigned to each recieved packet, based on the flow priority assigned by sender
 
     /// Traced callback: fired when a packet is enqueued
     TracedCallback<Ptr<const QueueDiscItem>> m_traceEnqueue;

@@ -252,15 +252,31 @@ TrafficControlLayer::GetCurrentSharedBufferSize()
     m_sharedBufferBytes = 0;
 
     /// calculate the number of the packets/bytes in the Shared Buffer 
-    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
+    // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario
+    Ptr<NetDeviceQueueInterface> devQueueIface;    
     for (size_t i = 2; i < m_netDevicesList.size(); i++)
     {
-        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
-        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-        trafficControllPacketCounter = queue->GetNPackets();
-        trafficControllBytesCounter = queue->GetNBytes();
-        m_sharedBufferPackets += trafficControllPacketCounter;
-        m_sharedBufferBytes += trafficControllBytesCounter;
+        Ptr<NetDevice> ndev = m_netDevicesList[i];
+        std::map<Ptr<NetDevice>, NetDeviceInfo>::iterator ndi = m_netDevices.find(ndev);
+        if (ndi == m_netDevices.end() || !ndi->second.m_rootQueueDisc)  // if no root-queue-disc is installed on the net-device
+        {
+            Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(ndev);
+            Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+            trafficControllPacketCounter = queue->GetNPackets();
+            trafficControllBytesCounter = queue->GetNBytes();
+            m_sharedBufferPackets += trafficControllPacketCounter;
+            m_sharedBufferBytes += trafficControllBytesCounter;
+        }
+        else
+        {
+            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
+            trafficControllPacketCounter = qDisc->GetNPackets();
+            trafficControllBytesCounter = qDisc->GetNBytes();
+            m_sharedBufferPackets += trafficControllPacketCounter;
+            m_sharedBufferBytes += trafficControllBytesCounter;
+        }
+
     }
 
     if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
@@ -274,7 +290,6 @@ TrafficControlLayer::GetCurrentSharedBufferSize()
     NS_ABORT_MSG("Unknown queue size unit");
 }
 
-/////// not used at the moment/////////////////// 
 QueueSize
 TrafficControlLayer::GetNumOfHighPriorityPacketsInSharedQueue()
 {
@@ -296,12 +311,26 @@ TrafficControlLayer::GetNumOfHighPriorityPacketsInSharedQueue()
     // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
     for (size_t i = 2; i < m_netDevicesList.size(); i++)
     {
-        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
-        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-        trafficControllPacketCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();
-        // trafficControllBytesCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
-        m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
-        // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        Ptr<NetDevice> ndev = m_netDevicesList[i];
+        std::map<Ptr<NetDevice>, NetDeviceInfo>::iterator ndi = m_netDevices.find(ndev);
+        if (ndi == m_netDevices.end() || !ndi->second.m_rootQueueDisc)  // if no root-queue-disc is installed on the net-device
+        {
+            Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(ndev);
+            Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+            trafficControllPacketCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();
+            // trafficControllBytesCounter = queue->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+            m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
+            // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        }
+        else
+        {
+            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
+            trafficControllPacketCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();
+            // trafficControllBytesCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+            m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
+            // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        }
     }
 
     if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
@@ -336,12 +365,26 @@ TrafficControlLayer::GetNumOfLowPriorityPacketsInSharedQueue()
     // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario    
     for (size_t i = 2; i < m_netDevicesList.size(); i++)
     {
-        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
-        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-        trafficControllPacketCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();
-        // trafficControllBytesCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
-        m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
-        // m_nBytes_low_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        Ptr<NetDevice> ndev = m_netDevicesList[i];
+        std::map<Ptr<NetDevice>, NetDeviceInfo>::iterator ndi = m_netDevices.find(ndev);
+        if (ndi == m_netDevices.end() || !ndi->second.m_rootQueueDisc)  // if no root-queue-disc is installed on the net-device
+        {
+            Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(ndev);
+            Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+            trafficControllPacketCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();
+            // trafficControllBytesCounter = queue->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+            m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
+            // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        }
+        else
+        {
+            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
+            trafficControllPacketCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();
+            // trafficControllBytesCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+            m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
+            // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+        }
     }
 
     if (GetMaxSharedBufferSize().GetUnit() == QueueSizeUnit::PACKETS)
@@ -354,7 +397,6 @@ TrafficControlLayer::GetNumOfLowPriorityPacketsInSharedQueue()
     // }
     NS_ABORT_MSG("Unknown queue size unit");
 }
-////////////////////////////////////////////////////////////////
 
 uint32_t 
 TrafficControlLayer::GetNumOfConjestedQueuesInSharedQueue()
@@ -376,12 +418,24 @@ TrafficControlLayer::GetNumOfConjestedQueuesInSharedQueue()
     // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario
      for (size_t i = 2; i < m_netDevicesList.size(); i++)
     {
-        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
-        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-
-        if (queue->GetNPackets())
+        Ptr<NetDevice> ndev = m_netDevicesList[i];
+        std::map<Ptr<NetDevice>, NetDeviceInfo>::iterator ndi = m_netDevices.find(ndev);
+        if (ndi == m_netDevices.end() || !ndi->second.m_rootQueueDisc)  // if no root-queue-disc is installed on the net-device
         {
-            m_nConjestedQueues++;
+            Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(ndev);
+            Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+            if (queue->GetNPackets())
+            {
+                m_nConjestedQueues++;
+            }
+        }
+        else
+        {
+            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+            if (qDisc->GetNPackets())
+            {
+                m_nConjestedQueues++;
+            }
         }
     }
     return m_nConjestedQueues;
@@ -407,25 +461,52 @@ TrafficControlLayer::GetNumOfPriorityConjestedQueuesInSharedQueue(uint32_t queue
     // start the index from 2 since the first 2 net devices are for Tx Ack packets back to senders in TCP scenario
      for (size_t i = 2; i < m_netDevicesList.size(); i++)
     {
-        Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(m_netDevicesList[i]);
-        Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-        if (queue_priority == 1)  // 1 is low priority
+        Ptr<NetDevice> ndev = m_netDevicesList[i];
+        std::map<Ptr<NetDevice>, NetDeviceInfo>::iterator ndi = m_netDevices.find(ndev);
+        if (ndi == m_netDevices.end() || !ndi->second.m_rootQueueDisc)  // if no root-queue-disc is installed on the net-device
         {
-            if (queue->GetNumOfLowPrioPacketsInQueue().GetValue())
+            Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(ndev);
+            Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+            if (queue_priority == 1)  // 1 is low priority
             {
-                m_nConjestedQueues_p++;
+                if (queue->GetNumOfLowPrioPacketsInQueue().GetValue())
+                {
+                    m_nConjestedQueues_p++;
+                }
             }
-        }
-        else if (queue_priority == 2)  // 2 is high priority
-        {
-            if (queue->GetNumOfHighPrioPacketsInQueue().GetValue())
+            else if (queue_priority == 2)  // 2 is high priority
             {
-                m_nConjestedQueues_p++;
+                if (queue->GetNumOfHighPrioPacketsInQueue().GetValue())
+                {
+                    m_nConjestedQueues_p++;
+                }
+            }
+            else
+            {
+                NS_ABORT_MSG("Unknown priority");
             }
         }
         else
         {
-            NS_ABORT_MSG("Unknown priority");
+            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+            if (queue_priority == 1)  // 1 is low priority
+            {
+                if (qDisc->GetNumOfLowPrioPacketsInQueue().GetValue())
+                {
+                    m_nConjestedQueues_p++;
+                }
+            }
+            else if (queue_priority == 2)  // 2 is high priority
+            {
+                if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue())
+                {
+                    m_nConjestedQueues_p++;
+                }
+            }
+            else
+            {
+                NS_ABORT_MSG("Unknown priority");
+            }
         }
     }
     return m_nConjestedQueues_p;
@@ -873,122 +954,136 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                 item->GetPacket()->RemovePacketTag(priorityTag);
             }
             
-            ///for Shared Buffer. in case no queue-disc is installed on the NetDevice////////
-            std::string nodeName = Names::FindName(m_node);  // Get the name of the Node
-            if (nodeName.compare("Router") == 0)
+            if (m_useSharedBuffer)  // if user choses to activate Shared-Buffer algorythem
             {
-                // std::cout << "Packet: " << item->GetPacket() << " is sent to Port on NetDevice: " << device << std::endl;
-                std::cout << "Current Shared Buffer size is " << GetCurrentSharedBufferSize().GetValue() << " out of: " << GetMaxSharedBufferSize().GetValue() << std::endl;
+                ///for Shared Buffer. in case no queue-disc is installed on the NetDevice////////
+                // std::cout << "SharedBuffer, No QueueDisc" << std::endl;
 
-                // for tracing
-                m_traceSharedBufferPackets = GetCurrentSharedBufferSize().GetValue();
-                m_nPackets_trace_High_InSharedQueue = GetNumOfHighPriorityPacketsInSharedQueue().GetValue();
-                m_nPackets_trace_Low_InSharedQueue = GetNumOfLowPriorityPacketsInSharedQueue().GetValue();
-
-                // set a besic Packet clasification based on arbitrary Tag from recieved packet:
-                // flow_priority = 1 is high priority, flow_priority = 2 is low priority
-                
-                Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(device);
-                Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
-                
-                // for debug:
-                // std::cout << "Number of High Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
-                // std::cout << "Number of Low Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
-                // std::cout << "Num of High Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(2) << std::endl;
-                // std::cout << "Num of Low Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(1) << std::endl;
-                std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
-
-                if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
-                    {
-                    flow_priority = flowPrioTag.GetSimpleValue();
-                    }
-                
-                // std::cout << "Num of congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(flow_priority) << std::endl;
-                
-                // perform enqueueing process based on incoming flow priority 
-                if (flow_priority == 1)
+                std::string nodeName = Names::FindName(m_node);  // Get the name of the Node
+                // std::cout << "Node Name is: " << nodeName << std::endl; 
+                if (nodeName.compare("Router") == 0)
                 {
-                    alpha = alpha_h;
-                    if (usedAlgorythm.compare("DT") == 0)
-                    {
-                        if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                    // for debug:
+                    std::cout << "Node Name is: " << nodeName << std::endl;
+                    // std::cout << "Packet: " << item->GetPacket() << " is sent to Port on NetDevice: " << device << std::endl;
+                    std::cout << "Current Shared Buffer size is " << GetCurrentSharedBufferSize().GetValue() << " out of: " << GetMaxSharedBufferSize().GetValue() << std::endl;
+
+                    // for tracing
+                    m_traceSharedBufferPackets = GetCurrentSharedBufferSize().GetValue();
+                    m_nPackets_trace_High_InSharedQueue = GetNumOfHighPriorityPacketsInSharedQueue().GetValue();
+                    m_nPackets_trace_Low_InSharedQueue = GetNumOfLowPriorityPacketsInSharedQueue().GetValue();
+                    
+                    Ptr<PointToPointNetDevice> p2pndev = DynamicCast<PointToPointNetDevice>(device);
+                    Ptr<Queue<Packet>> queue = p2pndev->GetQueue();
+                    
+                    // for debug:
+                    // std::cout << "Number of High Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                    // std::cout << "Number of Low Priority packets in shared-queue on port: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+
+                    // set a besic Packet clasification based on arbitrary Tag from recieved packet:
+                    // flow_priority = 1 is high priority, flow_priority = 2 is low priority
+
+                    if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
                         {
-                            m_p_trace_threshold_h = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
-                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                        flow_priority = flowPrioTag.GetSimpleValue();
+                        }
+                    
+                    // std::cout << "Num of congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(flow_priority) << std::endl;
+                    
+                    // perform enqueueing process based on incoming flow priority 
+                    if (flow_priority == 1)
+                    {
+                        alpha = alpha_h;
+                        if (usedAlgorythm.compare("DT") == 0)
+                        {
+                            if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                            // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                            {
+                                m_p_trace_threshold_h = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                                // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                                // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                                device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                            }
+                            else
+                            {
+                                std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                                DropBeforeEnqueue(item);
+                            }
+                        }
+                        else if (usedAlgorythm.compare("FB") == 0)
+                        {
+                            // for debug:
+                            // std::cout << "Num of High Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(2) << std::endl;
+                            // std::cout << "Num of Low Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(1) << std::endl;
+                            std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
+
+                            if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                            // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                            {
+                                m_p_trace_threshold_h = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                                // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                                // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                                device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                            }
+                            else
+                            {
+                                std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                                DropBeforeEnqueue(item);
+                            }
                         }
                         else
                         {
-                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
-                            DropBeforeEnqueue(item);
-                        }
-                    }
-                    else if (usedAlgorythm.compare("FB") == 0)
-                    {
-                        if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        {
-                            m_p_trace_threshold_h = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
-                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
-                        }
-                        else
-                        {
-                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
-                            DropBeforeEnqueue(item);
-                        }
+                            NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                        }  
                     }
                     else
                     {
-                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
-                    }  
+                        alpha = alpha_l;
+                        if (usedAlgorythm.compare("DT") == 0)
+                        {
+                            if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                            // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                            {
+                                m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                                // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                                // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                                device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                            }
+                            else
+                            {
+                                std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                                DropBeforeEnqueue(item);
+                            }
+                        }
+                        else if (usedAlgorythm.compare("FB") == 0)
+                        {
+                            if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                            // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                            {
+                                m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                                // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                                // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                                device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
+                            }
+                            else
+                            {
+                                std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                                DropBeforeEnqueue(item);
+                            }
+                        }
+                        else
+                        {
+                            NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                        }
+                    }
                 }
-                else
+                //////////////////////////////////////////////////////////////////////////////////
+                else // if not router
                 {
-                    alpha = alpha_l;
-                    if (usedAlgorythm.compare("DT") == 0)
-                    {
-                        if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
-                        {
-                            m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
-                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
-                        }
-                        else
-                        {
-                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
-                            DropBeforeEnqueue(item);
-                        }
-                    }
-                    else if (usedAlgorythm.compare("FB") == 0)
-                    {
-                        if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfLowPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        {
-                            m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
-                            device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
-                        }
-                        else
-                        {
-                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
-                            DropBeforeEnqueue(item);
-                        }
-                    }
-                    else
-                    {
-                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
-                    }
+                    device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
                 }
             }
-            //////////////////////////////////////////////////////////////////////////////////
-            else // if not router
+            else // if Shared Buffer was not selected
             {
                 device->Send(item->GetPacket(), item->GetAddress(), item->GetProtocol());
             }
@@ -998,8 +1093,150 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
             m_dropped(item->GetPacket());
         }
     }
-    else
+    else  // if there's a queue-disc installed on the net-device
     {
+        // Enqueue the packet in the queue disc associated with the netdevice queue
+        // selected for the packet and try to dequeue packets from such queue disc
+        item->SetTxQueueIndex(txq);
+
+        Ptr<QueueDisc> qDisc = ndi->second.m_queueDiscsToWake[txq];
+        NS_ASSERT(qDisc);
+
+        if (m_useSharedBuffer)
+        {
+            ///for Shared Buffer.
+            // std::cout << "SharedBuffer, QueueDisc" << std::endl;
+
+            std::string nodeName = Names::FindName(m_node);  // Get the name of the Node
+            // std::cout << "Node Name is: " << nodeName << std::endl;
+            if (nodeName.compare("Router") == 0)
+            {
+                // for debug:
+                std::cout << "Node Name is: " << nodeName << std::endl;
+                
+                std::cout << "Current Shared Buffer size is " << GetCurrentSharedBufferSize().GetValue() << 
+                            " out of: " << GetMaxSharedBufferSize().GetValue() << std::endl;
+                
+                // for tracing
+                m_traceSharedBufferPackets = GetCurrentSharedBufferSize().GetValue();
+                m_nPackets_trace_High_InSharedQueue = GetNumOfHighPriorityPacketsInSharedQueue().GetValue();
+                m_nPackets_trace_Low_InSharedQueue = GetNumOfLowPriorityPacketsInSharedQueue().GetValue();
+                
+                // set a besic Packet clasification based on arbitrary Tag from recieved packet:
+                // flow_priority = 1 is high priority, flow_priority = 2 is low priority
+
+                if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
+                    {
+                    flow_priority = flowPrioTag.GetSimpleValue();
+                    }
+
+                // perform enqueueing process based on incoming flow priority
+                if (flow_priority == 1)
+                {
+                    alpha = alpha_h;
+                    if (usedAlgorythm.compare("DT") == 0)
+                    {
+                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_h = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            qDisc->Enqueue(item);
+                            qDisc->Run();
+                        }
+                        else
+                        {
+                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else if (usedAlgorythm.compare("FB") == 0)
+                    {
+                        // for debug:
+                        std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
+
+                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_h = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            qDisc->Enqueue(item);
+                            qDisc->Run();
+                        }
+                        else
+                        {
+                            std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else
+                    {
+                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                    }
+                }
+                else
+                {
+                    alpha = alpha_l;
+                    if (usedAlgorythm.compare("DT") == 0)
+                    {
+                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            qDisc->Enqueue(item);
+                            qDisc->Run();
+                        }
+                        else
+                        {
+                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else if (usedAlgorythm.compare("FB") == 0)
+                    {
+                        // for debug:
+                        std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
+
+                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        {
+                            m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
+                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
+                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                            qDisc->Enqueue(item);
+                            qDisc->Run();
+                        }
+                        else
+                        {
+                            std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                            DropBeforeEnqueue(item);
+                        }
+                    }
+                    else
+                    {
+                        NS_ABORT_MSG("unrecognised traffic management algorythm " << usedAlgorythm);
+                    }
+                }
+            }
+            else  // for a node that's not the router
+            {
+                // Enqueue the packet in the queue disc associated with the netdevice queue
+                // selected for the packet and try to dequeue packets from such queue disc
+                item->SetTxQueueIndex(txq);
+
+                Ptr<QueueDisc> qDisc = ndi->second.m_queueDiscsToWake[txq];
+                NS_ASSERT(qDisc);
+                qDisc->Enqueue(item);
+                qDisc->Run();
+            }
+            
+        }
+        else  // if shared buffer is not used
+        {
         // Enqueue the packet in the queue disc associated with the netdevice queue
         // selected for the packet and try to dequeue packets from such queue disc
         item->SetTxQueueIndex(txq);
@@ -1008,6 +1245,7 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
         NS_ASSERT(qDisc);
         qDisc->Enqueue(item);
         qDisc->Run();
+        }
     }
 }
 

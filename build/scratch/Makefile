@@ -191,18 +191,32 @@ scratch_2In2Out_P2P_v01_SharedBufferQueueDisc/fast:
 .PHONY : scratch_2In2Out_P2P_v01_SharedBufferQueueDisc/fast
 
 # Convenience name for target.
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule
-.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule
 
 # Convenience name for target.
-scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule
-.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO
 
 # fast build rule for target.
-scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl/fast:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build
-.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl/fast
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO/fast:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO/fast
+
+# Convenience name for target.
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule
+
+# Convenience name for target.
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice
+
+# fast build rule for target.
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice/fast:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice/fast
 
 # Convenience name for target.
 scratch/CMakeFiles/scratch_Incast_multiple_nodes_NOT_UPDATED.dir/rule:
@@ -406,29 +420,53 @@ scratch_subdir_scratch-subdir/fast:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/2In2Out_P2P_v01_SharedBufferQueueDisc.cc.s
 .PHONY : 2In2Out_P2P_v01_SharedBufferQueueDisc.cc.s
 
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.o: 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.o
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.o
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.o: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.o
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.o
 
 # target to build an object file
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.o:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.o
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.o
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.o
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.o
 
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.i: 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.i
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.i
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.i: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.i
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.i
 
 # target to preprocess a source file
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.i:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.i
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.i
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.i
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.i
 
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.s: 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.s
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.s
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.s: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.s
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.s
 
 # target to generate assembly for a file
-2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.s:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.s
-.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl.cc.s
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.s
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.cc.s
+
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.o: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.o
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.o
+
+# target to build an object file
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.o
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.o
+
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.i: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.i
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.i
+
+# target to preprocess a source file
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.i
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.i
+
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.s: 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.s
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.s
+
+# target to generate assembly for a file
+2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.s
+.PHONY : 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.cc.s
 
 Incast_multiple_nodes_NOT_UPDATED.o: Incast_multiple_nodes_NOT_UPDATED.cc.o
 .PHONY : Incast_multiple_nodes_NOT_UPDATED.o
@@ -732,7 +770,8 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... scratch_2In2Out_P2P_v01"
 	@echo "... scratch_2In2Out_P2P_v01_SharedBufferQueueDisc"
-	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl"
+	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO"
+	@echo "... scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice"
 	@echo "... scratch_Incast_multiple_nodes_NOT_UPDATED"
 	@echo "... scratch_Incast_v01_2Nodes"
 	@echo "... scratch_Line_P2P_v01_PFIFOQueueDisc"
@@ -750,9 +789,12 @@ help:
 	@echo "... 2In2Out_P2P_v01_SharedBufferQueueDisc.o"
 	@echo "... 2In2Out_P2P_v01_SharedBufferQueueDisc.i"
 	@echo "... 2In2Out_P2P_v01_SharedBufferQueueDisc.s"
-	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl.o"
-	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl.i"
-	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl.s"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.o"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.i"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.s"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.o"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.i"
+	@echo "... 2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.s"
 	@echo "... Incast_multiple_nodes_NOT_UPDATED.o"
 	@echo "... Incast_multiple_nodes_NOT_UPDATED.i"
 	@echo "... Incast_multiple_nodes_NOT_UPDATED.s"

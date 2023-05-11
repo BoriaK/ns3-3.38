@@ -47,11 +47,11 @@ QueueBase::GetTypeId()
                                             "ns3::TracedValueCallback::Uint32")
                             // ######## Added by me ##########
                             .AddTraceSource ("HighPriorityPacketsInQueue",
-                            "Number of High Priority packets currently stored in the queue disc",
+                            "Number of High Priority packets currently stored in the queue",
                             MakeTraceSourceAccessor (&QueueBase::m_nPackets_h),
                             "ns3::TracedValueCallback::Uint32")
                             .AddTraceSource ("LowPriorityPacketsInQueue",
-                            "Number of Low Priority packets currently stored in the queue disc",
+                            "Number of Low Priority packets currently stored in the queue",
                             MakeTraceSourceAccessor (&QueueBase::m_nPackets_l),
                             "ns3::TracedValueCallback::Uint32");
     return tid;

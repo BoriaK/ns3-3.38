@@ -161,7 +161,8 @@ examples/clean:
 # Recursive "all" directory target.
 scratch/all: scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/all
 scratch/all: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/all
-scratch/all: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all
+scratch/all: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all
+scratch/all: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all
 scratch/all: scratch/CMakeFiles/scratch_Incast_multiple_nodes_NOT_UPDATED.dir/all
 scratch/all: scratch/CMakeFiles/scratch_Incast_v01_2Nodes.dir/all
 scratch/all: scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/all
@@ -183,7 +184,8 @@ scratch/preinstall: scratch/nested-subdir/preinstall
 # Recursive "clean" directory target.
 scratch/clean: scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/clean
 scratch/clean: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/clean
-scratch/clean: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/clean
+scratch/clean: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/clean
+scratch/clean: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/clean
 scratch/clean: scratch/CMakeFiles/scratch_Incast_multiple_nodes_NOT_UPDATED.dir/clean
 scratch/clean: scratch/CMakeFiles/scratch_Incast_v01_2Nodes.dir/clean
 scratch/clean: scratch/CMakeFiles/scratch_Line_P2P_v01_PFIFOQueueDisc.dir/clean
@@ -2603,7 +2605,7 @@ src/aodv/CMakeFiles/libaodv.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
 
 # Build rule for subdir invocation for target.
 src/aodv/CMakeFiles/libaodv.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 54
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/aodv/CMakeFiles/libaodv.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/aodv/CMakeFiles/libaodv.dir/rule
@@ -2659,7 +2661,7 @@ src/applications/CMakeFiles/libapplications.dir/all: src/traffic-control/CMakeFi
 
 # Build rule for subdir invocation for target.
 src/applications/CMakeFiles/libapplications.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 34
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/applications/CMakeFiles/libapplications.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/applications/CMakeFiles/libapplications.dir/rule
@@ -2712,7 +2714,7 @@ src/bridge/CMakeFiles/libbridge.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 src/bridge/CMakeFiles/libbridge.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/bridge/CMakeFiles/libbridge.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/bridge/CMakeFiles/libbridge.dir/rule
@@ -2767,7 +2769,7 @@ src/buildings/CMakeFiles/libbuildings.dir/all: src/stats/CMakeFiles/libstats.dir
 
 # Build rule for subdir invocation for target.
 src/buildings/CMakeFiles/libbuildings.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/buildings/CMakeFiles/libbuildings.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/buildings/CMakeFiles/libbuildings.dir/rule
@@ -2820,7 +2822,7 @@ src/config-store/CMakeFiles/libconfig-store.dir/all: src/stats/CMakeFiles/libsta
 
 # Build rule for subdir invocation for target.
 src/config-store/CMakeFiles/libconfig-store.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/config-store/CMakeFiles/libconfig-store.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/config-store/CMakeFiles/libconfig-store.dir/rule
@@ -2923,7 +2925,7 @@ src/csma/CMakeFiles/libcsma.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 src/csma/CMakeFiles/libcsma.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/csma/CMakeFiles/libcsma.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/csma/CMakeFiles/libcsma.dir/rule
@@ -2981,7 +2983,7 @@ src/csma-layout/CMakeFiles/libcsma-layout.dir/all: src/traffic-control/CMakeFile
 
 # Build rule for subdir invocation for target.
 src/csma-layout/CMakeFiles/libcsma-layout.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 33
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/csma-layout/CMakeFiles/libcsma-layout.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/csma-layout/CMakeFiles/libcsma-layout.dir/rule
@@ -3037,7 +3039,7 @@ src/dsdv/CMakeFiles/libdsdv.dir/all: src/traffic-control/CMakeFiles/libtraffic-c
 
 # Build rule for subdir invocation for target.
 src/dsdv/CMakeFiles/libdsdv.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 30
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/dsdv/CMakeFiles/libdsdv.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/dsdv/CMakeFiles/libdsdv.dir/rule
@@ -3099,7 +3101,7 @@ src/dsr/CMakeFiles/libdsr.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
 
 # Build rule for subdir invocation for target.
 src/dsr/CMakeFiles/libdsr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 55
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 54
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/dsr/CMakeFiles/libdsr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/dsr/CMakeFiles/libdsr.dir/rule
@@ -3152,7 +3154,7 @@ src/energy/CMakeFiles/libenergy.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 src/energy/CMakeFiles/libenergy.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/energy/CMakeFiles/libenergy.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/energy/CMakeFiles/libenergy.dir/rule
@@ -3307,7 +3309,7 @@ src/fd-net-device/CMakeFiles/libfd-net-device.dir/all: src/stats/CMakeFiles/libs
 
 # Build rule for subdir invocation for target.
 src/fd-net-device/CMakeFiles/libfd-net-device.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/fd-net-device/CMakeFiles/libfd-net-device.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/fd-net-device/CMakeFiles/libfd-net-device.dir/rule
@@ -3363,7 +3365,7 @@ src/flow-monitor/CMakeFiles/libflow-monitor.dir/all: src/traffic-control/CMakeFi
 
 # Build rule for subdir invocation for target.
 src/flow-monitor/CMakeFiles/libflow-monitor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 33
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/flow-monitor/CMakeFiles/libflow-monitor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/flow-monitor/CMakeFiles/libflow-monitor.dir/rule
@@ -3418,7 +3420,7 @@ src/internet/CMakeFiles/libinternet.dir/all: src/traffic-control/CMakeFiles/libt
 
 # Build rule for subdir invocation for target.
 src/internet/CMakeFiles/libinternet.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 30
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/internet/CMakeFiles/libinternet.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/internet/CMakeFiles/libinternet.dir/rule
@@ -3474,7 +3476,7 @@ src/internet-apps/CMakeFiles/libinternet-apps.dir/all: src/traffic-control/CMake
 
 # Build rule for subdir invocation for target.
 src/internet-apps/CMakeFiles/libinternet-apps.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 34
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/internet-apps/CMakeFiles/libinternet-apps.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/internet-apps/CMakeFiles/libinternet-apps.dir/rule
@@ -3531,7 +3533,7 @@ src/lr-wpan/CMakeFiles/liblr-wpan.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 src/lr-wpan/CMakeFiles/liblr-wpan.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 25
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 24
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/lr-wpan/CMakeFiles/liblr-wpan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/lr-wpan/CMakeFiles/liblr-wpan.dir/rule
@@ -3598,7 +3600,7 @@ src/lte/CMakeFiles/liblte.dir/all: src/virtual-net-device/CMakeFiles/libvirtual-
 
 # Build rule for subdir invocation for target.
 src/lte/CMakeFiles/liblte.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 57
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 56
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/lte/CMakeFiles/liblte.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/lte/CMakeFiles/liblte.dir/rule
@@ -3623,7 +3625,7 @@ src/mesh/CMakeFiles/libmesh-obj.dir/all: CMakeFiles/stdlib_pch-debug.dir/all
 
 # Build rule for subdir invocation for target.
 src/mesh/CMakeFiles/libmesh-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/mesh/CMakeFiles/libmesh-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/mesh/CMakeFiles/libmesh-obj.dir/rule
@@ -3661,7 +3663,7 @@ src/mesh/CMakeFiles/libmesh.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
 
 # Build rule for subdir invocation for target.
 src/mesh/CMakeFiles/libmesh.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 59
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 57
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/mesh/CMakeFiles/libmesh.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/mesh/CMakeFiles/libmesh.dir/rule
@@ -3714,7 +3716,7 @@ src/mobility/CMakeFiles/libmobility.dir/all: src/stats/CMakeFiles/libstats.dir/a
 
 # Build rule for subdir invocation for target.
 src/mobility/CMakeFiles/libmobility.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/mobility/CMakeFiles/libmobility.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/mobility/CMakeFiles/libmobility.dir/rule
@@ -3739,7 +3741,7 @@ src/netanim/CMakeFiles/libnetanim-obj.dir/all: CMakeFiles/stdlib_pch-debug.dir/a
 
 # Build rule for subdir invocation for target.
 src/netanim/CMakeFiles/libnetanim-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/netanim/CMakeFiles/libnetanim-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/netanim/CMakeFiles/libnetanim-obj.dir/rule
@@ -3789,7 +3791,7 @@ src/netanim/CMakeFiles/libnetanim.dir/all: src/wimax/CMakeFiles/libwimax.dir/all
 
 # Build rule for subdir invocation for target.
 src/netanim/CMakeFiles/libnetanim.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 83
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 82
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/netanim/CMakeFiles/libnetanim.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/netanim/CMakeFiles/libnetanim.dir/rule
@@ -3814,7 +3816,7 @@ src/network/CMakeFiles/libnetwork-obj.dir/all: CMakeFiles/stdlib_pch-debug.dir/a
 
 # Build rule for subdir invocation for target.
 src/network/CMakeFiles/libnetwork-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/CMakeFiles/libnetwork-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/network/CMakeFiles/libnetwork-obj.dir/rule
@@ -3841,7 +3843,7 @@ src/network/CMakeFiles/libnetwork.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 src/network/CMakeFiles/libnetwork.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/network/CMakeFiles/libnetwork.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/network/CMakeFiles/libnetwork.dir/rule
@@ -3866,7 +3868,7 @@ src/nix-vector-routing/CMakeFiles/libnix-vector-routing-obj.dir/all: CMakeFiles/
 
 # Build rule for subdir invocation for target.
 src/nix-vector-routing/CMakeFiles/libnix-vector-routing-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/nix-vector-routing/CMakeFiles/libnix-vector-routing-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/nix-vector-routing/CMakeFiles/libnix-vector-routing-obj.dir/rule
@@ -3897,7 +3899,7 @@ src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/all: src/traffic-con
 
 # Build rule for subdir invocation for target.
 src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/rule
@@ -3953,7 +3955,7 @@ src/olsr/CMakeFiles/libolsr.dir/all: src/traffic-control/CMakeFiles/libtraffic-c
 
 # Build rule for subdir invocation for target.
 src/olsr/CMakeFiles/libolsr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 30
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/olsr/CMakeFiles/libolsr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/olsr/CMakeFiles/libolsr.dir/rule
@@ -4006,7 +4008,7 @@ src/point-to-point/CMakeFiles/libpoint-to-point.dir/all: src/stats/CMakeFiles/li
 
 # Build rule for subdir invocation for target.
 src/point-to-point/CMakeFiles/libpoint-to-point.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/point-to-point/CMakeFiles/libpoint-to-point.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/point-to-point/CMakeFiles/libpoint-to-point.dir/rule
@@ -4064,7 +4066,7 @@ src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/all: src/traff
 
 # Build rule for subdir invocation for target.
 src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 34
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/rule
@@ -4118,7 +4120,7 @@ src/propagation/CMakeFiles/libpropagation.dir/all: src/stats/CMakeFiles/libstats
 
 # Build rule for subdir invocation for target.
 src/propagation/CMakeFiles/libpropagation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/propagation/CMakeFiles/libpropagation.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/propagation/CMakeFiles/libpropagation.dir/rule
@@ -4143,7 +4145,7 @@ src/sixlowpan/CMakeFiles/libsixlowpan-obj.dir/all: CMakeFiles/stdlib_pch-debug.d
 
 # Build rule for subdir invocation for target.
 src/sixlowpan/CMakeFiles/libsixlowpan-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/sixlowpan/CMakeFiles/libsixlowpan-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/sixlowpan/CMakeFiles/libsixlowpan-obj.dir/rule
@@ -4174,7 +4176,7 @@ src/sixlowpan/CMakeFiles/libsixlowpan.dir/all: src/traffic-control/CMakeFiles/li
 
 # Build rule for subdir invocation for target.
 src/sixlowpan/CMakeFiles/libsixlowpan.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 33
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/sixlowpan/CMakeFiles/libsixlowpan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/sixlowpan/CMakeFiles/libsixlowpan.dir/rule
@@ -4230,7 +4232,7 @@ src/spectrum/CMakeFiles/libspectrum.dir/all: src/stats/CMakeFiles/libstats.dir/a
 
 # Build rule for subdir invocation for target.
 src/spectrum/CMakeFiles/libspectrum.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 24
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 23
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/spectrum/CMakeFiles/libspectrum.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/spectrum/CMakeFiles/libspectrum.dir/rule
@@ -4255,7 +4257,7 @@ src/stats/CMakeFiles/libstats-obj.dir/all: CMakeFiles/stdlib_pch-debug.dir/all
 
 # Build rule for subdir invocation for target.
 src/stats/CMakeFiles/libstats-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/stats/CMakeFiles/libstats-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/stats/CMakeFiles/libstats-obj.dir/rule
@@ -4281,7 +4283,7 @@ src/stats/CMakeFiles/libstats.dir/all: src/stats/CMakeFiles/libstats-obj.dir/all
 
 # Build rule for subdir invocation for target.
 src/stats/CMakeFiles/libstats.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/stats/CMakeFiles/libstats.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/stats/CMakeFiles/libstats.dir/rule
@@ -4306,7 +4308,7 @@ src/tap-bridge/CMakeFiles/libtap-bridge-obj.dir/all: CMakeFiles/stdlib_pch-debug
 
 # Build rule for subdir invocation for target.
 src/tap-bridge/CMakeFiles/libtap-bridge-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/tap-bridge/CMakeFiles/libtap-bridge-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/tap-bridge/CMakeFiles/libtap-bridge-obj.dir/rule
@@ -4337,7 +4339,7 @@ src/tap-bridge/CMakeFiles/libtap-bridge.dir/all: src/traffic-control/CMakeFiles/
 
 # Build rule for subdir invocation for target.
 src/tap-bridge/CMakeFiles/libtap-bridge.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 32
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 31
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/tap-bridge/CMakeFiles/libtap-bridge.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/tap-bridge/CMakeFiles/libtap-bridge.dir/rule
@@ -4437,7 +4439,7 @@ src/topology-read/CMakeFiles/libtopology-read-obj.dir/all: CMakeFiles/stdlib_pch
 
 # Build rule for subdir invocation for target.
 src/topology-read/CMakeFiles/libtopology-read-obj.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/topology-read/CMakeFiles/libtopology-read-obj.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/topology-read/CMakeFiles/libtopology-read-obj.dir/rule
@@ -4465,7 +4467,7 @@ src/topology-read/CMakeFiles/libtopology-read.dir/all: src/topology-read/CMakeFi
 
 # Build rule for subdir invocation for target.
 src/topology-read/CMakeFiles/libtopology-read.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 19
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 17
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/topology-read/CMakeFiles/libtopology-read.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/topology-read/CMakeFiles/libtopology-read.dir/rule
@@ -4518,7 +4520,7 @@ src/traffic-control/CMakeFiles/libtraffic-control.dir/all: src/traffic-control/C
 
 # Build rule for subdir invocation for target.
 src/traffic-control/CMakeFiles/libtraffic-control.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/traffic-control/CMakeFiles/libtraffic-control.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/traffic-control/CMakeFiles/libtraffic-control.dir/rule
@@ -4573,7 +4575,7 @@ src/uan/CMakeFiles/libuan.dir/all: src/uan/CMakeFiles/libuan-obj.dir/all
 
 # Build rule for subdir invocation for target.
 src/uan/CMakeFiles/libuan.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 21
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/uan/CMakeFiles/libuan.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/uan/CMakeFiles/libuan.dir/rule
@@ -4626,7 +4628,7 @@ src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/all: src/virtual-net
 
 # Build rule for subdir invocation for target.
 src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/rule
@@ -4688,7 +4690,7 @@ src/wave/CMakeFiles/libwave.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
 
 # Build rule for subdir invocation for target.
 src/wave/CMakeFiles/libwave.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 55
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 54
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/wave/CMakeFiles/libwave.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/wave/CMakeFiles/libwave.dir/rule
@@ -4746,7 +4748,7 @@ src/wifi/CMakeFiles/libwifi.dir/all: src/wifi/CMakeFiles/libwifi-obj.dir/all
 
 # Build rule for subdir invocation for target.
 src/wifi/CMakeFiles/libwifi.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 39
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 38
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/wifi/CMakeFiles/libwifi.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/wifi/CMakeFiles/libwifi.dir/rule
@@ -4804,7 +4806,7 @@ src/wimax/CMakeFiles/libwimax.dir/all: src/wimax/CMakeFiles/libwimax-obj.dir/all
 
 # Build rule for subdir invocation for target.
 src/wimax/CMakeFiles/libwimax.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 38
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 37
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/wimax/CMakeFiles/libwimax.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : src/wimax/CMakeFiles/libwimax.dir/rule
@@ -4867,7 +4869,7 @@ scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/all: src/wimax/CMakeFiles/libwima
 
 # Build rule for subdir invocation for target.
 scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 96
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 95
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01.dir/rule
@@ -4930,7 +4932,7 @@ scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/all: src/wi
 
 # Build rule for subdir invocation for target.
 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 95
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 96
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/rule
@@ -4945,67 +4947,130 @@ scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/clean:
 .PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBufferQueueDisc.dir/clean
 
 #=============================================================================
-# Target rules for target scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir
+# Target rules for target scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir
 
 # All Build rule for target.
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: CMakeFiles/stdlib_pch_exec.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/antenna/CMakeFiles/libantenna.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/aodv/CMakeFiles/libaodv.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/applications/CMakeFiles/libapplications.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/bridge/CMakeFiles/libbridge.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/buildings/CMakeFiles/libbuildings.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/config-store/CMakeFiles/libconfig-store.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/core/CMakeFiles/libcore.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/csma/CMakeFiles/libcsma.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/csma-layout/CMakeFiles/libcsma-layout.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/dsdv/CMakeFiles/libdsdv.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/dsr/CMakeFiles/libdsr.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/energy/CMakeFiles/libenergy.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/fd-net-device/CMakeFiles/libfd-net-device.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/flow-monitor/CMakeFiles/libflow-monitor.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/internet/CMakeFiles/libinternet.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/internet-apps/CMakeFiles/libinternet-apps.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/lr-wpan/CMakeFiles/liblr-wpan.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/lte/CMakeFiles/liblte.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/mesh/CMakeFiles/libmesh.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/mobility/CMakeFiles/libmobility.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/netanim/CMakeFiles/libnetanim.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/network/CMakeFiles/libnetwork.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/olsr/CMakeFiles/libolsr.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/point-to-point/CMakeFiles/libpoint-to-point.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/propagation/CMakeFiles/libpropagation.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/sixlowpan/CMakeFiles/libsixlowpan.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/spectrum/CMakeFiles/libspectrum.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/stats/CMakeFiles/libstats.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/tap-bridge/CMakeFiles/libtap-bridge.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/topology-read/CMakeFiles/libtopology-read.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/traffic-control/CMakeFiles/libtraffic-control.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/uan/CMakeFiles/libuan.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/wave/CMakeFiles/libwave.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all: src/wimax/CMakeFiles/libwimax.dir/all
-	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/depend
-	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build
-.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: CMakeFiles/stdlib_pch_exec.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/antenna/CMakeFiles/libantenna.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/aodv/CMakeFiles/libaodv.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/applications/CMakeFiles/libapplications.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/bridge/CMakeFiles/libbridge.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/buildings/CMakeFiles/libbuildings.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/config-store/CMakeFiles/libconfig-store.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/core/CMakeFiles/libcore.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/csma/CMakeFiles/libcsma.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/csma-layout/CMakeFiles/libcsma-layout.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/dsdv/CMakeFiles/libdsdv.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/dsr/CMakeFiles/libdsr.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/energy/CMakeFiles/libenergy.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/fd-net-device/CMakeFiles/libfd-net-device.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/flow-monitor/CMakeFiles/libflow-monitor.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/internet/CMakeFiles/libinternet.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/internet-apps/CMakeFiles/libinternet-apps.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/lr-wpan/CMakeFiles/liblr-wpan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/lte/CMakeFiles/liblte.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/mesh/CMakeFiles/libmesh.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/mobility/CMakeFiles/libmobility.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/netanim/CMakeFiles/libnetanim.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/network/CMakeFiles/libnetwork.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/olsr/CMakeFiles/libolsr.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/point-to-point/CMakeFiles/libpoint-to-point.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/propagation/CMakeFiles/libpropagation.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/sixlowpan/CMakeFiles/libsixlowpan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/spectrum/CMakeFiles/libspectrum.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/stats/CMakeFiles/libstats.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/tap-bridge/CMakeFiles/libtap-bridge.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/topology-read/CMakeFiles/libtopology-read.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/traffic-control/CMakeFiles/libtraffic-control.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/uan/CMakeFiles/libuan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/wave/CMakeFiles/libwave.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all: src/wimax/CMakeFiles/libwimax.dir/all
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/depend
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all
 
 # Build rule for subdir invocation for target.
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule: cmake_check_build_system
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 95
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
-.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule
 
 # Convenience name for target.
-scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/rule
-.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/rule
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO
 
 # clean rule for target.
-scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/clean:
-	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/clean
-.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl.dir/clean
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/clean:
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/clean
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_FIFO.dir/clean
+
+#=============================================================================
+# Target rules for target scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir
+
+# All Build rule for target.
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: CMakeFiles/stdlib_pch_exec.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/antenna/CMakeFiles/libantenna.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/aodv/CMakeFiles/libaodv.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/applications/CMakeFiles/libapplications.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/bridge/CMakeFiles/libbridge.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/buildings/CMakeFiles/libbuildings.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/config-store/CMakeFiles/libconfig-store.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/core/CMakeFiles/libcore.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/csma/CMakeFiles/libcsma.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/csma-layout/CMakeFiles/libcsma-layout.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/dsdv/CMakeFiles/libdsdv.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/dsr/CMakeFiles/libdsr.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/energy/CMakeFiles/libenergy.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/fd-net-device/CMakeFiles/libfd-net-device.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/flow-monitor/CMakeFiles/libflow-monitor.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/internet/CMakeFiles/libinternet.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/internet-apps/CMakeFiles/libinternet-apps.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/lr-wpan/CMakeFiles/liblr-wpan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/lte/CMakeFiles/liblte.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/mesh/CMakeFiles/libmesh.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/mobility/CMakeFiles/libmobility.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/netanim/CMakeFiles/libnetanim.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/network/CMakeFiles/libnetwork.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/nix-vector-routing/CMakeFiles/libnix-vector-routing.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/olsr/CMakeFiles/libolsr.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/point-to-point/CMakeFiles/libpoint-to-point.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/point-to-point-layout/CMakeFiles/libpoint-to-point-layout.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/propagation/CMakeFiles/libpropagation.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/sixlowpan/CMakeFiles/libsixlowpan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/spectrum/CMakeFiles/libspectrum.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/stats/CMakeFiles/libstats.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/tap-bridge/CMakeFiles/libtap-bridge.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/topology-read/CMakeFiles/libtopology-read.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/traffic-control/CMakeFiles/libtraffic-control.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/uan/CMakeFiles/libuan.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/wave/CMakeFiles/libwave.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/wifi/CMakeFiles/libwifi.dir/all
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all: src/wimax/CMakeFiles/libwimax.dir/all
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/depend
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all
+
+# Build rule for subdir invocation for target.
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 95
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule
+
+# Convenience name for target.
+scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice: scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/rule
+.PHONY : scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice
+
+# clean rule for target.
+scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/clean:
+	$(MAKE) $(MAKESILENT) -f scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/build.make scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/clean
+.PHONY : scratch/CMakeFiles/scratch_2In2Out_P2P_v01_SharedBuffer_TrafficControl_via_NetDevice.dir/clean
 
 #=============================================================================
 # Target rules for target scratch/CMakeFiles/scratch_Incast_multiple_nodes_NOT_UPDATED.dir
@@ -5792,7 +5857,7 @@ utils/CMakeFiles/bench-packets.dir/all: src/stats/CMakeFiles/libstats.dir/all
 
 # Build rule for subdir invocation for target.
 utils/CMakeFiles/bench-packets.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/CMakeFiles/bench-packets.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : utils/CMakeFiles/bench-packets.dir/rule
@@ -5855,7 +5920,7 @@ utils/CMakeFiles/print-introspected-doxygen.dir/all: src/wimax/CMakeFiles/libwim
 
 # Build rule for subdir invocation for target.
 utils/CMakeFiles/print-introspected-doxygen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 95
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 96
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/CMakeFiles/print-introspected-doxygen.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : utils/CMakeFiles/print-introspected-doxygen.dir/rule
@@ -5881,7 +5946,7 @@ utils/CMakeFiles/perf-io.dir/all: src/core/CMakeFiles/libcore.dir/all
 
 # Build rule for subdir invocation for target.
 utils/CMakeFiles/perf-io.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/CMakeFiles/perf-io.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles 0
 .PHONY : utils/CMakeFiles/perf-io.dir/rule
