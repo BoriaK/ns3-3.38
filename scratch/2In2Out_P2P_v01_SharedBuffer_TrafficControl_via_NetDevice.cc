@@ -72,7 +72,8 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_DT_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string traffic_control_type = "SharedBuffer_DT_v01"; //"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string implementation = "via_NetDevices";  // "via_NetDevices"/"via_FIFO_QueueDiscs"
 std::string usedAlgorythm;  // "DT"/"FB"
 
 uint32_t prev = 0;
@@ -107,7 +108,7 @@ StringCombine (std::string A, std::string B, std::string C)
 void
 TrafficControlPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tcpisq (dir + traffic_control_type + "/TrafficControlPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tcpisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tcpisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tcpisq.close ();
   
@@ -117,7 +118,7 @@ TrafficControlPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 void
 TrafficControlHighPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tchppisq (dir + traffic_control_type + "/TrafficControlHighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tchppisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tchppisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchppisq.close ();
   
@@ -127,7 +128,7 @@ TrafficControlHighPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t
 void
 TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tclppisq (dir + traffic_control_type + "/TrafficControlLowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tclppisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tclppisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclppisq.close ();
   
@@ -138,7 +139,7 @@ TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t 
 void
 TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tchpthr (dir + traffic_control_type + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
   tchpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchpthr.close ();
 
@@ -149,7 +150,7 @@ TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added 
 void
 TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tclpthr (dir + traffic_control_type + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
   tclpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclpthr.close ();
   
@@ -164,7 +165,7 @@ TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added b
 void
 DevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream ndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream ndpiq (dir + traffic_control_type + "/" + implementation + "/netDevice_" + NDevicePointerToString(ndev) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
 //   std::ofstream ndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   ndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   ndpiq.close ();
@@ -177,7 +178,7 @@ void
 HighPriorityDevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
 {
 //   std::ofstream hpndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  std::ofstream hpndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream hpndpiq (dir + traffic_control_type + "/" + implementation + "/netDevice_" + ToString(index) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   hpndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   hpndpiq.close ();
 
@@ -189,7 +190,7 @@ void
 LowPriorityDevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
 {
 //   std::ofstream lpndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  std::ofstream lpndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream lpndpiq (dir + traffic_control_type + "/" + implementation + "/netDevice_" + ToString(index) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   lpndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   lpndpiq.close ();
 
@@ -226,8 +227,8 @@ int main (int argc, char *argv[])
 
     if (eraseOldData == true)
     {
-        system (("rm " + dir + traffic_control_type + "/*.dat").c_str ()); // to erase the old .dat files and collect new data
-        system (("rm " + dir + traffic_control_type + "/*.txt").c_str ()); // to erase the previous test run summary, and collect new data
+        system (("rm " + dir + traffic_control_type + "/" + implementation + "/*.dat").c_str ()); // to erase the old .dat files and collect new data
+        system (("rm " + dir + traffic_control_type + "/" + implementation + "/*.txt").c_str ()); // to erase the previous test run summary, and collect new data
         std::cout << std::endl << "***Erased Previous Data***\n" << std::endl;
     }
 
@@ -541,7 +542,7 @@ int main (int argc, char *argv[])
     Ptr<FlowMonitor> monitor = flowmon.InstallAll();
 
     // Create a new directory to store the output of the program
-    std::string dirToSave = "mkdir -p " + dir + traffic_control_type;
+    std::string dirToSave = "mkdir -p " + dir + traffic_control_type + "/" + implementation;
     if (system (dirToSave.c_str ()) == -1)
     {
         exit (1);
@@ -554,6 +555,7 @@ int main (int argc, char *argv[])
     // print the tested scenario at the top of the terminal: Topology, Queueing Algorithm and Application.
     std::cout << std::endl << "Topology: 2In2Out" << std::endl;
     std::cout << std::endl << "Queueing Algorithm: " + traffic_control_type << std::endl;
+    std::cout << std::endl << "Implementation Method: " + implementation << std::endl;
     std::cout << std::endl << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
     std::cout << std::endl << "Application: " + applicationType << std::endl;
 
@@ -658,9 +660,10 @@ int main (int argc, char *argv[])
 
     
     // Added to create a .txt file with the summary of the tested scenario statistics
-    std::ofstream testFlowStatistics (dir + traffic_control_type + "/Statistics.txt", std::ios::out | std::ios::app);
+    std::ofstream testFlowStatistics (dir + traffic_control_type + "/" + implementation + "/Statistics.txt", std::ios::out | std::ios::app);
     testFlowStatistics << "Topology: 2In2Out" << std::endl;
     testFlowStatistics << "Queueing Algorithm: " + traffic_control_type << std::endl;
+    testFlowStatistics << "Implementation Method: " + implementation << std::endl;
     testFlowStatistics << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
     testFlowStatistics << "Application: " + applicationType << std::endl; 
     testFlowStatistics << std::endl << "*** Flow monitor statistics ***" << std::endl;

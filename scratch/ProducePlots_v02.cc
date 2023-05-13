@@ -34,15 +34,20 @@ ToString (uint32_t value)
   return ss.str();
 }
 
-std::string usedAlgorythm = "DT";  // "DT"/"FB"
+std::string usedAlgorythm = "FB";  // "DT"/"FB"
+std::string implementation = "via_FIFO_QueueDiscs";  // "via_NetDevices"/"via_FIFO_QueueDiscs"
+std::string dir = "./Trace_Plots/";
+std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
+std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string trace_parameter1_type; // "netDevice_"/"FIFO_QueueDisc"
 
 void
 CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot with N data-sets
 {
   // Set up some default values for the simulation.
-  std::string dir = "./Trace_Plots/";
-  std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
-  std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+  // std::string dir = "./Trace_Plots/";
+  // std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
+  // std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
   if (usedAlgorythm.compare("DT") == 0)
   {
     traffic_control_type = "SharedBuffer_DT_v01";
@@ -51,10 +56,22 @@ CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot w
   {
     traffic_control_type = "SharedBuffer_FB_v01";
   } 
-  std::string trace_parameter1 = "netDevice_" + ToString(ind) + "_" + priority + "PriorityPacketsInQueueTrace";
+  
+  //for internal use:
+  if (implementation.compare("via_NetDevices") == 0)
+  {
+    trace_parameter1_type = "netDevice_";
+  }
+  else if (implementation.compare("via_FIFO_QueueDiscs") == 0)
+  {
+    trace_parameter1_type = "queueDisc_";
+  }
+  
+
+  std::string trace_parameter1 = trace_parameter1_type + ToString(ind) + "_" + priority + "PriorityPacketsInQueueTrace";
   std::string trace_parameter2 = "TrafficControl" + priority + "PriorityQueueThreshold";
   // can plot as many trace parameters as I wish
-  std::string location = dir + topology + "_Topology/" + traffic_control_type + "/";
+  std::string location = dir + topology + "_Topology/" + traffic_control_type + "/" + implementation + "/";
   std::string graphicsFileName = location + "plot_" + ToString(ind) + "_" + priority + ".png";
   std::string plotFileName = location + "plot_" + ToString(ind) + "_" + priority + ".plt";
 
@@ -78,7 +95,11 @@ CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot w
   dataset1.SetStyle(Gnuplot2dDataset::LINES_POINTS);
   // load a dat file as data set for plotting
   std::ifstream file1(location + trace_parameter1 + ".dat");
+  // std::cout << "load data from file: " << location + trace_parameter1 + ".dat" << std::endl;
+  
   double x, y;
+  x=0;
+  y=0;
 
   while (file1 >> x >> y) 
   {
@@ -91,7 +112,9 @@ CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot w
   dataset2.SetStyle(Gnuplot2dDataset::LINES_POINTS);
   // load a dat file as data set for plotting
   std::ifstream file2(location + trace_parameter2 + ".dat");
-
+  // std::cout << "load data from file: " << location + trace_parameter2 + ".dat" << std::endl;
+  x=0;
+  y=0;
   while (file2 >> x >> y) 
   {
     dataset2.Add(x, y);
@@ -117,9 +140,9 @@ void
 CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
 {
   // Set up some default values for the simulation.
-  std::string dir = "./Trace_Plots/";
-  std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
-  std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+  // std::string dir = "./Trace_Plots/";
+  // std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
+  // std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
   if (usedAlgorythm.compare("DT") == 0)
   {
     traffic_control_type = "SharedBuffer_DT_v01";
@@ -128,15 +151,27 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   {
     traffic_control_type = "SharedBuffer_FB_v01";
   } 
-  std::string trace_parameter1_1 = "netDevice_0_HighPriorityPacketsInQueueTrace";
-  std::string trace_parameter1_2 = "TrafficControlHighPriorityQueueThreshold";
-  std::string trace_parameter2_1 = "netDevice_0_LowPriorityPacketsInQueueTrace";
+  
+    //for internal use:
+  if (implementation.compare("via_NetDevices") == 0)
+  {
+    trace_parameter1_type = "netDevice_";
+  }
+  else if (implementation.compare("via_FIFO_QueueDiscs") == 0)
+  {
+    trace_parameter1_type = "queueDisc_";
+  }
+  
+  std::string trace_parameter1_1 = trace_parameter1_type + "0_HighPriorityPacketsInQueueTrace";
+  std::string trace_parameter2_1 = "TrafficControlHighPriorityQueueThreshold";
+  std::string trace_parameter1_2 = trace_parameter1_type + "0_LowPriorityPacketsInQueueTrace";
   std::string trace_parameter2_2 = "TrafficControlLowPriorityQueueThreshold";
-  std::string trace_parameter3_1 = "netDevice_1_HighPriorityPacketsInQueueTrace";
-  std::string trace_parameter3_2 = "TrafficControlHighPriorityQueueThreshold";
-  std::string trace_parameter4_1 = "netDevice_1_LowPriorityPacketsInQueueTrace";
-  std::string trace_parameter4_2 = "TrafficControlLowPriorityQueueThreshold";
-  std::string location = dir + topology + "_Topology/" + traffic_control_type + "/";
+  std::string trace_parameter1_3 = trace_parameter1_type + "1_HighPriorityPacketsInQueueTrace";
+  std::string trace_parameter2_3 = "TrafficControlHighPriorityQueueThreshold";
+  std::string trace_parameter1_4 = trace_parameter1_type + "1_LowPriorityPacketsInQueueTrace";
+  std::string trace_parameter2_4 = "TrafficControlLowPriorityQueueThreshold";
+  
+  std::string location = dir + topology + "_Topology/" + traffic_control_type + "/" + implementation + "/";
   std::string graphicsFileName = location + "multiPlot.png";
   std::string plotFileName = location + "multiPlot.plt";
 
@@ -157,7 +192,11 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   dataset1_1.SetStyle(Gnuplot2dDataset::LINES);
   // load a dat file as data set for plotting
   std::ifstream file11(location + trace_parameter1_1 + ".dat");
+  std::cout << "load data from file: " << location + trace_parameter1_1 + ".dat" << std::endl;
+  
   double x, y;
+  x=0;
+  y=0;
 
   while (file11 >> x >> y) 
   {
@@ -168,120 +207,150 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   plot1.AddDataset(dataset1_1);
 
   // add the desired trace parameters to plot
-  Gnuplot2dDataset dataset1_2;
-  
-  dataset1_2.SetTitle("Threshold");
-  dataset1_2.SetStyle(Gnuplot2dDataset::LINES);
-  // load a dat file as data set for plotting
-  std::ifstream file12(location + trace_parameter1_2 + ".dat");
-  // double x, y;
-
-  while (file12 >> x >> y) 
-  {
-    dataset1_2.Add(x, y);
-  }
-  // Add the dataset to the plot.
-  plot1.AddDataset(dataset1_2);
-
-  // add the first subplot to the total plot
-  multiPlot.AddPlot(plot1);
-
-  Gnuplot plot2;
-  // plot2.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79dcef0");
-  // Set the labels for each axis. xlabel/ylabel
-  // plot2.SetLegend("Time[sec]", "PacketsInQueue");
-
   Gnuplot2dDataset dataset2_1;
-  dataset2_1.SetTitle("Packets");
+  
+  dataset2_1.SetTitle("Threshold");
   dataset2_1.SetStyle(Gnuplot2dDataset::LINES);
   // load a dat file as data set for plotting
   std::ifstream file21(location + trace_parameter2_1 + ".dat");
+  std::cout << "load data from file: " << location + trace_parameter2_1 + ".dat" << std::endl;
+  
+  x=0;
+  y=0;
 
   while (file21 >> x >> y) 
   {
     dataset2_1.Add(x, y);
   }
   // Add the dataset to the plot.
-  plot2.AddDataset(dataset2_1);
+  plot1.AddDataset(dataset2_1);
 
-  Gnuplot2dDataset dataset2_2;
-  dataset2_2.SetTitle("Threshold");
-  dataset2_2.SetStyle(Gnuplot2dDataset::LINES);
-  // load a dat file as data set for plotting
-  std::ifstream file22(location + trace_parameter2_2 + ".dat");
+  // add the first subplot to the total plot
+  multiPlot.AddPlot(plot1);
 
-  while (file22 >> x >> y) 
+  if (implementation.compare("via_NetDevices") == 0)
   {
-    dataset2_2.Add(x, y);
+    Gnuplot plot2;
+    // plot2.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79dcef0");
+    // Set the labels for each axis. xlabel/ylabel
+    // plot2.SetLegend("Time[sec]", "PacketsInQueue");
+
+    Gnuplot2dDataset dataset1_2;
+    dataset1_2.SetTitle("Packets");
+    dataset1_2.SetStyle(Gnuplot2dDataset::LINES);
+    // load a dat file as data set for plotting
+    std::ifstream file12(location + trace_parameter1_2 + ".dat");
+    std::cout << "load data from file: " << location + trace_parameter1_2 + ".dat" << std::endl;
+    
+    x=0;
+    y=0;
+
+    while (file12 >> x >> y) 
+    {
+      dataset1_2.Add(x, y);
+    }
+    // Add the dataset to the plot.
+    plot2.AddDataset(dataset1_2);
+
+    Gnuplot2dDataset dataset2_2;
+    dataset2_2.SetTitle("Threshold");
+    dataset2_2.SetStyle(Gnuplot2dDataset::LINES);
+    // load a dat file as data set for plotting
+    std::ifstream file22(location + trace_parameter2_2 + ".dat");
+    std::cout << "load data from file: " << location + trace_parameter2_2 + ".dat" << std::endl;
+    
+    x=0;
+    y=0;
+
+    while (file22 >> x >> y) 
+    {
+      dataset2_2.Add(x, y);
+    }
+    // Add the dataset to the plot.
+    plot2.AddDataset(dataset2_2);
+
+    multiPlot.AddPlot(plot2);
+
+    Gnuplot plot3;
+    // plot3.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79de730");
+    // Set the labels for each axis. xlabel/ylabel
+    // plot3.SetLegend("Time[sec]", "PacketsInQueue");
+
+    Gnuplot2dDataset dataset1_3;
+    dataset1_3.SetTitle("Packets");
+    dataset1_3.SetStyle(Gnuplot2dDataset::LINES);
+    // load a dat file as data set for plotting
+    std::ifstream file13(location + trace_parameter1_3 + ".dat");
+    std::cout << "load data from file: " << location + trace_parameter1_3 + ".dat" << std::endl;
+    
+    x=0;
+    y=0;
+    
+    while (file13 >> x >> y) 
+    {
+      dataset1_3.Add(x, y);
+    }
+    // Add the dataset to the plot.
+    plot3.AddDataset(dataset1_3);
+
+    Gnuplot2dDataset dataset2_3;
+    dataset2_3.SetTitle("Threshold");
+    dataset2_3.SetStyle(Gnuplot2dDataset::LINES);
+    // load a dat file as data set for plotting
+    std::ifstream file23(location + trace_parameter2_3 + ".dat");
+    std::cout << "load data from file: " << location + trace_parameter2_3 + ".dat" << std::endl;
+    
+    x=0;
+    y=0;
+
+    while (file23 >> x >> y) 
+    {
+      dataset2_3.Add(x, y);
+    }
+    // Add the dataset to the plot.
+    plot3.AddDataset(dataset2_3);
+
+    multiPlot.AddPlot(plot3);
   }
-  // Add the dataset to the plot.
-  plot2.AddDataset(dataset2_2);
-
-  multiPlot.AddPlot(plot2);
-
-  Gnuplot plot3;
-  // plot3.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79de730");
-  // Set the labels for each axis. xlabel/ylabel
-  // plot3.SetLegend("Time[sec]", "PacketsInQueue");
-
-  Gnuplot2dDataset dataset3_1;
-  dataset3_1.SetTitle("Packets");
-  dataset3_1.SetStyle(Gnuplot2dDataset::LINES);
-  // load a dat file as data set for plotting
-  std::ifstream file31(location + trace_parameter3_1 + ".dat");
-
-  while (file31 >> x >> y) 
-  {
-    dataset3_1.Add(x, y);
-  }
-  // Add the dataset to the plot.
-  plot3.AddDataset(dataset3_1);
-
-  Gnuplot2dDataset dataset3_2;
-  dataset3_2.SetTitle("Threshold");
-  dataset3_2.SetStyle(Gnuplot2dDataset::LINES);
-  // load a dat file as data set for plotting
-  std::ifstream file32(location + trace_parameter3_2 + ".dat");
-
-  while (file32 >> x >> y) 
-  {
-    dataset3_2.Add(x, y);
-  }
-  // Add the dataset to the plot.
-  plot3.AddDataset(dataset3_2);
-
-  multiPlot.AddPlot(plot3);
 
   Gnuplot plot4;
   // plot4.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79de730");
   // Set the labels for each axis. xlabel/ylabel
   // plot4.SetLegend("Time[sec]", "PacketsInQueue");
 
-  Gnuplot2dDataset dataset4_1;
-  dataset4_1.SetTitle("Packets");
-  dataset4_1.SetStyle(Gnuplot2dDataset::LINES);
+  Gnuplot2dDataset dataset1_4;
+  dataset1_4.SetTitle("Packets");
+  dataset1_4.SetStyle(Gnuplot2dDataset::LINES);
   // load a dat file as data set for plotting
-  std::ifstream file41(location + trace_parameter4_1 + ".dat");
+  std::ifstream file14(location + trace_parameter1_4 + ".dat");
+  std::cout << "load data from file: " << location + trace_parameter1_4 + ".dat" << std::endl;
+  
+  x=0;
+  y=0;
 
-  while (file41 >> x >> y) 
+  while (file14 >> x >> y) 
   {
-    dataset4_1.Add(x, y);
+    dataset1_4.Add(x, y);
   }
   // Add the dataset to the plot.
-  plot4.AddDataset(dataset4_1);
+  plot4.AddDataset(dataset1_4);
 
-  Gnuplot2dDataset dataset4_2;
-  dataset4_2.SetTitle("Threshold");
-  dataset4_2.SetStyle(Gnuplot2dDataset::LINES);
+  Gnuplot2dDataset dataset2_4;
+  dataset2_4.SetTitle("Threshold");
+  dataset2_4.SetStyle(Gnuplot2dDataset::LINES);
   // load a dat file as data set for plotting
-  std::ifstream file42(location + trace_parameter4_2 + ".dat");
+  std::ifstream file24(location + trace_parameter2_4 + ".dat");
+  std::cout << "load data from file: " << location + trace_parameter2_4 + ".dat" << std::endl;
+  
+  x=0;
+  y=0;
 
-  while (file42 >> x >> y) 
+  while (file24 >> x >> y) 
   {
-    dataset4_2.Add(x, y);
+    dataset2_4.Add(x, y);
   }
   // Add the dataset to the plot.
-  plot4.AddDataset(dataset4_2);
+  plot4.AddDataset(dataset2_4);
 
   multiPlot.AddPlot(plot4);
 

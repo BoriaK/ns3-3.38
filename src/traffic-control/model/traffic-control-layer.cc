@@ -653,13 +653,13 @@ TrafficControlLayer::DropBeforeEnqueue(Ptr<const QueueDiscItem> item)
     
     if (flow_priority == 1)
         {
-        m_stats.nTotalDroppedPacketsHighPriority++;
-        m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();
+            m_stats.nTotalDroppedPacketsHighPriority++;
+            m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();
         }
-    else
+    else if (flow_priority == 2)
         {
-        m_stats.nTotalDroppedPacketsLowPriority++;
-        m_stats.nTotalDroppedBytesLowPriority += item->GetSize ();
+            m_stats.nTotalDroppedPacketsLowPriority++;
+            m_stats.nTotalDroppedBytesLowPriority += item->GetSize ();
         }
 
     NS_LOG_DEBUG ("Total High Priority packets/bytes dropped by Traffic Controll Layer: "
@@ -1181,12 +1181,9 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                     alpha = alpha_l;
                     if (usedAlgorythm.compare("DT") == 0)
                     {
-                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        if (qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
                             qDisc->Enqueue(item);
                             qDisc->Run();
                         }
@@ -1201,12 +1198,9 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                         // for debug:
                         std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
 
-                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        if (qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
-                            // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
-                            // std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
                             qDisc->Enqueue(item);
                             qDisc->Run();
                         }

@@ -63,7 +63,8 @@
 #define END_TIME 30
 
 // The flow port range, each flow will be assigned a random port number within this range
-#define SERV_PORT 50000
+#define SERV_PORT_P0 50000
+#define SERV_PORT_P1 50001
 
 // Adopted from the simulation from snowzjx
 // Acknowledged to https://github.com/snowzjx/ns3-load-balance.git
@@ -72,7 +73,8 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_DT_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string traffic_control_type = "SharedBuffer_FB_v01"; // "FifoQueueDisc"/"RedQueueDisc"/"DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string implementation = "via_FIFO_QueueDiscs";  // "via_NetDevices"/"via_FIFO_QueueDiscs"
 std::string usedAlgorythm;  // "DT"/"FB"
 
 uint32_t prev = 0;
@@ -107,7 +109,7 @@ StringCombine (std::string A, std::string B, std::string C)
 void
 TrafficControlPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tcpisq (dir + traffic_control_type + "/TrafficControlPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tcpisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tcpisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tcpisq.close ();
   
@@ -117,7 +119,7 @@ TrafficControlPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 void
 TrafficControlHighPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tchppisq (dir + traffic_control_type + "/TrafficControlHighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tchppisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tchppisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchppisq.close ();
   
@@ -127,7 +129,7 @@ TrafficControlHighPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t
 void
 TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream tclppisq (dir + traffic_control_type + "/TrafficControlLowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream tclppisq (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   tclppisq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclppisq.close ();
   
@@ -138,7 +140,7 @@ TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t 
 void
 TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tchpthr (dir + traffic_control_type + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
   tchpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchpthr.close ();
 
@@ -149,7 +151,7 @@ TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added 
 void
 TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tclpthr (dir + traffic_control_type + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
   tclpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclpthr.close ();
   
@@ -165,7 +167,7 @@ TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added b
 void
 QueueDiscPacketsInQueueTrace (size_t index, uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream qdpiq (dir + traffic_control_type + "/queueDisc_" + ToString(index) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream qdpiq (dir + traffic_control_type + "/" + implementation + "/queueDisc_" + ToString(index) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   qdpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   qdpiq.close ();
   
@@ -175,7 +177,7 @@ QueueDiscPacketsInQueueTrace (size_t index, uint32_t oldValue, uint32_t newValue
 void
 HighPriorityQueueDiscPacketsInQueueTrace (size_t index, uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream hpqdpiq (dir + traffic_control_type + "/queueDisc_" + ToString(index) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream hpqdpiq (dir + traffic_control_type + "/" + implementation + "/queueDisc_" + ToString(index) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   hpqdpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   hpqdpiq.close ();
   
@@ -185,46 +187,11 @@ HighPriorityQueueDiscPacketsInQueueTrace (size_t index, uint32_t oldValue, uint3
 void
 LowPriorityQueueDiscPacketsInQueueTrace (size_t index, uint32_t oldValue, uint32_t newValue)
 {
-  std::ofstream lpqdpiq (dir + traffic_control_type + "/queueDisc_" + ToString(index) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
+  std::ofstream lpqdpiq (dir + traffic_control_type + "/" + implementation + "/queueDisc_" + ToString(index) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
   lpqdpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   lpqdpiq.close ();
   
   std::cout << "LowPriorityQueueDiscPacketsInQueue " << index << ": " << newValue << std::endl;
-}
-
-void
-DevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
-{
-  std::ofstream ndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-//   std::ofstream ndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_PacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  ndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
-  ndpiq.close ();
-
-  std::cout << "PacketsInQueueOnNetDevice " << ndev << ": " << newValue << std::endl;
-}
-
-// Trace the number of High Priority packets in the Queue
-void
-HighPriorityDevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
-{
-//   std::ofstream hpndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  std::ofstream hpndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_HighPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  hpndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
-  hpndpiq.close ();
-
-  std::cout << "HighPriorityPacketsInQueueOnNetDevice " << ndev << ": " << newValue << std::endl;
-}
-
-// Trace the number of Low Priority packets in the Queue
-void
-LowPriorityDevicePacketsInQueueTrace (size_t index, Ptr<NetDevice> ndev, uint32_t oldValue, uint32_t newValue)
-{
-//   std::ofstream lpndpiq (dir + traffic_control_type + "/netDevice_" + NDevicePointerToString(ndev) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  std::ofstream lpndpiq (dir + traffic_control_type + "/netDevice_" + ToString(index) + "_LowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-  lpndpiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
-  lpndpiq.close ();
-
-  std::cout << "LowPriorityPacketsInQueueOnNetDevice " << ndev << ": " << newValue << std::endl;
 }
 
 void
@@ -251,14 +218,14 @@ int main (int argc, char *argv[])
         usedAlgorythm = "FB";
     }
     float_t alpha_high = 10;
-    float_t alpha_low = 1;
+    float_t alpha_low = 2;
     uint32_t flowletTimeout = 50;
     bool eraseOldData = true; // true/false
 
     if (eraseOldData == true)
     {
-        system (("rm " + dir + traffic_control_type + "/*.dat").c_str ()); // to erase the old .dat files and collect new data
-        system (("rm " + dir + traffic_control_type + "/*.txt").c_str ()); // to erase the previous test run summary, and collect new data
+        system (("rm " + dir + traffic_control_type + "/" + implementation + "/*.dat").c_str ()); // to erase the old .dat files and collect new data
+        system (("rm " + dir + traffic_control_type + "/" + implementation + "/*.txt").c_str ()); // to erase the previous test run summary, and collect new data
         std::cout << std::endl << "***Erased Previous Data***\n" << std::endl;
     }
 
@@ -403,21 +370,9 @@ int main (int argc, char *argv[])
     {
         Ptr<QueueDisc> queue = qdiscs.Get (i); // look at the router queue
         queue->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&QueueDiscPacketsInQueueTrace, i));
+        queue->TraceConnectWithoutContext ("HighPriorityPacketsInQueue", MakeBoundCallback (&HighPriorityQueueDiscPacketsInQueueTrace, i)); 
+        queue->TraceConnectWithoutContext ("LowPriorityPacketsInQueue", MakeBoundCallback (&LowPriorityQueueDiscPacketsInQueueTrace, i)); 
     }
-    // queueDisc->GetInternalQueue(0)->TraceConnectWithoutContext("PacketsInQueue", MakeBoundCallback (&TrafficControlPacketsInQueueTrace));
-    // queueDisc->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&TrafficControlPacketsInQueueTrace));
-
-    /////////////////////////////Monitor the NetDevice//////////////////////////////
-    for (size_t i = 0; i < RECIEVER_COUNT; i++)
-    {
-        Ptr<NetDevice> swnd = switchDevicesOut.Get(i);
-        Ptr<PointToPointNetDevice> swndev = DynamicCast<PointToPointNetDevice>(swnd);
-        Ptr<Queue<Packet>> queue = swndev->GetQueue();
-        queue->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&DevicePacketsInQueueTrace, i, swnd));
-        queue->TraceConnectWithoutContext ("HighPriorityPacketsInQueue", MakeBoundCallback (&HighPriorityDevicePacketsInQueueTrace, i, swnd)); 
-        queue->TraceConnectWithoutContext ("LowPriorityPacketsInQueue", MakeBoundCallback (&LowPriorityDevicePacketsInQueueTrace, i, swnd));  
-    }
-
 
     NS_LOG_INFO ("Setup IPv4 Addresses");
 
@@ -470,9 +425,16 @@ int main (int argc, char *argv[])
 
     NS_LOG_INFO ("Create Sockets, Applications and Sinks");
 
-    Address sinkLocalAddress (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT));
+    uint32_t ipTos_LP = 0x00; //Low priority: Best Effort
+    uint32_t ipTos_HP = 0x10;  //High priority: Maximize Throughput
+    
+    Address sinkLocalAddressP0 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P0));
+    Address sinkLocalAddressP1 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P1));
 
-    PacketSinkHelper sink (socketType, sinkLocalAddress); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
+    PacketSinkHelper sinkP0 (socketType, sinkLocalAddressP0); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
+    PacketSinkHelper sinkP1 (socketType, sinkLocalAddressP1); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
+    
+    
     ApplicationContainer sinkApps, sourceApps;
     
 
@@ -513,62 +475,135 @@ int main (int argc, char *argv[])
         // create and install Client apps:    
         if (applicationType.compare("standardClient") == 0) 
         {
-        // Install UDP application on the sender 
-        // send packet flows from servers with even indexes to spine 0, and from servers with odd indexes to spine 1. 
-            UdpClientHelper clientHelper (recieverIFs.GetAddress(recieverIndex), SERV_PORT);
-            clientHelper.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
-            clientHelper.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
-            sourceApps.Add(clientHelper.Install (servers.Get(serverIndex)));
-            sourceApps.Start (Seconds (1.0));
-            sourceApps.Stop (Seconds(3.0));
+          // Install UDP application on the sender 
+          // send packet flows from servers with even indexes to spine 0, and from servers with odd indexes to spine 1.
+          // UdpClientHelper clientHelper;
+          if (i==0)
+          {
+            InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
+            socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
+            UdpClientHelper clientHelperP0 (socketAddressP0);
+            clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+            clientHelperP0.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+            sourceApps.Add(clientHelperP0.Install (servers.Get(serverIndex)));
+          }
+          else if (i==1)
+          {
+            InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
+            socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
+            UdpClientHelper clientHelperP1 (socketAddressP1);
+            clientHelperP1.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+            clientHelperP1.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+            sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+          }
+          
+          sourceApps.Start (Seconds (1.0));
+          sourceApps.Stop (Seconds(3.0));
         } 
         else if (applicationType.compare("OnOff") == 0) 
         {
-        // Create the OnOff applications to send TCP/UDP to the server
-            InetSocketAddress socketAddressUp = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT);
-            OnOffHelper clientHelper (socketType, Address ());
-            clientHelper.SetAttribute ("Remote", AddressValue (socketAddressUp));
-            clientHelper.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
-            clientHelper.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-            clientHelper.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
-            clientHelper.SetAttribute ("DataRate", StringValue ("2Mb/s"));
-            sourceApps.Add(clientHelper.Install (servers.Get(serverIndex)));
-            sourceApps.Start (Seconds (1.0));
-            sourceApps.Stop (Seconds(3.0));
+          // Create the OnOff applications to send TCP/UDP to the server
+          if (i==0)
+          {
+            InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
+            socketAddressP0.SetTos(ipTos_LP);  // ToS 0x0 -> Low priority
+            OnOffHelper clientHelperP0 (socketType, socketAddressP0);
+            clientHelperP0.SetAttribute ("Remote", AddressValue (socketAddressP0));
+            clientHelperP0.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+            clientHelperP0.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+            clientHelperP0.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+            clientHelperP0.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+            sourceApps.Add(clientHelperP0.Install (servers.Get(serverIndex)));
+          }
+          else if (i==1)
+          {
+            InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
+            socketAddressP1.SetTos(ipTos_HP);  // ToS 0x1 -> High priority
+            OnOffHelper clientHelperP1 (socketType, socketAddressP1);
+            clientHelperP1.SetAttribute ("Remote", AddressValue (socketAddressP1));
+            clientHelperP1.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+            clientHelperP1.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+            clientHelperP1.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+            clientHelperP1.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+            sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+          }
+          sourceApps.Start (Seconds (1.0));
+          sourceApps.Stop (Seconds(3.0));
+        } 
+        else if (applicationType.compare("priorityApplication") == 0)
+        {
+          // Create the Custom application to send TCP/UDP to the server
+          uint32_t numOfPackets = 20;  // number of packets to send in one stream for custom application
+          if (i==0)
+          {
+            InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
+            socketAddressP0.SetTos(ipTos_HP);  // ToS 0x1 -> High priority
+            Ptr<TutorialApp> priorityAppP0 = CreateObject<TutorialApp> ();
+            priorityAppP0->Setup (sockptr, socketAddressP0, PACKET_SIZE, numOfPackets, DataRate ("1Mbps"));
+            // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+            priorityAppP0->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+            servers.Get(serverIndex)->AddApplication (priorityAppP0);
+            priorityAppP0->SetStartTime (Seconds (1.0));
+            priorityAppP0->SetStopTime (Seconds(3.0));
+          }
+          else if (i==1)
+          {
+            InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
+            socketAddressP1.SetTos(ipTos_LP);  // ToS 0x0 -> Low priority
+            Ptr<TutorialApp> priorityAppP1 = CreateObject<TutorialApp> ();
+            priorityAppP1->Setup (sockptr, socketAddressP1, PACKET_SIZE, numOfPackets, DataRate ("1Mbps"));
+            // priorityAppP1->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+            priorityAppP1->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
+            servers.Get(serverIndex)->AddApplication (priorityAppP1);
+            priorityAppP1->SetStartTime (Seconds (1.0));
+            priorityAppP1->SetStopTime (Seconds(3.0));
+          }
         } 
         else if (applicationType.compare("priorityOnOff") == 0) 
         {
-        // Create the Custom application to send TCP/UDP to the server
-            InetSocketAddress socketAddressUp = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT);
-            Ptr<CustomOnOffApplication> priorityOnOffApp = CreateObject<CustomOnOffApplication> ();
-            priorityOnOffApp->Setup(sockptr);
-            priorityOnOffApp->SetAttribute("Remote", AddressValue (socketAddressUp));
-            priorityOnOffApp->SetAttribute("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
-            priorityOnOffApp->SetAttribute("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
-            // priorityOnOffApp->SetAttribute("OnTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
-            // priorityOnOffApp->SetAttribute("OffTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
-            priorityOnOffApp->SetAttribute("PacketSize", UintegerValue (PACKET_SIZE));
-            priorityOnOffApp->SetAttribute("DataRate", StringValue ("2Mb/s"));
-            priorityOnOffApp->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
-            priorityOnOffApp->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10));  // relevant only if "FlowPriority" NOT set by user
-            // priorityOnOffApp->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
-            servers.Get(serverIndex)->AddApplication(priorityOnOffApp);
-            priorityOnOffApp->SetStartTime (Seconds (1.0));
-            priorityOnOffApp->SetStopTime (Seconds(3.0));
+          // Create the Custom application to send TCP/UDP to the server
+          if (i==0)
+          {
+            InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
+            socketAddressP0.SetTos(ipTos_HP);  // ToS 0x1 -> High priority
+            Ptr<CustomOnOffApplication> priorityOnOffAppP0 = CreateObject<CustomOnOffApplication> ();
+            priorityOnOffAppP0->Setup(sockptr);
+            priorityOnOffAppP0->SetAttribute("Remote", AddressValue (socketAddressP0));
+            priorityOnOffAppP0->SetAttribute("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+            priorityOnOffAppP0->SetAttribute("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+            // priorityOnOffAppP0->SetAttribute("OnTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
+            // priorityOnOffAppP0->SetAttribute("OffTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
+            priorityOnOffAppP0->SetAttribute("PacketSize", UintegerValue (PACKET_SIZE));
+            priorityOnOffAppP0->SetAttribute("DataRate", StringValue ("2Mb/s"));
+            priorityOnOffAppP0->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
+            // priorityOnOffAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10));  // relevant only if "FlowPriority" NOT set by user
+            priorityOnOffAppP0->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
+            servers.Get(serverIndex)->AddApplication(priorityOnOffAppP0);
+            priorityOnOffAppP0->SetStartTime (Seconds (1.0));
+            priorityOnOffAppP0->SetStopTime (Seconds(3.0));
+          }
+          else if (i==1)  
+          {
+            InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
+            
+            socketAddressP1.SetTos(ipTos_LP);  // ToS 0x0 -> Low priority
+            Ptr<CustomOnOffApplication> priorityOnOffAppP1 = CreateObject<CustomOnOffApplication> ();
+            priorityOnOffAppP1->Setup(sockptr);
+            priorityOnOffAppP1->SetAttribute("Remote", AddressValue (socketAddressP1));
+            priorityOnOffAppP1->SetAttribute("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+            priorityOnOffAppP1->SetAttribute("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+            // priorityOnOffAppP1->SetAttribute("OnTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
+            // priorityOnOffAppP1->SetAttribute("OffTime", StringValue ("ns3::UniformRandomVariable[Min=0.|Max=1.]"));
+            priorityOnOffAppP1->SetAttribute("PacketSize", UintegerValue (PACKET_SIZE));
+            priorityOnOffAppP1->SetAttribute("DataRate", StringValue ("2Mb/s"));
+            priorityOnOffAppP1->SetAttribute("EnableSeqTsSizeHeader", BooleanValue (false));
+            // priorityOnOffAppP1->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10));  // relevant only if "FlowPriority" NOT set by user
+            priorityOnOffAppP1->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+            servers.Get(serverIndex)->AddApplication(priorityOnOffAppP1);
+            priorityOnOffAppP1->SetStartTime (Seconds (1.0));
+            priorityOnOffAppP1->SetStopTime (Seconds(3.0));
+          }
         }
-        else if (applicationType.compare("priorityApplication") == 0)
-        {
-        // Create the Custom application to send TCP/UDP to the server
-            uint32_t numOfPackets = 20;  // number of packets to send in one stream for custom application
-            Ptr<TutorialApp> priorityApp = CreateObject<TutorialApp> ();
-            InetSocketAddress socketAddressUp = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT);  // sink IpV4 Address
-            priorityApp->Setup (sockptr, socketAddressUp, PACKET_SIZE, numOfPackets, DataRate ("1Mbps"));
-            priorityApp->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
-            priorityApp->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
-            servers.Get(serverIndex)->AddApplication (priorityApp);
-            priorityApp->SetStartTime (Seconds (1.0));
-            priorityApp->SetStopTime (Seconds(3.0));
-        } 
         else 
         {
             std::cerr << "unknown app type: " << applicationType << std::endl;
@@ -576,17 +611,31 @@ int main (int argc, char *argv[])
         }
         
         // setup sink
-        sinkApps.Add(sink.Install (recievers.Get(recieverIndex)));
-        sinkApps.Start (Seconds (START_TIME));
-        sinkApps.Stop (Seconds (END_TIME + 0.1));
+        if (i==0)
+        {
+          sinkApps.Add(sinkP0.Install (recievers.Get(recieverIndex)));
+        }
+        else if (i==1)
+        {
+          sinkApps.Add(sinkP1.Install (recievers.Get(recieverIndex)));
+        }       
+        
+        // sinkApps.Start (Seconds (START_TIME));
+        // sinkApps.Stop (Seconds (END_TIME + 0.1));
     }
 
+    // sourceApps.Start (Seconds (1.0));
+    // sourceApps.Stop (Seconds(3.0));
+
+    sinkApps.Start (Seconds (START_TIME));
+    sinkApps.Stop (Seconds (END_TIME + 0.1));
+    
     NS_LOG_INFO ("Enabling flow monitor");
     FlowMonitorHelper flowmon;
     Ptr<FlowMonitor> monitor = flowmon.InstallAll();
 
     // Create a new directory to store the output of the program
-    std::string dirToSave = "mkdir -p " + dir + traffic_control_type;
+    std::string dirToSave = "mkdir -p " + dir + traffic_control_type + "/" + implementation;
     if (system (dirToSave.c_str ()) == -1)
     {
         exit (1);
@@ -599,6 +648,7 @@ int main (int argc, char *argv[])
     // print the tested scenario at the top of the terminal: Topology, Queueing Algorithm and Application.
     std::cout << std::endl << "Topology: 2In2Out" << std::endl;
     std::cout << std::endl << "Queueing Algorithm: " + traffic_control_type << std::endl;
+    std::cout << std::endl << "Implementation Method: " + implementation << std::endl;
     std::cout << std::endl << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
     std::cout << std::endl << "Application: " + applicationType << std::endl;
 
@@ -705,9 +755,10 @@ int main (int argc, char *argv[])
 
     
     // Added to create a .txt file with the summary of the tested scenario statistics
-    std::ofstream testFlowStatistics (dir + traffic_control_type + "/Statistics.txt", std::ios::out | std::ios::app);
+    std::ofstream testFlowStatistics (dir + traffic_control_type + "/" + implementation + "/Statistics.txt", std::ios::out | std::ios::app);
     testFlowStatistics << "Topology: 2In2Out" << std::endl;
     testFlowStatistics << "Queueing Algorithm: " + traffic_control_type << std::endl;
+    testFlowStatistics << "Implementation Method: " + implementation << std::endl;
     testFlowStatistics << "Alpha High = " << alpha_high << " Alpha Low = " << alpha_low <<std::endl;
     testFlowStatistics << "Application: " + applicationType << std::endl; 
     testFlowStatistics << std::endl << "*** Flow monitor statistics ***" << std::endl;
