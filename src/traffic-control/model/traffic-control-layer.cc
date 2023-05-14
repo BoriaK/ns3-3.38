@@ -60,7 +60,7 @@ TrafficControlLayer::GetTypeId()
 /////Added by me////////////////////////////////////////////////////////////////////
             .AddAttribute("SharedBuffer",
                 "True to use Shared-Buffer all packet flows are managed before the queue-disc",
-                BooleanValue(true),
+                BooleanValue(false),
                 MakeBooleanAccessor(&TrafficControlLayer::m_useSharedBuffer),
                 MakeBooleanChecker())
             .AddAttribute("MaxSharedBufferSize",
@@ -267,14 +267,27 @@ TrafficControlLayer::GetCurrentSharedBufferSize()
             m_sharedBufferPackets += trafficControllPacketCounter;
             m_sharedBufferBytes += trafficControllBytesCounter;
         }
-        else
+        else  // if we use a queue-disc on NetDevice as port
         {
-            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
-            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
-            trafficControllPacketCounter = qDisc->GetNPackets();
-            trafficControllBytesCounter = qDisc->GetNBytes();
-            m_sharedBufferPackets += trafficControllPacketCounter;
-            m_sharedBufferBytes += trafficControllBytesCounter;
+            if (ndi->second.m_rootQueueDisc->GetNQueueDiscClasses()>1)  // if we use multi-queue per port
+            {
+                for (size_t j = 0; j < ndi->second.m_rootQueueDisc->GetNQueueDiscClasses(); j++)
+                {
+                    Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc->GetQueueDiscClass(j)->GetQueueDisc();
+                    trafficControllPacketCounter = qDisc->GetNPackets();
+                    trafficControllBytesCounter = qDisc->GetNBytes();
+                    m_sharedBufferPackets += trafficControllPacketCounter;
+                    m_sharedBufferBytes += trafficControllBytesCounter;
+                }
+            }
+            else
+            {
+                Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;  // if we use a single queue per port
+                trafficControllPacketCounter = qDisc->GetNPackets();
+                trafficControllBytesCounter = qDisc->GetNBytes();
+                m_sharedBufferPackets += trafficControllPacketCounter;
+                m_sharedBufferBytes += trafficControllBytesCounter;
+            }
         }
 
     }
@@ -322,14 +335,27 @@ TrafficControlLayer::GetNumOfHighPriorityPacketsInSharedQueue()
             m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
             // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
         }
-        else
+        else  // if we use a queue-disc on NetDevice as port
         {
-            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
-            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
-            trafficControllPacketCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();
-            // trafficControllBytesCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
-            m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
-            // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+            if (ndi->second.m_rootQueueDisc->GetNQueueDiscClasses()>1)  // if we use multiple queues/port
+            {
+                for (size_t j = 0; j < ndi->second.m_rootQueueDisc->GetNQueueDiscClasses(); j++)
+                {
+                    Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc->GetQueueDiscClass(j)->GetQueueDisc();
+                    trafficControllPacketCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();
+                    // trafficControllBytesCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+                    m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
+                    // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+                }
+            }
+            else  // if we use single queue/port
+            {
+                Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+                trafficControllPacketCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();
+                // trafficControllBytesCounter = qDisc->GetNumOfHighPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+                m_nPackets_High_InSharedQueue += trafficControllPacketCounter;
+                // m_nBytes_h_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+            }
         }
     }
 
@@ -376,14 +402,27 @@ TrafficControlLayer::GetNumOfLowPriorityPacketsInSharedQueue()
             m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
             // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
         }
-        else
+        else  // if we use a queue-disc on NetDevice as port
         {
-            Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
-            // std::cout << "root queue-disc on net-device: " << ndev << " is: " << qDisc << std::endl;
-            trafficControllPacketCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();
-            // trafficControllBytesCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
-            m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
-            // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+            if (ndi->second.m_rootQueueDisc->GetNQueueDiscClasses()>1)  // if we use multiple queues/port
+            {
+                for (size_t j = 0; j < ndi->second.m_rootQueueDisc->GetNQueueDiscClasses(); j++)
+                {
+                    Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc->GetQueueDiscClass(j)->GetQueueDisc();
+                    trafficControllPacketCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();
+                    // trafficControllBytesCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+                    m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
+                    // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+                }
+            }
+            else  // if we use single queue/port
+            {
+                Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc;
+                trafficControllPacketCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();
+                // trafficControllBytesCounter = qDisc->GetNumOfLowPrioPacketsInQueue().GetValue();  // not implemented for bytes yet
+                m_nPackets_Low_InSharedQueue += trafficControllPacketCounter;
+                // m_nBytes_l_InSharedQueue += trafficControllBytesCounter;  // not implemented for bytes yet
+            }
         }
     }
 
@@ -1095,24 +1134,14 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
     }
     else  // if there's a queue-disc installed on the net-device
     {
-        // Enqueue the packet in the queue disc associated with the netdevice queue
-        // selected for the packet and try to dequeue packets from such queue disc
-        item->SetTxQueueIndex(txq);
-
-        Ptr<QueueDisc> qDisc = ndi->second.m_queueDiscsToWake[txq];
-        NS_ASSERT(qDisc);
-
         if (m_useSharedBuffer)
         {
-            ///for Shared Buffer.
-            // std::cout << "SharedBuffer, QueueDisc" << std::endl;
-
             std::string nodeName = Names::FindName(m_node);  // Get the name of the Node
             // std::cout << "Node Name is: " << nodeName << std::endl;
             if (nodeName.compare("Router") == 0)
             {
                 // for debug:
-                std::cout << "Node Name is: " << nodeName << std::endl;
+                // std::cout << "Node Name is: " << nodeName << std::endl;
                 
                 std::cout << "Current Shared Buffer size is " << GetCurrentSharedBufferSize().GetValue() << 
                             " out of: " << GetMaxSharedBufferSize().GetValue() << std::endl;
@@ -1126,18 +1155,37 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                 // flow_priority = 1 is high priority, flow_priority = 2 is low priority
 
                 if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
-                    {
+                {
                     flow_priority = flowPrioTag.GetSimpleValue();
-                    }
+                }
 
+                // Enqueue the packet in the queue disc associated with the netdevice queue
+                // selected for the packet and try to dequeue packets from such queue disc
+                item->SetTxQueueIndex(txq);
+                Ptr<QueueDisc> qDisc = ndi->second.m_queueDiscsToWake[txq];
+                NS_ASSERT(qDisc);
+                Ptr<QueueDisc> internal_qDisc;  // for the multiqueue case
+                if (ndi->second.m_rootQueueDisc->GetNQueueDiscClasses()>1)  // if we use multiple queues/port. 
+                {
+                    internal_qDisc = qDisc->GetQueueDiscClass(flow_priority-1)->GetQueueDisc();
+                    NS_ASSERT(internal_qDisc);
+                }
+                else
+                {
+                    internal_qDisc = qDisc;
+                }
+                
+
+                ///for Shared Buffer.
+                // std::cout << "SharedBuffer, QueueDisc" << std::endl;
                 // perform enqueueing process based on incoming flow priority
                 if (flow_priority == 1)
                 {
                     alpha = alpha_h;
                     if (usedAlgorythm.compare("DT") == 0)
                     {
-                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        if (internal_qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        // if (qDisc->GetQueueDiscClass(flow_priority-1)->GetQueueDisc()->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_h = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
                             // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
@@ -1156,8 +1204,7 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                         // for debug:
                         std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
 
-                        if (qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
-                        // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        if (internal_qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_h = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
                             // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
@@ -1181,7 +1228,7 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                     alpha = alpha_l;
                     if (usedAlgorythm.compare("DT") == 0)
                     {
-                        if (qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
+                        if (internal_qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_l = GetQueueThreshold_DT(alpha, alpha_l, alpha_h).GetValue();  // for tracing
                             qDisc->Enqueue(item);
@@ -1198,7 +1245,7 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                         // for debug:
                         std::cout << "Num of total congested queues " << GetNumOfConjestedQueuesInSharedQueue() << std::endl;
 
-                        if (qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
+                        if (internal_qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
                         {
                             m_p_trace_threshold_l = GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue();  // for tracing
                             qDisc->Enqueue(item);

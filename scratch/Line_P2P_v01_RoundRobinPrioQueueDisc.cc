@@ -56,32 +56,22 @@ Time prevTime = Seconds (0);
 NS_LOG_COMPONENT_DEFINE ("Line_v01_with_CustomApp_SharedBuffer");
 
 void
-QueueDiscPacketsInQueue_Trace (std::size_t index, uint32_t oldValue, uint32_t newValue)
+QueueDiscPacketsInQueueTrace (size_t queueIndex, uint32_t oldValue, uint32_t newValue)
 {
-  std::cout << "QueueDiscPacketsInQueue " << index << ": " << newValue << std::endl;
+  std::cout << "QueueDiscPacketsInQueue " << queueIndex << ": " << newValue << std::endl;
 }
 
-// Trace the number of High Priority packets in the Queue
-// void
-// TcHighPriorityPacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)
-// {
-//   std::ofstream hppiq (dir + queue_disc_type + "/highPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-//   hppiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
-//   hppiq.close ();
+void
+HighPriorityQueueDiscPacketsInQueueTrace (size_t queueIndex, uint32_t oldValue, uint32_t newValue)
+{
+  std::cout << "HighPriorityQueueDiscPacketsInQueue " << queueIndex << ": " << newValue << std::endl;
+}
 
-//   std::cout << "HighPriorityPacketsInQueue " << newValue << std::endl;
-// }
-
-// Trace the number of Low Priority packets in the Queue
-// void
-// TcLowPriorityPacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)
-// {
-//   std::ofstream lppiq (dir + queue_disc_type + "/lowPriorityPacketsInQueueTrace.dat", std::ios::out | std::ios::app);
-//   lppiq << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
-//   lppiq.close ();
-
-//   std::cout << "LowPriorityPacketsInQueue " << newValue << std::endl;
-// }
+void
+LowPriorityQueueDiscPacketsInQueueTrace (size_t queueIndex, uint32_t oldValue, uint32_t newValue)
+{
+  std::cout << "LowPriorityQueueDiscPacketsInQueue " << queueIndex << ": " << newValue << std::endl;
+}
 
 // Trace the Threshold Value for High Priority packets in the Queue
 // void
@@ -121,7 +111,7 @@ int main (int argc, char *argv[])
 { 
   // Set up some default values for the simulation.
   double simulationTime = 50; //seconds
-  std::string applicationType = "standardClient"; // "standardClient"/"OnOff"/"customApplication"/"customOnOff"
+  std::string applicationType = "customApplication"; // "standardClient"/"OnOff"/"customApplication"/"customOnOff"
   std::string transportProt = "Udp";
   std::string socketType;
   std::string queue_capacity;
@@ -230,7 +220,6 @@ int main (int argc, char *argv[])
   // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1"));
 
   // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15) ?
-  // uint16_t handle = tch.SetRootQueueDisc("ns3::PrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
     uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0")); 
 
   TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
@@ -252,7 +241,9 @@ int main (int argc, char *argv[])
 //////////////extract data from q-disc//////////////////////////////
   for (size_t i = 0; i < qdisc.Get(0)->GetNQueueDiscClasses(); i++)
   {
-      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&QueueDiscPacketsInQueue_Trace, i));
+      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("PacketsInQueue", MakeBoundCallback (&QueueDiscPacketsInQueueTrace, i));
+      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("HighPriorityPacketsInQueue", MakeBoundCallback (&HighPriorityQueueDiscPacketsInQueueTrace, i));
+      qdisc.Get(0)->GetQueueDiscClass(i)->GetQueueDisc()->TraceConnectWithoutContext ("LowPriorityPacketsInQueue", MakeBoundCallback (&LowPriorityQueueDiscPacketsInQueueTrace, i));
   }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -289,12 +280,12 @@ int main (int argc, char *argv[])
   uint32_t ipTos_LP = 0x00; //Low priority: Best Effort
 	uint32_t ipTos_HP = 0x10;  //High priority: Maximize Throughput
 
-    // Install UDP application on the sender  
+    // Install UDP application on the sender
     InetSocketAddress socketAddressP0 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP0);
-    socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
-    
+    socketAddressP0.SetTos(ipTos_HP);  // 0x10 -> High priority
+
     InetSocketAddress socketAddressP1 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP1);
-    socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
+    socketAddressP1.SetTos(ipTos_LP);  // 0x0 -> Low priority
 
   if (applicationType.compare("standardClient") == 0)
   {
@@ -371,23 +362,29 @@ int main (int argc, char *argv[])
   //   n0n1.Get (0)->AddApplication (customOnOffApp);
   // }
   
-  // else if (applicationType.compare("customApplication") == 0)
-  // {
-  //   // Create the Custom application to send TCP/UDP to the server
-  //   Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
-  //   // ns3UdpSocket->TraceConnectWithoutContext ("CongestionWindow", MakeCallback (&CwndChange));
+  else if (applicationType.compare("customApplication") == 0)
+  {
+    // Create the Custom application to send TCP/UDP to the server
+
+    uint32_t numOfPackets = 20;  // number of packets to send in one stream for custom application
+    Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
     
-  //   Ptr<TutorialApp> customApp = CreateObject<TutorialApp> ();
-  //   InetSocketAddress socketAddressUp = InetSocketAddress (ipInterfs.GetAddress(1), servPort);  // sink IpV4 Address
-  //   customApp->Setup (ns3UdpSocket, socketAddressUp, payloadSize, numOfPackets, DataRate ("1Mbps"));
-  //   customApp->SetStartTime (Seconds (1.0));
-  //   /////////////////////
-  //   // Hook trace source after application starts
-  //   // Simulator::Schedule (Seconds (1.0) + MilliSeconds (1), &TraceCwnd, 0, 0);
-  //   ////////////////////////////
-  //   customApp->SetStopTime (Seconds(3.0));
-  //   n0n1.Get (0)->AddApplication (customApp);
-  // }
+    Ptr<TutorialApp> priorityAppP0 = CreateObject<TutorialApp> ();
+    priorityAppP0->Setup (ns3UdpSocket, socketAddressP0, payloadSize, numOfPackets, DataRate ("1Mbps"));
+    // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+    priorityAppP0->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
+    n0n1.Get (0)->AddApplication (priorityAppP0);
+    priorityAppP0->SetStartTime (Seconds (1.0));
+    priorityAppP0->SetStopTime (Seconds(3.0));
+
+    Ptr<TutorialApp> priorityAppP1 = CreateObject<TutorialApp> ();
+    priorityAppP1->Setup (ns3UdpSocket, socketAddressP1, payloadSize, numOfPackets, DataRate ("1Mbps"));
+    // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+    priorityAppP1->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+    n0n1.Get (0)->AddApplication (priorityAppP1);
+    priorityAppP1->SetStartTime (Seconds (1.0));
+    priorityAppP1->SetStopTime (Seconds(3.0));
+  }
   
   FlowMonitorHelper flowmon;
   Ptr<FlowMonitor> monitor = flowmon.InstallAll();
