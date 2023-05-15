@@ -85,6 +85,8 @@ libapplications_EXTERNAL_OBJECTS = \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/onoff-application.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.o" \
+"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o" \
+"/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/packet-loss-counter.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/packet-sink.cc.o" \
 "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications/CMakeFiles/libapplications-obj.dir/model/seq-ts-echo-header.cc.o" \
@@ -111,6 +113,8 @@ lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/onoff-application.cc.o
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.o
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.o
+lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o
+lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/packet-loss-counter.cc.o
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/packet-sink.cc.o
 lib/libns3.38-applications-debug.so: src/applications/CMakeFiles/libapplications-obj.dir/model/seq-ts-echo-header.cc.o

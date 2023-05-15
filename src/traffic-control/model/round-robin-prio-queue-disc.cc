@@ -139,7 +139,13 @@ RoundRobinPrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
     }
 
     // for debug:
-    std::cout << "Packet enqueued in band: " << band << std::endl;
+    SharedPriorityTag flowPrioTag;
+    uint8_t flow_priority = 0;
+    if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
+    {
+        flow_priority = flowPrioTag.GetSimpleValue();
+    }
+    std::cout << "Packet of priority: " << int(flow_priority) << " enqueued in band: " << band << std::endl;
     //////////////
     NS_ASSERT_MSG(band < GetNQueueDiscClasses(), "Selected band out of range");
     bool retval = GetQueueDiscClass(band)->GetQueueDisc()->Enqueue(item);

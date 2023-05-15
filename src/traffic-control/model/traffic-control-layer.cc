@@ -686,20 +686,20 @@ TrafficControlLayer::DropBeforeEnqueue(Ptr<const QueueDiscItem> item)
     m_stats.nTotalDroppedBytes += item->GetSize();
 
     if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
-        {
+    {
         flow_priority = flowPrioTag.GetSimpleValue();
-        }
+    }
     
     if (flow_priority == 1)
-        {
-            m_stats.nTotalDroppedPacketsHighPriority++;
-            m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();
-        }
+    {
+        m_stats.nTotalDroppedPacketsHighPriority++;
+        m_stats.nTotalDroppedBytesHighPriority += item->GetSize ();
+    }
     else if (flow_priority == 2)
-        {
-            m_stats.nTotalDroppedPacketsLowPriority++;
-            m_stats.nTotalDroppedBytesLowPriority += item->GetSize ();
-        }
+    {
+        m_stats.nTotalDroppedPacketsLowPriority++;
+        m_stats.nTotalDroppedBytesLowPriority += item->GetSize ();
+    }
 
     NS_LOG_DEBUG ("Total High Priority packets/bytes dropped by Traffic Controll Layer: "
                     << m_stats.nTotalDroppedPacketsHighPriority << " / "
@@ -1023,9 +1023,9 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                     // flow_priority = 1 is high priority, flow_priority = 2 is low priority
 
                     if (item->GetPacket ()->PeekPacketTag (flowPrioTag))
-                        {
+                    {
                         flow_priority = flowPrioTag.GetSimpleValue();
-                        }
+                    }
                     
                     // std::cout << "Num of congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(flow_priority) << std::endl;
                     

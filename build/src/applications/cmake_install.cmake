@@ -78,6 +78,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/onoff-application.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/custom_onoff-application.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/tutorial-app.h"
+    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.h"
+    "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-sink.h"
     "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-echo-header.h"

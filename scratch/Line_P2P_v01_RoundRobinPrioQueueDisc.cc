@@ -111,7 +111,7 @@ int main (int argc, char *argv[])
 { 
   // Set up some default values for the simulation.
   double simulationTime = 50; //seconds
-  std::string applicationType = "customApplication"; // "standardClient"/"OnOff"/"customApplication"/"customOnOff"
+  std::string applicationType = "prioClient"; // "standardClient"/"OnOff"/"prioClient"/"customApplication"/"customOnOff"
   std::string transportProt = "Udp";
   std::string socketType;
   std::string queue_capacity;
@@ -137,7 +137,7 @@ int main (int argc, char *argv[])
   // Config::SetDefault ("ns3::TcpL4Protocol::RecoveryType", TypeIdValue (TypeId::LookupByName ("ns3::TcpClassicRecovery")));
 
   // Application type dependent parameters
-  if (applicationType.compare("standardClient") == 0)
+  if (applicationType.compare("standardClient") == 0 || applicationType.compare("prioClient") == 0)
     {
       queue_capacity = "10p"; // B, the total space on the buffer
     }
@@ -289,13 +289,6 @@ int main (int argc, char *argv[])
 
   if (applicationType.compare("standardClient") == 0)
   {
-    // // Install UDP application on the sender  
-    // InetSocketAddress socketAddressP0 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP0);
-    // socketAddressP0.SetTos(ipTos_LP);  // 0x0 -> Low priority
-    
-    // InetSocketAddress socketAddressP1 = InetSocketAddress (ipInterfs.GetAddress(1), servPortP1);
-    // socketAddressP1.SetTos(ipTos_HP);  // 0x10 -> High priority
-    
     UdpClientHelper clientHelperP0 (socketAddressP0);
     clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
     clientHelperP0.SetAttribute ("PacketSize", UintegerValue (payloadSize));
@@ -312,6 +305,28 @@ int main (int argc, char *argv[])
     sourceApps.Stop (Seconds(3.0));
   }
   
+  if (applicationType.compare("prioClient") == 0)
+  {
+    UdpPrioClientHelper clientHelperP0 (socketAddressP0);
+    clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+    clientHelperP0.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+    // clientHelperP0.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+    clientHelperP0.SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
+    
+    UdpPrioClientHelper clientHelperP1 (socketAddressP1);
+    clientHelperP1.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+    clientHelperP1.SetAttribute ("PacketSize", UintegerValue (payloadSize));
+    // clientHelperP1.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+    clientHelperP1.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+
+    ApplicationContainer sourceApps;
+    sourceApps.Add(clientHelperP0.Install (n0n1.Get (0)));
+    sourceApps.Add(clientHelperP1.Install (n0n1.Get (0)));
+
+    sourceApps.Start (Seconds (1.0));
+    sourceApps.Stop (Seconds(3.0));
+  }
+
   else if (applicationType.compare("OnOff") == 0)
   {
     // Create the OnOff applications to send TCP/UDP to the server
@@ -362,29 +377,29 @@ int main (int argc, char *argv[])
   //   n0n1.Get (0)->AddApplication (customOnOffApp);
   // }
   
-  else if (applicationType.compare("customApplication") == 0)
-  {
-    // Create the Custom application to send TCP/UDP to the server
+  // else if (applicationType.compare("customApplication") == 0)
+  // {
+  //   // Create the Custom application to send TCP/UDP to the server
 
-    uint32_t numOfPackets = 20;  // number of packets to send in one stream for custom application
-    Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
+  //   uint32_t numOfPackets = 20;  // number of packets to send in one stream for custom application
+  //   Ptr<Socket> ns3UdpSocket = Socket::CreateSocket (n0n1.Get (0), UdpSocketFactory::GetTypeId ());
     
-    Ptr<TutorialApp> priorityAppP0 = CreateObject<TutorialApp> ();
-    priorityAppP0->Setup (ns3UdpSocket, socketAddressP0, payloadSize, numOfPackets, DataRate ("1Mbps"));
-    // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
-    priorityAppP0->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
-    n0n1.Get (0)->AddApplication (priorityAppP0);
-    priorityAppP0->SetStartTime (Seconds (1.0));
-    priorityAppP0->SetStopTime (Seconds(3.0));
+  //   Ptr<TutorialApp> priorityAppP0 = CreateObject<TutorialApp> ();
+  //   priorityAppP0->Setup (ns3UdpSocket, socketAddressP0, payloadSize, numOfPackets, DataRate ("1Mbps"));
+  //   // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+  //   priorityAppP0->SetAttribute("FlowPriority", UintegerValue (0x1));  // manualy set generated packets priority: 0x1 high, 0x2 low
+  //   n0n1.Get (0)->AddApplication (priorityAppP0);
+  //   priorityAppP0->SetStartTime (Seconds (1.0));
+  //   priorityAppP0->SetStopTime (Seconds(3.0));
 
-    Ptr<TutorialApp> priorityAppP1 = CreateObject<TutorialApp> ();
-    priorityAppP1->Setup (ns3UdpSocket, socketAddressP1, payloadSize, numOfPackets, DataRate ("1Mbps"));
-    // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
-    priorityAppP1->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
-    n0n1.Get (0)->AddApplication (priorityAppP1);
-    priorityAppP1->SetStartTime (Seconds (1.0));
-    priorityAppP1->SetStopTime (Seconds(3.0));
-  }
+  //   Ptr<TutorialApp> priorityAppP1 = CreateObject<TutorialApp> ();
+  //   priorityAppP1->Setup (ns3UdpSocket, socketAddressP1, payloadSize, numOfPackets, DataRate ("1Mbps"));
+  //   // priorityAppP0->SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+  //   priorityAppP1->SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+  //   n0n1.Get (0)->AddApplication (priorityAppP1);
+  //   priorityAppP1->SetStartTime (Seconds (1.0));
+  //   priorityAppP1->SetStopTime (Seconds(3.0));
+  // }
   
   FlowMonitorHelper flowmon;
   Ptr<FlowMonitor> monitor = flowmon.InstallAll();

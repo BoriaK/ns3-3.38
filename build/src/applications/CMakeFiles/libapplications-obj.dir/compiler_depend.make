@@ -1026,6 +1026,192 @@ src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-echo-helper.cc.o:
   include/ns3/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
 
+src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.cc \
+  /usr/include/stdc-predef.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.h \
+  include/ns3/application-container.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/application-container.h \
+  include/ns3/application.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/application.h \
+  include/ns3/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-impl.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/fatal-error.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/fatal-impl.h \
+  /usr/include/c++/9/ostream \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log-macros-disabled.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log-macros-enabled.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/node-printer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/time-printer.h \
+  /usr/include/c++/9/iostream \
+  /usr/include/c++/9/map \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
+  /usr/include/c++/9/string \
+  /usr/include/c++/9/type_traits \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/cstdlib \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
+  /usr/include/c++/9/exception \
+  /usr/include/c++/9/string_view \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/default-deleter.h \
+  /usr/include/c++/9/limits \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/ptr.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/deprecated.h \
+  include/ns3/node.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node.h \
+  include/ns3/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/abort.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-accessor-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-traits.h \
+  /usr/include/c++/9/sstream \
+  /usr/include/c++/9/functional \
+  /usr/include/c++/9/memory \
+  /usr/include/c++/9/bits/stl_algobase.h \
+  /usr/include/c++/9/bits/allocator.h \
+  /usr/include/c++/9/bits/stl_construct.h \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/bits/stl_tempbuf.h \
+  /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/9/typeinfo \
+  /usr/include/c++/9/iosfwd \
+  /usr/include/c++/9/ext/atomicity.h \
+  /usr/include/c++/9/ext/concurrence.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
+  /usr/include/c++/9/bits/functexcept.h \
+  /usr/include/c++/9/bits/cpp_type_traits.h \
+  /usr/include/c++/9/ext/type_traits.h \
+  /usr/include/c++/9/bits/stl_function.h \
+  /usr/include/c++/9/bits/uses_allocator.h \
+  /usr/include/c++/9/debug/debug.h \
+  /usr/include/c++/9/bits/unique_ptr.h \
+  /usr/include/c++/9/debug/assertions.h \
+  /usr/include/c++/9/utility \
+  /usr/include/c++/9/tuple \
+  /usr/include/c++/9/bits/functional_hash.h \
+  /usr/include/c++/9/bits/shared_ptr.h \
+  /usr/include/c++/9/bits/shared_ptr_base.h \
+  /usr/include/c++/9/bits/allocated_ptr.h \
+  /usr/include/c++/9/bits/refwrap.h \
+  /usr/include/c++/9/ext/aligned_buffer.h \
+  /usr/include/c++/9/bits/shared_ptr_atomic.h \
+  /usr/include/c++/9/bits/atomic_base.h \
+  /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/9/backward/auto_ptr.h \
+  /usr/include/c++/9/cstdint \
+  /usr/include/c++/9/pstl/glue_memory_defs.h \
+  /usr/include/c++/9/pstl/execution_defs.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  include/ns3/attribute-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-helper.h \
+  include/ns3/attribute.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute.h \
+  include/ns3/tag-buffer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag-buffer.h \
+  include/ns3/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/buffer.h \
+  /usr/include/c++/9/cstring \
+  /usr/include/string.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/byte-tag-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag-buffer.h \
+  include/ns3/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-fnv.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-function.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-murmur3.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/header.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/chunk.h \
+  include/ns3/object-base.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/warnings.h \
+  /usr/include/c++/9/list \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/nix-vector.h \
+  include/ns3/buffer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/buffer.h \
+  include/ns3/ptr.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/ptr.h \
+  include/ns3/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-metadata.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-tag-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/trailer.h \
+  include/ns3/deprecated.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/deprecated.h \
+  include/ns3/mac48-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac48-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h \
+  include/ns3/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac8-address.h \
+  include/ns3/ipv4-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
+  include/ns3/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-construction-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h \
+  include/ns3/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64.h \
+  include/ns3/core-config.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64-128.h \
+  /usr/include/c++/9/cmath \
+  /usr/include/math.h \
+  /usr/include/c++/9/bits/std_abs.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-name.h \
+  /usr/include/c++/9/set \
+  include/ns3/random-variable-stream.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/random-variable-stream.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
+  include/ns3/node-container.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/node-container.h \
+  include/ns3/object-factory.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
+  include/ns3/udp-client.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-client.h \
+  include/ns3/udp-server.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-server.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h \
+  include/ns3/traced-callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-callback.h \
+  include/ns3/string.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/string.h \
+  include/ns3/udp-prio-client.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.h \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/packet.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
+  include/ns3/udp-trace-client.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-trace-client.h
+
 src/applications/CMakeFiles/libapplications-obj.dir/model/application-packet-probe.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/application-packet-probe.cc \
   /usr/include/stdc-predef.h \
@@ -3980,6 +4166,10 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.o: CMa
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/custom_onoff-application.h \
   include/ns3/tutorial-app.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/tutorial-app.h \
+  include/ns3/udp-prio-client.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.h \
+  include/ns3/udp-prio-client-server-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.h \
   include/ns3/packet-loss-counter.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.h \
   include/ns3/packet-sink.h \
@@ -4538,6 +4728,186 @@ src/applications/CMakeFiles/libapplications-obj.dir/model/udp-echo-server.cc.o: 
   include/ns3/uinteger.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h
 
+src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.cc \
+  /usr/include/stdc-predef.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.h \
+  include/ns3/application.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/application.h \
+  include/ns3/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-impl.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/fatal-error.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/fatal-impl.h \
+  /usr/include/c++/9/ostream \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log-macros-disabled.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log-macros-enabled.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/node-printer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/time-printer.h \
+  /usr/include/c++/9/iostream \
+  /usr/include/c++/9/map \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h \
+  /usr/include/c++/9/string \
+  /usr/include/c++/9/type_traits \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/cstdlib \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
+  /usr/include/c++/9/exception \
+  /usr/include/c++/9/string_view \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/default-deleter.h \
+  /usr/include/c++/9/limits \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/ptr.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/deprecated.h \
+  include/ns3/node.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node.h \
+  include/ns3/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/abort.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-accessor-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-traits.h \
+  /usr/include/c++/9/sstream \
+  /usr/include/c++/9/functional \
+  /usr/include/c++/9/memory \
+  /usr/include/c++/9/bits/stl_algobase.h \
+  /usr/include/c++/9/bits/allocator.h \
+  /usr/include/c++/9/bits/stl_construct.h \
+  /usr/include/c++/9/bits/stl_uninitialized.h \
+  /usr/include/c++/9/bits/stl_tempbuf.h \
+  /usr/include/c++/9/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/9/typeinfo \
+  /usr/include/c++/9/iosfwd \
+  /usr/include/c++/9/ext/atomicity.h \
+  /usr/include/c++/9/ext/concurrence.h \
+  /usr/include/x86_64-linux-gnu/c++/9/bits/gthr.h \
+  /usr/include/c++/9/bits/functexcept.h \
+  /usr/include/c++/9/bits/cpp_type_traits.h \
+  /usr/include/c++/9/ext/type_traits.h \
+  /usr/include/c++/9/bits/stl_function.h \
+  /usr/include/c++/9/bits/uses_allocator.h \
+  /usr/include/c++/9/debug/debug.h \
+  /usr/include/c++/9/bits/unique_ptr.h \
+  /usr/include/c++/9/debug/assertions.h \
+  /usr/include/c++/9/utility \
+  /usr/include/c++/9/tuple \
+  /usr/include/c++/9/bits/functional_hash.h \
+  /usr/include/c++/9/bits/shared_ptr.h \
+  /usr/include/c++/9/bits/shared_ptr_base.h \
+  /usr/include/c++/9/bits/allocated_ptr.h \
+  /usr/include/c++/9/bits/refwrap.h \
+  /usr/include/c++/9/ext/aligned_buffer.h \
+  /usr/include/c++/9/bits/shared_ptr_atomic.h \
+  /usr/include/c++/9/bits/atomic_base.h \
+  /usr/include/c++/9/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/9/backward/auto_ptr.h \
+  /usr/include/c++/9/cstdint \
+  /usr/include/c++/9/pstl/glue_memory_defs.h \
+  /usr/include/c++/9/pstl/execution_defs.h \
+  include/ns3/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/net-device.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  include/ns3/attribute-helper.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-helper.h \
+  include/ns3/attribute.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute.h \
+  include/ns3/tag-buffer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag-buffer.h \
+  include/ns3/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/assert.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/buffer.h \
+  /usr/include/c++/9/cstring \
+  /usr/include/string.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/byte-tag-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag-buffer.h \
+  include/ns3/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/callback.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-fnv.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-function.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-murmur3.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trace-source-accessor.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/header.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/chunk.h \
+  include/ns3/object-base.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/warnings.h \
+  /usr/include/c++/9/list \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/nix-vector.h \
+  include/ns3/buffer.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/buffer.h \
+  include/ns3/ptr.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/ptr.h \
+  include/ns3/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simple-ref-count.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-metadata.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet-tag-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/trailer.h \
+  include/ns3/deprecated.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/deprecated.h \
+  include/ns3/mac48-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac48-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h \
+  include/ns3/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac8-address.h \
+  include/ns3/ipv4-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h \
+  include/ns3/ipv6-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv6-address.h \
+  include/ns3/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/attribute-construction-list.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h \
+  include/ns3/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/event-id.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64.h \
+  include/ns3/core-config.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64-128.h \
+  /usr/include/c++/9/cmath \
+  /usr/include/math.h \
+  /usr/include/c++/9/bits/std_abs.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/type-name.h \
+  /usr/include/c++/9/set \
+  include/ns3/customTag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/customTag.h \
+  include/ns3/tag.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h \
+  include/ns3/packet.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/packet.h \
+  include/ns3/uinteger.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/uinteger.h \
+  include/ns3/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/simulator.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/make-event.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/nstime.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-factory.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-header.h \
+  include/ns3/header.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/header.h \
+  include/ns3/inet-socket-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet-socket-address.h \
+  include/ns3/inet6-socket-address.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/inet6-socket-address.h \
+  include/ns3/log.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/log.h \
+  include/ns3/socket-factory.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket-factory.h \
+  include/ns3/socket.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/socket.h \
+  /usr/include/c++/9/cstdio \
+  /usr/include/stdio.h
+
 src/applications/CMakeFiles/libapplications-obj.dir/model/udp-server.cc.o: CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-server.cc \
   /usr/include/stdc-predef.h \
@@ -5087,6 +5457,8 @@ include/ns3/icmpv6-header.h:
 
 include/ns3/icmpv4.h:
 
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.cc:
+
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/icmpv4-l4-protocol.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-routing-table-entry.h:
@@ -5241,9 +5613,11 @@ include/ns3/pcap-test.h:
 
 include/ns3/packetbb.h:
 
-/usr/include/c++/9/bits/stl_iterator.h:
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/matrix-array.h:
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-server.h:
+
+include/ns3/packet-socket-server.h:
 
 include/ns3/ipv6-option-header.h:
 
@@ -5301,10 +5675,6 @@ include/ns3/callback.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/udp-socket-factory.h:
 
-include/ns3/customTag.h:
-
-include/ns3/mac48-address.h:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-socket-factory.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/net-device-queue-interface.h:
@@ -5332,6 +5702,10 @@ include/ns3/tcp-option.h:
 include/ns3/probe.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/application-packet-probe.cc:
+
+include/ns3/customTag.h:
+
+include/ns3/mac48-address.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-client.h:
 
@@ -5361,6 +5735,12 @@ include/ns3/ipv4-l3-protocol.h:
 
 include/ns3/application-packet-probe.h:
 
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.cc:
+
+include/ns3/tuple.h:
+
+/usr/include/c++/9/string_view:
+
 include/ns3/bit-serializer.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/crc32.h:
@@ -5388,6 +5768,8 @@ include/ns3/header.h:
 include/ns3/error-model.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/three-gpp-http-helper.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/seq-ts-size-header.h:
 
@@ -5418,10 +5800,6 @@ include/ns3/pcap-file.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-packet-info-tag.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/on-off-helper.h:
-
-include/ns3/time-printer.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.h:
 
 include/ns3/string.h:
 
@@ -5464,12 +5842,6 @@ include/ns3/matrix-array.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64-128.h:
 
 include/ns3/hash-murmur3.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/default-simulator-impl.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-interface.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-echo-helper.h:
 
@@ -5709,12 +6081,6 @@ include/ns3/packet-socket-address.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-function.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/generic-phy.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-ptr-container.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.cc:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/packet-sink-helper.cc:
 
 include/ns3/queue-fwd.h:
@@ -5762,6 +6128,10 @@ include/ns3/socket.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/length.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/9/include/stdint.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/rng-seed-manager.h:
+
+include/ns3/random-variable-stream-helper.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/trailer.h:
 
@@ -5815,6 +6185,12 @@ include/ns3/ipv6-packet-probe.h:
 
 include/ns3/packet.h:
 
+include/ns3/hash-function.h:
+
+include/ns3/mac16-address.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
+
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/int64x64.h:
 
 include/ns3/byte-tag-list.h:
@@ -5822,14 +6198,6 @@ include/ns3/byte-tag-list.h:
 include/ns3/ipv6-packet-info-tag.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/trickle-timer.h:
-
-include/ns3/packet-socket-server.h:
-
-include/ns3/tcp-tx-item.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-socket.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-server.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-base.h:
 
@@ -5904,8 +6272,6 @@ include/ns3/double.h:
 include/ns3/udp-socket-factory.h:
 
 /usr/include/c++/9/backward/auto_ptr.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket-server.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/on-off-helper.cc:
 
@@ -6009,7 +6375,15 @@ include/ns3/buffer.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/tag.h:
 
+include/ns3/udp-prio-client-server-helper.h:
+
 include/ns3/global-value.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.h:
+
+/usr/include/c++/9/bits/shared_ptr_base.h:
+
+include/ns3/ethernet-trailer.h:
 
 include/ns3/neighbor-cache-helper.h:
 
@@ -6032,6 +6406,32 @@ include/ns3/internet-module.h:
 include/ns3/packet-socket-factory.h:
 
 include/ns3/object.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/generic-phy.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/object-ptr-container.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.cc:
+
+include/ns3/time-printer.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-server.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/default-simulator-impl.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/ipv4-interface.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/queue-size.h:
+
+include/ns3/tcp-tx-item.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-echo-server.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/model/tcp-socket.h:
+
+/usr/include/c++/9/bits/stl_iterator.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/matrix-array.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/three-gpp-http-variables.cc:
 
@@ -6084,6 +6484,8 @@ include/ns3/packet-loss-counter.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/system-wall-clock-ms.h:
 
 include/ns3/attribute-accessor-helper.h:
+
+include/ns3/udp-prio-client.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/hash-fnv.h:
 
@@ -6263,14 +6665,6 @@ include/ns3/deprecated.h:
 
 include/ns3/rng-seed-manager.h:
 
-include/ns3/random-variable-stream-helper.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/rng-seed-manager.h:
-
-/usr/include/c++/9/string_view:
-
-include/ns3/tuple.h:
-
 include/ns3/show-progress.h:
 
 include/ns3/udp-client-server-helper.h:
@@ -6330,12 +6724,6 @@ include/ns3/type-traits.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/pcap-file-wrapper.h:
 
 include/ns3/crc32.h:
-
-include/ns3/hash-function.h:
-
-include/ns3/mac16-address.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/9/include/stdarg.h:
 
 include/ns3/vector.h:
 
@@ -6463,10 +6851,6 @@ include/ns3/error-channel.h:
 
 include/ns3/ethernet-header.h:
 
-/usr/include/c++/9/bits/shared_ptr_base.h:
-
-include/ns3/ethernet-trailer.h:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ethernet-trailer.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/internet/helper/ipv4-static-routing-helper.h:
@@ -6503,6 +6887,10 @@ include/ns3/queue-size.h:
 
 include/ns3/data-calculator.h:
 
+include/ns3/packet-socket.h:
+
+include/ns3/basic-data-calculators.h:
+
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/helper/simple-net-device-helper.h:
 
 include/ns3/map-scheduler.h:
@@ -6522,9 +6910,3 @@ include/ns3/packet-probe.h:
 include/ns3/ipv6-address.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-probe.h:
-
-include/ns3/basic-data-calculators.h:
-
-include/ns3/packet-socket.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/packet-socket.h:

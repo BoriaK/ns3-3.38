@@ -156,6 +156,16 @@
 },
 {
   "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications",
+  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.cc",
+  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/udp-prio-client.cc"
+},
+{
+  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications",
+  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.cc",
+  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/helper/udp-prio-client-server-helper.cc"
+},
+{
+  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/applications",
   "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libapplications-obj.dir/model/packet-loss-counter.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.cc",
   "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/applications/model/packet-loss-counter.cc"
 },

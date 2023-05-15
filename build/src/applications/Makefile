@@ -334,6 +334,30 @@ helper/udp-echo-helper.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-echo-helper.cc.s
 .PHONY : helper/udp-echo-helper.cc.s
 
+helper/udp-prio-client-server-helper.o: helper/udp-prio-client-server-helper.cc.o
+.PHONY : helper/udp-prio-client-server-helper.o
+
+# target to build an object file
+helper/udp-prio-client-server-helper.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o
+.PHONY : helper/udp-prio-client-server-helper.cc.o
+
+helper/udp-prio-client-server-helper.i: helper/udp-prio-client-server-helper.cc.i
+.PHONY : helper/udp-prio-client-server-helper.i
+
+# target to preprocess a source file
+helper/udp-prio-client-server-helper.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.i
+.PHONY : helper/udp-prio-client-server-helper.cc.i
+
+helper/udp-prio-client-server-helper.s: helper/udp-prio-client-server-helper.cc.s
+.PHONY : helper/udp-prio-client-server-helper.s
+
+# target to generate assembly for a file
+helper/udp-prio-client-server-helper.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.s
+.PHONY : helper/udp-prio-client-server-helper.cc.s
+
 model/application-packet-probe.o: model/application-packet-probe.cc.o
 .PHONY : model/application-packet-probe.o
 
@@ -742,6 +766,30 @@ model/udp-echo-server.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/udp-echo-server.cc.s
 .PHONY : model/udp-echo-server.cc.s
 
+model/udp-prio-client.o: model/udp-prio-client.cc.o
+.PHONY : model/udp-prio-client.o
+
+# target to build an object file
+model/udp-prio-client.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o
+.PHONY : model/udp-prio-client.cc.o
+
+model/udp-prio-client.i: model/udp-prio-client.cc.i
+.PHONY : model/udp-prio-client.i
+
+# target to preprocess a source file
+model/udp-prio-client.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.i
+.PHONY : model/udp-prio-client.cc.i
+
+model/udp-prio-client.s: model/udp-prio-client.cc.s
+.PHONY : model/udp-prio-client.s
+
+# target to generate assembly for a file
+model/udp-prio-client.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.s
+.PHONY : model/udp-prio-client.cc.s
+
 model/udp-server.o: model/udp-server.cc.o
 .PHONY : model/udp-server.o
 
@@ -822,6 +870,9 @@ help:
 	@echo "... helper/udp-echo-helper.o"
 	@echo "... helper/udp-echo-helper.i"
 	@echo "... helper/udp-echo-helper.s"
+	@echo "... helper/udp-prio-client-server-helper.o"
+	@echo "... helper/udp-prio-client-server-helper.i"
+	@echo "... helper/udp-prio-client-server-helper.s"
 	@echo "... model/application-packet-probe.o"
 	@echo "... model/application-packet-probe.i"
 	@echo "... model/application-packet-probe.s"
@@ -873,6 +924,9 @@ help:
 	@echo "... model/udp-echo-server.o"
 	@echo "... model/udp-echo-server.i"
 	@echo "... model/udp-echo-server.s"
+	@echo "... model/udp-prio-client.o"
+	@echo "... model/udp-prio-client.i"
+	@echo "... model/udp-prio-client.s"
 	@echo "... model/udp-server.o"
 	@echo "... model/udp-server.i"
 	@echo "... model/udp-server.s"

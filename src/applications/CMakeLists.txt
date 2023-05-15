@@ -12,7 +12,9 @@ build_lib(
     model/onoff-application.cc
     # added by me ####
     model/custom_onoff-application.cc
-    model/tutorial-app.cc 
+    model/tutorial-app.cc
+    model/udp-prio-client.cc
+    helper/udp-prio-client-server-helper.cc
     ##################
     model/packet-loss-counter.cc
     model/packet-sink.cc
@@ -41,6 +43,8 @@ build_lib(
     # added by me ####
     model/custom_onoff-application.h
     model/tutorial-app.h
+    model/udp-prio-client.h
+    helper/udp-prio-client-server-helper.h
     ##################
     model/packet-loss-counter.h
     model/packet-sink.h

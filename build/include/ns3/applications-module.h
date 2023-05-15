@@ -14,6 +14,8 @@
     #include <ns3/onoff-application.h>
     #include <ns3/custom_onoff-application.h>
     #include <ns3/tutorial-app.h>
+    #include <ns3/udp-prio-client.h>
+    #include <ns3/udp-prio-client-server-helper.h>
     #include <ns3/packet-loss-counter.h>
     #include <ns3/packet-sink.h>
     #include <ns3/seq-ts-echo-header.h>
