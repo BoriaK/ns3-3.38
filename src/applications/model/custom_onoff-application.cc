@@ -347,7 +347,7 @@ void CustomOnOffApplication::SendPacket ()
       packet = Create<Packet> (m_pktSize);
     }
   
-   ////////////////// option 1: set the priority tag arbitrarly from a user requested param
+  ////////////////// option 1: set the priority tag arbitrarly from a user requested param
   
   /////////////////////// option 2: add priority tag to packet
   // create a tag.

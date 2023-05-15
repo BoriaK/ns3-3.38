@@ -13,8 +13,10 @@
     #include <ns3/bulk-send-application.h>
     #include <ns3/onoff-application.h>
     #include <ns3/custom_onoff-application.h>
+    #include <ns3/prio-onoff-application.h>
     #include <ns3/tutorial-app.h>
     #include <ns3/udp-prio-client.h>
+    #include <ns3/prio-on-off-helper.h>
     #include <ns3/udp-prio-client-server-helper.h>
     #include <ns3/packet-loss-counter.h>
     #include <ns3/packet-sink.h>

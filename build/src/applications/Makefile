@@ -262,6 +262,30 @@ helper/packet-sink-helper.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/packet-sink-helper.cc.s
 .PHONY : helper/packet-sink-helper.cc.s
 
+helper/prio-on-off-helper.o: helper/prio-on-off-helper.cc.o
+.PHONY : helper/prio-on-off-helper.o
+
+# target to build an object file
+helper/prio-on-off-helper.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/prio-on-off-helper.cc.o
+.PHONY : helper/prio-on-off-helper.cc.o
+
+helper/prio-on-off-helper.i: helper/prio-on-off-helper.cc.i
+.PHONY : helper/prio-on-off-helper.i
+
+# target to preprocess a source file
+helper/prio-on-off-helper.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/prio-on-off-helper.cc.i
+.PHONY : helper/prio-on-off-helper.cc.i
+
+helper/prio-on-off-helper.s: helper/prio-on-off-helper.cc.s
+.PHONY : helper/prio-on-off-helper.s
+
+# target to generate assembly for a file
+helper/prio-on-off-helper.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/helper/prio-on-off-helper.cc.s
+.PHONY : helper/prio-on-off-helper.cc.s
+
 helper/three-gpp-http-helper.o: helper/three-gpp-http-helper.cc.o
 .PHONY : helper/three-gpp-http-helper.o
 
@@ -501,6 +525,30 @@ model/packet-sink.s: model/packet-sink.cc.s
 model/packet-sink.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/packet-sink.cc.s
 .PHONY : model/packet-sink.cc.s
+
+model/prio-onoff-application.o: model/prio-onoff-application.cc.o
+.PHONY : model/prio-onoff-application.o
+
+# target to build an object file
+model/prio-onoff-application.cc.o:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/prio-onoff-application.cc.o
+.PHONY : model/prio-onoff-application.cc.o
+
+model/prio-onoff-application.i: model/prio-onoff-application.cc.i
+.PHONY : model/prio-onoff-application.i
+
+# target to preprocess a source file
+model/prio-onoff-application.cc.i:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/prio-onoff-application.cc.i
+.PHONY : model/prio-onoff-application.cc.i
+
+model/prio-onoff-application.s: model/prio-onoff-application.cc.s
+.PHONY : model/prio-onoff-application.s
+
+# target to generate assembly for a file
+model/prio-onoff-application.cc.s:
+	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/applications/CMakeFiles/libapplications-obj.dir/build.make src/applications/CMakeFiles/libapplications-obj.dir/model/prio-onoff-application.cc.s
+.PHONY : model/prio-onoff-application.cc.s
 
 model/seq-ts-echo-header.o: model/seq-ts-echo-header.cc.o
 .PHONY : model/seq-ts-echo-header.o
@@ -861,6 +909,9 @@ help:
 	@echo "... helper/packet-sink-helper.o"
 	@echo "... helper/packet-sink-helper.i"
 	@echo "... helper/packet-sink-helper.s"
+	@echo "... helper/prio-on-off-helper.o"
+	@echo "... helper/prio-on-off-helper.i"
+	@echo "... helper/prio-on-off-helper.s"
 	@echo "... helper/three-gpp-http-helper.o"
 	@echo "... helper/three-gpp-http-helper.i"
 	@echo "... helper/three-gpp-http-helper.s"
@@ -891,6 +942,9 @@ help:
 	@echo "... model/packet-sink.o"
 	@echo "... model/packet-sink.i"
 	@echo "... model/packet-sink.s"
+	@echo "... model/prio-onoff-application.o"
+	@echo "... model/prio-onoff-application.i"
+	@echo "... model/prio-onoff-application.s"
 	@echo "... model/seq-ts-echo-header.o"
 	@echo "... model/seq-ts-echo-header.i"
 	@echo "... model/seq-ts-echo-header.s"

@@ -34,15 +34,15 @@ ToString (uint32_t value)
   return ss.str();
 }
 
-std::string usedAlgorythm = "FB";  // "DT"/"FB"
-std::string implementation = "via_FIFO_QueueDiscs";  // "via_NetDevices"/"via_FIFO_QueueDiscs"
+std::string usedAlgorythm = "DT";  // "DT"/"FB"
+std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string dir = "./Trace_Plots/";
 std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
-std::string traffic_control_type; // "DT_FifoQueueDisc_v02"/"FB_FifoQueueDisc_v01"/"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
-std::string trace_parameter1_type; // "netDevice_"/"FIFO_QueueDisc"
+std::string traffic_control_type; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string trace_parameter1_type; // "netDevice_"/"queueDisc_""/"port_"
 
 void
-CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot with N data-sets
+CreateSingle2DPlotFile(size_t portInd, size_t queueInd, std::string priority)  // for a single plot with N data-sets
 {
   // Set up some default values for the simulation.
   // std::string dir = "./Trace_Plots/";
@@ -66,14 +66,26 @@ CreateSingle2DPlotFile(size_t ind, std::string priority)  // for a single plot w
   {
     trace_parameter1_type = "queueDisc_";
   }
+  else if (implementation.compare("via_MultiQueues") == 0)
+  {
+    trace_parameter1_type = "port_";
+  }
   
-
-  std::string trace_parameter1 = trace_parameter1_type + ToString(ind) + "_" + priority + "PriorityPacketsInQueueTrace";
+  std::string trace_parameter1;
+  if (implementation.compare("via_MultiQueues") == 0)
+  {
+    trace_parameter1 = trace_parameter1_type + ToString(portInd) + "_queue_" + ToString(queueInd) + "_" + priority + "PriorityPacketsInQueueTrace";
+  }
+  else
+  {
+    trace_parameter1 = trace_parameter1_type + ToString(portInd) + "_" + priority + "PriorityPacketsInQueueTrace";
+  }
+  
   std::string trace_parameter2 = "TrafficControl" + priority + "PriorityQueueThreshold";
   // can plot as many trace parameters as I wish
   std::string location = dir + topology + "_Topology/" + traffic_control_type + "/" + implementation + "/";
-  std::string graphicsFileName = location + "plot_" + ToString(ind) + "_" + priority + ".png";
-  std::string plotFileName = location + "plot_" + ToString(ind) + "_" + priority + ".plt";
+  std::string graphicsFileName = location + "port_" + ToString(portInd) + "_" + priority + ".png";
+  std::string plotFileName = location + "port_" + ToString(portInd) + "_" + priority + ".plt";
 
   std::string plotTitle = priority + " Priority Packets vs Threshold";
   
@@ -161,14 +173,34 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   {
     trace_parameter1_type = "queueDisc_";
   }
+  else if (implementation.compare("via_MultiQueues") == 0)
+  {
+    trace_parameter1_type = "port_";
+  }
   
-  std::string trace_parameter1_1 = trace_parameter1_type + "0_HighPriorityPacketsInQueueTrace";
+  std::string trace_parameter1_1;
+  std::string trace_parameter1_2;
+  std::string trace_parameter1_3;
+  std::string trace_parameter1_4;
+  
+  if (implementation.compare("via_MultiQueues") == 0)
+  {
+    trace_parameter1_1 = trace_parameter1_type + "0_queue_0_HighPriorityPacketsInQueueTrace";
+    trace_parameter1_2 = trace_parameter1_type + "0_queue_1_LowPriorityPacketsInQueueTrace";
+    trace_parameter1_3 = trace_parameter1_type + "1_queue_0_HighPriorityPacketsInQueueTrace";
+    trace_parameter1_4 = trace_parameter1_type + "1_queue_1_LowPriorityPacketsInQueueTrace";
+  }
+  else
+  {
+    trace_parameter1_1 = trace_parameter1_type + "0_HighPriorityPacketsInQueueTrace";
+    trace_parameter1_2 = trace_parameter1_type + "0_LowPriorityPacketsInQueueTrace";
+    trace_parameter1_3 = trace_parameter1_type + "1_HighPriorityPacketsInQueueTrace";
+    trace_parameter1_4 = trace_parameter1_type + "1_LowPriorityPacketsInQueueTrace";
+  }
+
   std::string trace_parameter2_1 = "TrafficControlHighPriorityQueueThreshold";
-  std::string trace_parameter1_2 = trace_parameter1_type + "0_LowPriorityPacketsInQueueTrace";
   std::string trace_parameter2_2 = "TrafficControlLowPriorityQueueThreshold";
-  std::string trace_parameter1_3 = trace_parameter1_type + "1_HighPriorityPacketsInQueueTrace";
   std::string trace_parameter2_3 = "TrafficControlHighPriorityQueueThreshold";
-  std::string trace_parameter1_4 = trace_parameter1_type + "1_LowPriorityPacketsInQueueTrace";
   std::string trace_parameter2_4 = "TrafficControlLowPriorityQueueThreshold";
   
   std::string location = dir + topology + "_Topology/" + traffic_control_type + "/" + implementation + "/";
@@ -228,7 +260,7 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   // add the first subplot to the total plot
   multiPlot.AddPlot(plot1);
 
-  if (implementation.compare("via_NetDevices") == 0)
+  if (implementation.compare("via_NetDevices") == 0 || implementation.compare("via_MultiQueues") == 0 )
   {
     Gnuplot plot2;
     // plot2.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79dcef0");
@@ -371,10 +403,10 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
 void
 CreateAllPlotFiles()  // create a multiplot and all the sub plots sepperatly
 {
-  CreateSingle2DPlotFile(0, "High");
-  CreateSingle2DPlotFile(0, "Low");
-  CreateSingle2DPlotFile(1, "High");
-  CreateSingle2DPlotFile(1, "Low");
+  CreateSingle2DPlotFile(0, 0, "High");
+  CreateSingle2DPlotFile(0, 1, "Low");
+  CreateSingle2DPlotFile(1, 0, "High");
+  CreateSingle2DPlotFile(1, 1, "Low");
   CreateSingle2DMultiPlotFile();
 }
 

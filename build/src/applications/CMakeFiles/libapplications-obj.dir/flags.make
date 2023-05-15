@@ -28,9 +28,13 @@ CXX_FLAGS = -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=depr
 
 # PCH options: src/applications/CMakeFiles/libapplications-obj.dir/model/custom_onoff-application.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
+# PCH options: src/applications/CMakeFiles/libapplications-obj.dir/model/prio-onoff-application.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
+
 # PCH options: src/applications/CMakeFiles/libapplications-obj.dir/model/tutorial-app.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
 # PCH options: src/applications/CMakeFiles/libapplications-obj.dir/model/udp-prio-client.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
+
+# PCH options: src/applications/CMakeFiles/libapplications-obj.dir/helper/prio-on-off-helper.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 
 # PCH options: src/applications/CMakeFiles/libapplications-obj.dir/helper/udp-prio-client-server-helper.cc.o_OPTIONS = -Winvalid-pch;-include;/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx
 

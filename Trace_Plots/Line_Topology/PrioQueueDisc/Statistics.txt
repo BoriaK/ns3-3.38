@@ -1,0 +1,25 @@
+Topology: 2In2Out
+Queueing Algorithm: PrioQueueDisc
+Application: PrioOnOff
+
+*** Flow monitor statistics ***
+  Tx Packets/Bytes:   780 / 820560
+  Rx Packets/Bytes:   129 / 135708
+  Packets/Bytes Dropped by Queue Disc:   556 / 584912
+  Packets/Bytes Dropped by NetDevice:   0 / 0
+  Throughput: 0.101382 Mbps
+
+*** TC Layer statistics ***
+Queue Disceplene 0:
+
+Packets/Bytes received: 780 / 820560
+Packets/Bytes enqueued: 224 / 235648
+Packets/Bytes dequeued: 224 / 235648
+Packets/Bytes requeued: 0 / 0
+Packets/Bytes dropped: 556 / 584912
+Packets/Bytes dropped before enqueue: 556 / 584912
+  (Dropped by child queue disc) Queue disc limit exceeded: 556 / 584912
+Packets/Bytes dropped after dequeue: 0 / 0
+Packets/Bytes sent: 224 / 235648
+Packets/Bytes marked: 0 / 0
+
