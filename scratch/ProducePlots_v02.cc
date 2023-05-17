@@ -34,8 +34,8 @@ ToString (uint32_t value)
   return ss.str();
 }
 
-std::string usedAlgorythm = "DT";  // "DT"/"FB"
-std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
+std::string usedAlgorythm = "FB";  // "DT"/"FB"
+std::string implementation = "via_FIFO_QueueDiscs";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string dir = "./Trace_Plots/";
 std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
 std::string traffic_control_type; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"

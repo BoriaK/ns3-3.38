@@ -73,7 +73,7 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_DT_v01"; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string traffic_control_type = "SharedBuffer_FB_v01"; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
 std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string usedAlgorythm;  // "DT"/"FB"
 
@@ -483,7 +483,6 @@ int main (int argc, char *argv[])
         {
           // Install UDP application on the sender 
           // send packet flows from servers with even indexes to spine 0, and from servers with odd indexes to spine 1.
-          // UdpClientHelper clientHelper;
 
           UdpClientHelper clientHelperP0 (socketAddressP0);
           clientHelperP0.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
