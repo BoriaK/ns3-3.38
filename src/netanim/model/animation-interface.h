@@ -38,7 +38,7 @@
 #include "ns3/random-variable-stream.h"
 #include "ns3/rectangle.h"
 #include "ns3/simulator.h"
-#include "ns3/uan-phy-gen.h"
+// #include "ns3/uan-phy-gen.h"
 #include "ns3/wifi-phy.h"
 
 #include <cstdio>

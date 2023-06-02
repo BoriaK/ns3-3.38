@@ -342,22 +342,6 @@ src/netanim/CMakeFiles/libnetanim-obj.dir/model/animation-interface.cc.o: CMakeF
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/model/node-list.h \
   include/ns3/rectangle.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/mobility/model/rectangle.h \
-  include/ns3/uan-phy-gen.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-gen.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy.h \
-  include/ns3/device-energy-model.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/model/device-energy-model.h \
-  include/ns3/uan-mac.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac.h \
-  include/ns3/mac8-address.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/mac8-address.h \
-  include/ns3/uan-prop-model.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model.h \
-  include/ns3/uan-transducer.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-tx-mode.h \
-  include/ns3/uan-tx-mode.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-tx-mode.h \
   include/ns3/wifi-phy.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-phy.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/phy-entity.h \
@@ -394,6 +378,8 @@ src/netanim/CMakeFiles/libnetanim-obj.dir/model/animation-interface.cc.o: CMakeF
   include/ns3/energy-source.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/model/energy-source.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/model/device-energy-model-container.h \
+  include/ns3/device-energy-model.h \
+  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/model/device-energy-model.h \
   include/ns3/energy-harvester.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/model/energy-harvester.h \
   include/ns3/ipv6.h \
@@ -432,8 +418,6 @@ src/netanim/CMakeFiles/libnetanim-obj.dir/model/animation-interface.cc.o: CMakeF
   /usr/include/c++/9/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/9/bits/range_access.h \
   /usr/include/c++/9/bits/deque.tcc \
-  include/ns3/uan-net-device.h \
-  /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-net-device.h \
   include/ns3/wifi-mac-header.h \
   /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mac-header.h \
   include/ns3/wifi-mac.h \
@@ -501,8 +485,6 @@ include/ns3/wifi-mac.h:
 
 include/ns3/wifi-mac-header.h:
 
-include/ns3/uan-net-device.h:
-
 /usr/include/c++/9/bits/deque.tcc:
 
 /usr/include/c++/9/bits/range_access.h:
@@ -567,11 +549,19 @@ include/ns3/animation-interface.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/he/he-ru.h:
 
+include/ns3/fatal-error.h:
+
 include/ns3/abort.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-standards.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-phy-common.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-value.h:
+
+include/ns3/device-energy-model.h:
+
+/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mpdu-type.h:
 
@@ -580,32 +570,6 @@ include/ns3/abort.h:
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/energy/helper/energy-source-container.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-phy.h:
-
-include/ns3/fatal-error.h:
-
-include/ns3/uan-tx-mode.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-tx-mode.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer.h:
-
-include/ns3/uan-transducer.h:
-
-include/ns3/uan-prop-model.h:
-
-include/ns3/uan-mac.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/core/model/traced-value.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/wifi/model/wifi-mode.h:
-
-include/ns3/device-energy-model.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-gen.h:
-
-include/ns3/uan-phy-gen.h:
 
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/mobility/model/rectangle.h:
 
@@ -773,8 +737,6 @@ include/ns3/header.h:
 
 /usr/include/c++/9/bits/localefwd.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-net-device.h:
-
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/network/utils/ipv4-address.h:
 
 include/ns3/node.h:
@@ -794,8 +756,6 @@ include/ns3/lte-enb-net-device.h:
 include/ns3/angles.h:
 
 include/ns3/deprecated.h:
-
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac.h:
 
 include/ns3/ipv4-l3-protocol.h:
 
@@ -861,8 +821,6 @@ include/ns3/lte-ue-phy-sap.h:
 
 include/ns3/wifi-spectrum-value-helper.h:
 
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model.h:
-
 /usr/include/x86_64-linux-gnu/c++/9/bits/messages_members.h:
 
 /usr/include/c++/9/type_traits:
@@ -898,8 +856,6 @@ include/ns3/spectrum-interference.h:
 /usr/include/stdio.h:
 
 /usr/include/c++/9/bits/stl_iterator_base_types.h:
-
-include/ns3/mac8-address.h:
 
 /usr/include/stdc-predef.h:
 

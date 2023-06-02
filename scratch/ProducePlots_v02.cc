@@ -35,7 +35,7 @@ ToString (uint32_t value)
 }
 
 std::string usedAlgorythm = "FB";  // "DT"/"FB"
-std::string implementation = "via_FIFO_QueueDiscs";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
+std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string dir = "./Trace_Plots/";
 std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
 std::string traffic_control_type; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
@@ -260,7 +260,7 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   // add the first subplot to the total plot
   multiPlot.AddPlot(plot1);
 
-  if (implementation.compare("via_NetDevices") == 0 || implementation.compare("via_MultiQueues") == 0 )
+  if (implementation.compare("via_MultiQueues") == 0 )
   {
     Gnuplot plot2;
     // plot2.SetTitle("Low Priority Packets vs Threshold on NetDevice 0x5569c79dcef0");

@@ -22,7 +22,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/ns3wifi/wifi-ac-mapping-test-suite.cc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-ac-mapping-test-suite.cc.o" "gcc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-ac-mapping-test-suite.cc.o.d"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/ns3wifi/wifi-issue-211-test-suite.cc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-issue-211-test-suite.cc.o" "gcc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-issue-211-test-suite.cc.o.d"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/ns3wifi/wifi-msdu-aggregator-test-suite.cc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-msdu-aggregator-test-suite.cc.o" "gcc" "src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-msdu-aggregator-test-suite.cc.o.d"
-  "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/traced/traced-callback-typedef-test-suite.cc" "src/test/CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o" "gcc" "src/test/CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o.d"
   "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/traced/traced-value-callback-typedef-test-suite.cc" "src/test/CMakeFiles/libtest.dir/traced/traced-value-callback-typedef-test-suite.cc.o" "gcc" "src/test/CMakeFiles/libtest.dir/traced/traced-value-callback-typedef-test-suite.cc.o.d"
   )
 

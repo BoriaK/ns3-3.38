@@ -512,30 +512,6 @@ ns3wifi/wifi-msdu-aggregator-test-suite.cc.s:
 	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/libtest.dir/build.make src/test/CMakeFiles/libtest.dir/ns3wifi/wifi-msdu-aggregator-test-suite.cc.s
 .PHONY : ns3wifi/wifi-msdu-aggregator-test-suite.cc.s
 
-traced/traced-callback-typedef-test-suite.o: traced/traced-callback-typedef-test-suite.cc.o
-.PHONY : traced/traced-callback-typedef-test-suite.o
-
-# target to build an object file
-traced/traced-callback-typedef-test-suite.cc.o:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/libtest.dir/build.make src/test/CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o
-.PHONY : traced/traced-callback-typedef-test-suite.cc.o
-
-traced/traced-callback-typedef-test-suite.i: traced/traced-callback-typedef-test-suite.cc.i
-.PHONY : traced/traced-callback-typedef-test-suite.i
-
-# target to preprocess a source file
-traced/traced-callback-typedef-test-suite.cc.i:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/libtest.dir/build.make src/test/CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.i
-.PHONY : traced/traced-callback-typedef-test-suite.cc.i
-
-traced/traced-callback-typedef-test-suite.s: traced/traced-callback-typedef-test-suite.cc.s
-.PHONY : traced/traced-callback-typedef-test-suite.s
-
-# target to generate assembly for a file
-traced/traced-callback-typedef-test-suite.cc.s:
-	cd /home/bk/workspace/ns-allinone-3.38/ns-3.38/build && $(MAKE) $(MAKESILENT) -f src/test/CMakeFiles/libtest.dir/build.make src/test/CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.s
-.PHONY : traced/traced-callback-typedef-test-suite.cc.s
-
 traced/traced-value-callback-typedef-test-suite.o: traced/traced-value-callback-typedef-test-suite.cc.o
 .PHONY : traced/traced-value-callback-typedef-test-suite.o
 
@@ -615,9 +591,6 @@ help:
 	@echo "... ns3wifi/wifi-msdu-aggregator-test-suite.o"
 	@echo "... ns3wifi/wifi-msdu-aggregator-test-suite.i"
 	@echo "... ns3wifi/wifi-msdu-aggregator-test-suite.s"
-	@echo "... traced/traced-callback-typedef-test-suite.o"
-	@echo "... traced/traced-callback-typedef-test-suite.i"
-	@echo "... traced/traced-callback-typedef-test-suite.s"
 	@echo "... traced/traced-value-callback-typedef-test-suite.o"
 	@echo "... traced/traced-value-callback-typedef-test-suite.i"
 	@echo "... traced/traced-value-callback-typedef-test-suite.s"

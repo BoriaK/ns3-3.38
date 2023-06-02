@@ -33,7 +33,7 @@ CMAKE_AR:FILEPATH=/usr/bin/ar
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
-CMAKE_COLOR_MAKEFILE:BOOL=ON
+CMAKE_COLOR_MAKEFILE:BOOL=TRUE
 
 //No help, variable specified on the command line.
 CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
@@ -237,10 +237,10 @@ CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //If set, runtime paths are not added when installing shared libraries,
 // but are added when building.
-CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
+CMAKE_SKIP_INSTALL_RPATH:BOOL=FALSE
 
 //If set, runtime paths are not added when using shared libraries.
-CMAKE_SKIP_RPATH:BOOL=NO
+CMAKE_SKIP_RPATH:BOOL=FALSE
 
 //Flags used by the linker during the creation of static libraries
 // during all build types.
@@ -289,6 +289,29 @@ EPSTOPDF:FILEPATH=EPSTOPDF-NOTFOUND
 //The directory containing a CMake configuration file for Eigen3.
 Eigen3_DIR:PATH=Eigen3_DIR-NOTFOUND
 
+//Directory under which to collect all populated content
+FETCHCONTENT_BASE_DIR:PATH=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/_deps
+
+//Disables all attempts to download or update content and assumes
+// source dirs already exist
+FETCHCONTENT_FULLY_DISCONNECTED:BOOL=FALSE
+
+//Enables QUIET option for all content population
+FETCHCONTENT_QUIET:BOOL=TRUE
+
+//When not empty, overrides where to find pre-populated content
+// for netanim
+FETCHCONTENT_SOURCE_DIR_NETANIM:PATH=
+
+//Enables UPDATE_DISCONNECTED behavior for all content population
+FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=FALSE
+
+//Enables UPDATE_DISCONNECTED behavior just for population of netanim
+FETCHCONTENT_UPDATES_DISCONNECTED_NETANIM:BOOL=FALSE
+
+//Git command line client
+GIT_EXECUTABLE:FILEPATH=/usr/bin/git
+
 //Path to a library.
 GSL_CBLAS_LIBRARY:FILEPATH=GSL_CBLAS_LIBRARY-NOTFOUND
 
@@ -332,77 +355,77 @@ LLD:FILEPATH=LLD-NOTFOUND
 MOLD:FILEPATH=MOLD-NOTFOUND
 
 //Enable assert on failure
-NS3_ASSERT:BOOL=OFF
+NS3_ASSERT:BOOL=TRUE
 
 //Value Computed by CMake
 NS3_BINARY_DIR:STATIC=/home/bk/workspace/ns-allinone-3.38/ns-3.38/build
 
 //Use Ccache to speed up recompilation
-NS3_CCACHE:BOOL=ON
+NS3_CCACHE:BOOL=TRUE
 
 //Enforce cody style with clang-format
-NS3_CLANG_FORMAT:BOOL=OFF
+NS3_CLANG_FORMAT:BOOL=FALSE
 
 //Use clang-tidy static analysis
-NS3_CLANG_TIDY:BOOL=OFF
+NS3_CLANG_TIDY:BOOL=FALSE
 
 //Collect compilation statistics to analyze the build process
-NS3_CLANG_TIMETRACE:BOOL=OFF
+NS3_CLANG_TIMETRACE:BOOL=FALSE
 
 //Colorize CMake messages
-NS3_COLORED_OUTPUT:BOOL=OFF
+NS3_COLORED_OUTPUT:BOOL=FALSE
 
 //Enable code coverage measurements and report generation
-NS3_COVERAGE:BOOL=OFF
+NS3_COVERAGE:BOOL=FALSE
 
 //Zero lcov counters before running. Requires NS3_COVERAGE=ON
-NS3_COVERAGE_ZERO_COUNTERS:BOOL=OFF
+NS3_COVERAGE_ZERO_COUNTERS:BOOL=FALSE
 
 //Enable DES Metrics event collection
-NS3_DES_METRICS:BOOL=OFF
+NS3_DES_METRICS:BOOL=FALSE
 
 //List of modules to disable (e.g. lte;wimax;wave)
 NS3_DISABLED_MODULES:STRING=
 
 //Enable fd-net-device DPDK features
-NS3_DPDK:BOOL=OFF
+NS3_DPDK:BOOL=FALSE
 
 //Build with Eigen support
-NS3_EIGEN:BOOL=ON
+NS3_EIGEN:BOOL=TRUE
 
 //Build with emulation support
-NS3_EMU:BOOL=ON
+NS3_EMU:BOOL=TRUE
 
 //List of modules to enable (e.g. core;network;internet)
 NS3_ENABLED_MODULES:STRING=
 
 //Embed version info into libraries
-NS3_ENABLE_BUILD_VERSION:BOOL=OFF
+NS3_ENABLE_BUILD_VERSION:BOOL=FALSE
 
 //Set executables ownership to root and enable the SUID flag
-NS3_ENABLE_SUDO:BOOL=OFF
+NS3_ENABLE_SUDO:BOOL=FALSE
 
 //Enable examples to be built
-NS3_EXAMPLES:BOOL=OFF
+NS3_EXAMPLES:BOOL=FALSE
 
 //Use Mold or LLD to speed up linking if available
-NS3_FAST_LINKERS:BOOL=ON
+NS3_FAST_LINKERS:BOOL=TRUE
 
 //Fetch Brite, Click and Openflow dependencies
-NS3_FETCH_OPTIONAL_COMPONENTS:BOOL=OFF
+NS3_FETCH_OPTIONAL_COMPONENTS:BOOL=FALSE
 
 //List of modules that should have their examples and tests built
 // (e.g. lte;wifi)
 NS3_FILTER_MODULE_EXAMPLES_AND_TESTS:STRING=
 
 //Build with GSL support
-NS3_GSL:BOOL=ON
+NS3_GSL:BOOL=TRUE
 
 //Build with GTK3 support
-NS3_GTK3:BOOL=ON
+NS3_GTK3:BOOL=TRUE
 
 //Use IWYU to determine unnecessary headers included
-NS3_INCLUDE_WHAT_YOU_USE:BOOL=OFF
+NS3_INCLUDE_WHAT_YOU_USE:BOOL=FALSE
 
 //Int64x64 implementation
 NS3_INT64X64:STRING=INT128
@@ -411,75 +434,75 @@ NS3_INT64X64:STRING=INT128
 NS3_IS_TOP_LEVEL:STATIC=ON
 
 //Build with link-time optimization
-NS3_LINK_TIME_OPTIMIZATION:BOOL=OFF
+NS3_LINK_TIME_OPTIMIZATION:BOOL=FALSE
 
 //Use LWYU to determine unnecessary linked libraries
-NS3_LINK_WHAT_YOU_USE:BOOL=OFF
+NS3_LINK_WHAT_YOU_USE:BOOL=FALSE
 
 //Enable logging to be built
-NS3_LOG:BOOL=OFF
+NS3_LOG:BOOL=FALSE
 
 //Build a single shared ns-3 library and link it against executables
-NS3_MONOLIB:BOOL=OFF
+NS3_MONOLIB:BOOL=FALSE
 
 //Build with MPI support
-NS3_MPI:BOOL=OFF
+NS3_MPI:BOOL=FALSE
 
 //Build with -march=native -mtune=native
-NS3_NATIVE_OPTIMIZATIONS:BOOL=OFF
+NS3_NATIVE_OPTIMIZATIONS:BOOL=FALSE
 
 //Build netanim
-NS3_NETANIM:BOOL=OFF
+NS3_NETANIM:BOOL=FALSE
 
 //Use ninjatracing to convert Ninja's build log to the about://tracing
 // format
-NS3_NINJA_TRACING:BOOL=OFF
+NS3_NINJA_TRACING:BOOL=FALSE
 
 //Directory to store built artifacts
 NS3_OUTPUT_DIRECTORY:STRING=
 
 //Precompile module headers to speed up compilation
-NS3_PRECOMPILE_HEADERS:BOOL=ON
+NS3_PRECOMPILE_HEADERS:BOOL=TRUE
 
 //Build ns-3 python bindings
-NS3_PYTHON_BINDINGS:BOOL=OFF
+NS3_PYTHON_BINDINGS:BOOL=FALSE
 
 //Export all third-party libraries
 //\nand include directories to ns-3 module consumers
-NS3_REEXPORT_THIRD_PARTY_LIBRARIES:BOOL=ON
+NS3_REEXPORT_THIRD_PARTY_LIBRARIES:BOOL=TRUE
 
 //Build with address, leak and undefined sanitizers
-NS3_SANITIZE:BOOL=OFF
+NS3_SANITIZE:BOOL=FALSE
 
 //Build with memory sanitizer
-NS3_SANITIZE_MEMORY:BOOL=OFF
+NS3_SANITIZE_MEMORY:BOOL=FALSE
 
 //Value Computed by CMake
 NS3_SOURCE_DIR:STATIC=/home/bk/workspace/ns-allinone-3.38/ns-3.38
 
 //Build with SQLite support
-NS3_SQLITE:BOOL=ON
+NS3_SQLITE:BOOL=TRUE
 
 //Build a static ns-3 library and link it against executables
-NS3_STATIC:BOOL=OFF
+NS3_STATIC:BOOL=FALSE
 
 //Build with Tap support
-NS3_TAP:BOOL=ON
+NS3_TAP:BOOL=TRUE
 
 //Enable tests to be built
-NS3_TESTS:BOOL=OFF
+NS3_TESTS:BOOL=FALSE
 
 //Print additional build system messages
-NS3_VERBOSE:BOOL=OFF
+NS3_VERBOSE:BOOL=FALSE
 
 //Build visualizer module
-NS3_VISUALIZER:BOOL=ON
+NS3_VISUALIZER:BOOL=TRUE
 
 //Enable compiler warnings
-NS3_WARNINGS:BOOL=ON
+NS3_WARNINGS:BOOL=TRUE
 
 //Treat warnings as errors. Requires NS3_WARNINGS=ON
-NS3_WARNINGS_AS_ERRORS:BOOL=ON
+NS3_WARNINGS_AS_ERRORS:BOOL=TRUE
 
 //Build with brite support
 NS3_WITH_BRITE:PATH=
@@ -508,17 +531,22 @@ ProcessorCount_cmd_nproc:FILEPATH=/usr/bin/nproc
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
+QT_QMAKE_EXECUTABLE:FILEPATH=NOTFOUND
+
+//The directory containing a CMake configuration file for Qt5.
+Qt5_DIR:PATH=Qt5_DIR-NOTFOUND
+
 //Path to sphinx-build executable
 SPHINX_EXECUTABLE:FILEPATH=SPHINX_EXECUTABLE-NOTFOUND
 
 //Output standalone HTML files
-SPHINX_OUTPUT_HTML:BOOL=ON
+SPHINX_OUTPUT_HTML:BOOL=TRUE
 
 //Output man pages
-SPHINX_OUTPUT_MAN:BOOL=ON
+SPHINX_OUTPUT_MAN:BOOL=TRUE
 
 //When building documentation treat warnings as errors
-SPHINX_WARNINGS_AS_ERRORS:BOOL=ON
+SPHINX_WARNINGS_AS_ERRORS:BOOL=TRUE
 
 //Path to a file.
 SQLite3_header_internal_sqlite3.h:FILEPATH=SQLite3_header_internal_sqlite3.h-NOTFOUND
@@ -605,7 +633,7 @@ libmesh_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libinternet;genera
 libmobility_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libnetwork;general;-lpthread;general;-Wl,--as-needed;
 
 //Dependencies for the target
-libnetanim_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libinternet;general;libmobility;general;libwimax;general;libwifi;general;libcsma;general;liblte;general;libuan;general;libenergy;general;liblr-wpan;general;libwave;general;libpoint-to-point-layout;general;-lpthread;general;-Wl,--as-needed;
+libnetanim_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libinternet;general;libmobility;general;libwimax;general;libwifi;general;libcsma;general;liblte;general;libenergy;general;liblr-wpan;general;libwave;general;libpoint-to-point-layout;general;-lpthread;general;-Wl,--as-needed;
 
 //Dependencies for the target
 libnetwork_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libcore;general;libstats;general;-lpthread;general;-Wl,--as-needed;
@@ -642,9 +670,6 @@ libtopology-read_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libnetwor
 
 //Dependencies for the target
 libtraffic-control_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libnetwork;general;libcore;general;-lpthread;general;-Wl,--as-needed;
-
-//Dependencies for the target
-libuan_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libnetwork;general;libmobility;general;libenergy;general;-lpthread;general;-Wl,--as-needed;
 
 //Dependencies for the target
 libvirtual-net-device_LIB_DEPENDS:STATIC=general;-Wl,--no-as-needed;general;libnetwork;general;-lpthread;general;-Wl,--as-needed;
@@ -813,7 +838,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=48
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=47
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -885,6 +910,8 @@ ENABLE_TAPNETDEV:INTERNAL=True
 EPSTOPDF-ADVANCED:INTERNAL=1
 //Test FILESYSTEM_LIBRARY_IS_LINKED
 FILESYSTEM_LIBRARY_IS_LINKED:INTERNAL=1
+//ADVANCED property for variable: GIT_EXECUTABLE
+GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GSL_CBLAS_LIBRARY
 GSL_CBLAS_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GSL_CBLAS_LIBRARY_DEBUG
@@ -1307,12 +1334,6 @@ libtraffic-control:INTERNAL=libtraffic-control
 //ADVANCED property for variable: libtraffic-control-obj
 libtraffic-control-obj-ADVANCED:INTERNAL=1
 libtraffic-control-obj:INTERNAL=libtraffic-control-obj
-//ADVANCED property for variable: libuan
-libuan-ADVANCED:INTERNAL=1
-libuan:INTERNAL=libuan
-//ADVANCED property for variable: libuan-obj
-libuan-obj-ADVANCED:INTERNAL=1
-libuan-obj:INTERNAL=libuan-obj
 //ADVANCED property for variable: libvirtual-net-device
 libvirtual-net-device-ADVANCED:INTERNAL=1
 libvirtual-net-device:INTERNAL=libvirtual-net-device
@@ -1346,7 +1367,7 @@ libwimax-obj:INTERNAL=libwimax-obj
 //ADVANCED property for variable: ns3-all-enabled-modules
 ns3-all-enabled-modules-ADVANCED:INTERNAL=1
 //list with all enabled modules
-ns3-all-enabled-modules:INTERNAL=antenna;aodv;applications;bridge;brite;buildings;click;config-store;core;csma;csma-layout;dsdv;dsr;energy;fd-net-device;flow-monitor;internet;internet-apps;lr-wpan;lte;mesh;mobility;mpi;netanim;network;nix-vector-routing;olsr;openflow;point-to-point;point-to-point-layout;propagation;sixlowpan;spectrum;stats;tap-bridge;test;topology-read;traffic-control;uan;virtual-net-device;visualizer;wave;wifi;wimax;
+ns3-all-enabled-modules:INTERNAL=antenna;aodv;applications;bridge;brite;buildings;click;config-store;core;csma;csma-layout;dsdv;dsr;energy;fd-net-device;flow-monitor;internet;internet-apps;lr-wpan;lte;mesh;mobility;mpi;netanim;network;nix-vector-routing;olsr;openflow;point-to-point;point-to-point-layout;propagation;sixlowpan;spectrum;stats;tap-bridge;test;topology-read;traffic-control;virtual-net-device;visualizer;wave;wifi;wimax;
 //ADVANCED property for variable: ns3-execs
 ns3-execs-ADVANCED:INTERNAL=1
 //list of c++ executables
@@ -1358,11 +1379,11 @@ ns3-execs-clean:INTERNAL=perf-io;print-introspected-doxygen;bench-packets;bench-
 //ADVANCED property for variable: ns3-external-libs
 ns3-external-libs-ADVANCED:INTERNAL=1
 //list of non-ns libraries to link to NS3_STATIC and NS3_MONOLIB
-ns3-external-libs:INTERNAL=-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;
+ns3-external-libs:INTERNAL=-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;-lpthread;
 //ADVANCED property for variable: ns3-libs
 ns3-libs-ADVANCED:INTERNAL=1
 //list of processed upstream modules
-ns3-libs:INTERNAL=libwimax;libwifi;libwave;libvirtual-net-device;libuan;libtraffic-control;libtopology-read;libtap-bridge;libstats;libspectrum;libsixlowpan;libpropagation;libpoint-to-point-layout;libpoint-to-point;libolsr;libnix-vector-routing;libnetwork;libnetanim;libmobility;libmesh;liblte;liblr-wpan;libinternet-apps;libinternet;libflow-monitor;libfd-net-device;libenergy;libdsr;libdsdv;libcsma-layout;libcsma;libcore;libconfig-store;libbuildings;libbridge;libapplications;libaodv;libantenna;
+ns3-libs:INTERNAL=libwimax;libwifi;libwave;libvirtual-net-device;libtraffic-control;libtopology-read;libtap-bridge;libstats;libspectrum;libsixlowpan;libpropagation;libpoint-to-point-layout;libpoint-to-point;libolsr;libnix-vector-routing;libnetwork;libnetanim;libmobility;libmesh;liblte;liblr-wpan;libinternet-apps;libinternet;libflow-monitor;libfd-net-device;libenergy;libdsr;libdsdv;libcsma-layout;libcsma;libcore;libconfig-store;libbuildings;libbridge;libapplications;libaodv;libantenna;
 //ADVANCED property for variable: openflow_header_internal_openflow.h
 openflow_header_internal_openflow.h-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: openflow_library_internal_openflow

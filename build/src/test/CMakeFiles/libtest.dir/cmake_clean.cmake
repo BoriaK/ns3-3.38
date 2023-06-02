@@ -27,8 +27,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/libtest.dir/ns3wifi/wifi-issue-211-test-suite.cc.o.d"
   "CMakeFiles/libtest.dir/ns3wifi/wifi-msdu-aggregator-test-suite.cc.o"
   "CMakeFiles/libtest.dir/ns3wifi/wifi-msdu-aggregator-test-suite.cc.o.d"
-  "CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o"
-  "CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o.d"
   "CMakeFiles/libtest.dir/traced/traced-value-callback-typedef-test-suite.cc.o"
   "CMakeFiles/libtest.dir/traced/traced-value-callback-typedef-test-suite.cc.o.d"
 )

@@ -362,16 +362,6 @@ set_target_properties(ns3::libtraffic-control PROPERTIES
 list(APPEND _cmake_import_check_targets ns3::libtraffic-control )
 list(APPEND _cmake_import_check_files_for_ns3::libtraffic-control "${_IMPORT_PREFIX}/lib/libns3.38-traffic-control-debug.so" )
 
-# Import target "ns3::libuan" for configuration "Debug"
-set_property(TARGET ns3::libuan APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(ns3::libuan PROPERTIES
-  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/libns3.38-uan-debug.so"
-  IMPORTED_SONAME_DEBUG "libns3.38-uan-debug.so"
-  )
-
-list(APPEND _cmake_import_check_targets ns3::libuan )
-list(APPEND _cmake_import_check_files_for_ns3::libuan "${_IMPORT_PREFIX}/lib/libns3.38-uan-debug.so" )
-
 # Import target "ns3::libvirtual-net-device" for configuration "Debug"
 set_property(TARGET ns3::libvirtual-net-device APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(ns3::libvirtual-net-device PROPERTIES

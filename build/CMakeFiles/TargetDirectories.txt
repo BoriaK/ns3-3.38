@@ -19,7 +19,6 @@
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_wifi.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_wave.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_virtual-net-device.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_uan.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_traffic-control.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_topology-read.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/uninstall_pkgconfig_tap-bridge.dir
@@ -360,14 +359,6 @@
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/install.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/install/local.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control/CMakeFiles/install/strip.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/libuan-obj.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/libuan.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/edit_cache.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/rebuild_cache.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/list_install_components.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/install.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/install/local.dir
-/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan/CMakeFiles/install/strip.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/virtual-net-device/CMakeFiles/libvirtual-net-device-obj.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/virtual-net-device/CMakeFiles/libvirtual-net-device.dir
 /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/virtual-net-device/CMakeFiles/edit_cache.dir

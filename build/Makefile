@@ -436,19 +436,6 @@ uninstall_pkgconfig_virtual-net-device/fast:
 .PHONY : uninstall_pkgconfig_virtual-net-device/fast
 
 #=============================================================================
-# Target rules for targets named uninstall_pkgconfig_uan
-
-# Build rule for target.
-uninstall_pkgconfig_uan: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall_pkgconfig_uan
-.PHONY : uninstall_pkgconfig_uan
-
-# fast build rule for target.
-uninstall_pkgconfig_uan/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/uninstall_pkgconfig_uan.dir/build.make CMakeFiles/uninstall_pkgconfig_uan.dir/build
-.PHONY : uninstall_pkgconfig_uan/fast
-
-#=============================================================================
 # Target rules for targets named uninstall_pkgconfig_traffic-control
 
 # Build rule for target.
@@ -1827,32 +1814,6 @@ libtraffic-control/fast:
 .PHONY : libtraffic-control/fast
 
 #=============================================================================
-# Target rules for targets named libuan-obj
-
-# Build rule for target.
-libuan-obj: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libuan-obj
-.PHONY : libuan-obj
-
-# fast build rule for target.
-libuan-obj/fast:
-	$(MAKE) $(MAKESILENT) -f src/uan/CMakeFiles/libuan-obj.dir/build.make src/uan/CMakeFiles/libuan-obj.dir/build
-.PHONY : libuan-obj/fast
-
-#=============================================================================
-# Target rules for targets named libuan
-
-# Build rule for target.
-libuan: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libuan
-.PHONY : libuan
-
-# fast build rule for target.
-libuan/fast:
-	$(MAKE) $(MAKESILENT) -f src/uan/CMakeFiles/libuan.dir/build.make src/uan/CMakeFiles/libuan.dir/build
-.PHONY : libuan/fast
-
-#=============================================================================
 # Target rules for targets named libvirtual-net-device-obj
 
 # Build rule for target.
@@ -2367,7 +2328,6 @@ help:
 	@echo "... uninstall_pkgconfig_tap-bridge"
 	@echo "... uninstall_pkgconfig_topology-read"
 	@echo "... uninstall_pkgconfig_traffic-control"
-	@echo "... uninstall_pkgconfig_uan"
 	@echo "... uninstall_pkgconfig_virtual-net-device"
 	@echo "... uninstall_pkgconfig_wave"
 	@echo "... uninstall_pkgconfig_wifi"
@@ -2445,8 +2405,6 @@ help:
 	@echo "... libtopology-read-obj"
 	@echo "... libtraffic-control"
 	@echo "... libtraffic-control-obj"
-	@echo "... libuan"
-	@echo "... libuan-obj"
 	@echo "... libvirtual-net-device"
 	@echo "... libvirtual-net-device-obj"
 	@echo "... libwave"

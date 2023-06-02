@@ -3541,11 +3541,6 @@
 },
 {
   "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/test",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -o CMakeFiles/libtest.dir/traced/traced-callback-typedef-test-suite.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/traced/traced-callback-typedef-test-suite.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/traced/traced-callback-typedef-test-suite.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/test",
   "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -o CMakeFiles/libtest.dir/ns3tcp/ns3tcp-socket-writer.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/ns3tcp/ns3tcp-socket-writer.cc",
   "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/test/ns3tcp/ns3tcp-socket-writer.cc"
 },
@@ -3703,121 +3698,6 @@
   "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/traffic-control",
   "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libtraffic-control-obj.dir/model/round-robin-prio-queue-disc.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/round-robin-prio-queue-disc.cc",
   "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/traffic-control/model/round-robin-prio-queue-disc.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/helper/acoustic-modem-energy-model-helper.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/helper/acoustic-modem-energy-model-helper.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/helper/acoustic-modem-energy-model-helper.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/helper/uan-helper.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/helper/uan-helper.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/helper/uan-helper.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/acoustic-modem-energy-model.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/acoustic-modem-energy-model.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/acoustic-modem-energy-model.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-channel.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-channel.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-channel.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-header-common.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-header-common.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-header-common.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-header-rc.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-header-rc.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-header-rc.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-mac-aloha.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-aloha.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-aloha.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-mac-cw.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-cw.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-cw.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-mac-rc-gw.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-rc-gw.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-rc-gw.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-mac-rc.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-rc.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac-rc.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-mac.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-mac.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-net-device.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-net-device.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-net-device.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-noise-model-default.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-noise-model-default.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-noise-model-default.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-noise-model.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-noise-model.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-noise-model.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-phy-dual.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-dual.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-dual.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-phy-gen.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-gen.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy-gen.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-phy.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-phy.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-prop-model-ideal.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model-ideal.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model-ideal.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-prop-model-thorp.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model-thorp.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model-thorp.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-prop-model.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-prop-model.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-transducer-hd.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer-hd.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer-hd.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-transducer.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-transducer.cc"
-},
-{
-  "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/uan",
-  "command": "/usr/bin/g++ -DNS3_ASSERT_ENABLE -DNS3_BUILD_PROFILE_DEBUG -DNS3_LOG_ENABLE -DPROJECT_SOURCE_PATH=\\\"/home/bk/workspace/ns-allinone-3.38/ns-3.38\\\" -D__LINUX__ -I/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/include -g -fPIC   -fno-semantic-interposition -Wall -Werror -Wno-error=deprecated-declarations -std=gnu++17 -Winvalid-pch -include /home/bk/workspace/ns-allinone-3.38/ns-3.38/build/CMakeFiles/stdlib_pch-debug.dir/cmake_pch.hxx -o CMakeFiles/libuan-obj.dir/model/uan-tx-mode.cc.o -c /home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-tx-mode.cc",
-  "file": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/src/uan/model/uan-tx-mode.cc"
 },
 {
   "directory": "/home/bk/workspace/ns-allinone-3.38/ns-3.38/build/src/virtual-net-device",
