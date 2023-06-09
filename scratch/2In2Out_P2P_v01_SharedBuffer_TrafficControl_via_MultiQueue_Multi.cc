@@ -341,9 +341,9 @@ int main (int argc, char *argv[])
 
     TrafficControlHelper tch;
     // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    // uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
+    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
     // priomap with high priority for class "0" and low priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
+    // uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
     TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
     tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue (queue_capacity)); // cid[0] is band "0" - the Highest Priority band
     tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); // cid[1] is Low Priority

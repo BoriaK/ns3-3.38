@@ -857,7 +857,7 @@ TrafficControlLayer::GetNormalizedDequeueBandWidth(Ptr<NetDevice> device, uint8_
             {
                 Ptr<QueueDisc> qDisc = ndi->second.m_rootQueueDisc->GetQueueDiscClass(j)->GetQueueDisc();
                 // if queue_i(t) is either non empty or it's the same queue_i(t) that's about to recieve the next packet
-                uint8_t queueIndex = flow_priority - 1;
+                uint8_t queueIndex = flow_priority - 1;  // it's just know the queue index on the port, tha's about to recieve the incomming packet
                 if (qDisc->GetNPackets() || j == queueIndex)  
                 {
                     m_nonEmpty++;
@@ -865,11 +865,6 @@ TrafficControlLayer::GetNormalizedDequeueBandWidth(Ptr<NetDevice> device, uint8_
             }
         }
     }
-    // not sure ti's nessesarry
-    // if (m_nonEmpty < 1)
-    // {
-    //     m_nonEmpty = 1;
-    // }
     // calculate the normalized dequeue rate of a queue on a port (net-device) as 1/non-empty queues on this port
     m_gamma = 1.0 / m_nonEmpty;
     return m_gamma;
@@ -1451,6 +1446,8 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             else
                             {
                                 std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                                std::cout << "High Priority Threshold is:" << GetQueueThreshold_DT(m_alpha, m_alpha_l, m_alpha_h).GetValue() << std::endl;
+                                std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
                                 DropBeforeEnqueue(item);
                             }
                         }
@@ -1459,14 +1456,13 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             // step 1: calculate the Normalized dequeue BW of the designated queue:
                             float gamma_i = GetNormalizedDequeueBandWidth(device, m_flow_priority);
                             // step 2: get the total number of conjested queues in shared buffer
-                            int conjestedQueues = GetNumOfConjestedQueuesInSharedQueue_v2(gamma_i);
+                            int conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v1(m_flow_priority);
                             // for debug:
-                            // std::cout << "Num of High Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(2) << std::endl;
-                            // std::cout << "Num of Low Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue(1) << std::endl;
-                            std::cout << "Num of total congested queues " << conjestedQueues << std::endl;
+                            std::cout << "Num of High Priority congested queues " << conjestedQueues << std::endl;
+                            std::cout << "Num of Low Priority congested queues " << GetNumOfPriorityConjestedQueuesInSharedQueue_v1(2) << std::endl;
+                            // std::cout << "Num of total congested queues " << conjestedQueues << std::endl;
                             // step 3: use calculated gamma_i(t) and Np(t) to calculate the FB_Threshold_c(t)
                             if (queue->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue())
-                            // if (GetNumOfHighPriorityPacketsInSharedQueue().GetValue() < GetQueueThreshold_FB(alpha, alpha_l, alpha_h).GetValue())
                             {
                                 m_p_trace_threshold_h = GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue();  // for tracing
                                 // std::cout << "number of packets in queue on net-device: " << device << " is: " << queue->GetNPackets() << std::endl;
@@ -1476,6 +1472,9 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             else
                             {
                                 std::cout << "High Priority packet was dropped by Shared-Buffer" << std::endl;
+                                std::cout << "High Priority Threshold is:" << GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue() << std::endl;
+                                std::cout << "Number of High Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfHighPrioPacketsInQueue() << std::endl;
+                                std::cout << "Number of High Priority Conjested queues: " << conjestedQueues << std::endl;
                                 DropBeforeEnqueue(item);
                             }
                         }
@@ -1500,6 +1499,8 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             else
                             {
                                 std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                                std::cout << "Low Priority Threshold is:" << GetQueueThreshold_DT(m_alpha, m_alpha_l, m_alpha_h).GetValue() << std::endl;
+                                std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
                                 DropBeforeEnqueue(item);
                             }
                         }
@@ -1508,7 +1509,7 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             // step 1: calculate the Normalized dequeue BW of the designated queue:
                             float gamma_i = GetNormalizedDequeueBandWidth(device, m_flow_priority);
                             // step 2: get the total number of conjested queues in shared buffer
-                            int conjestedQueues = GetNumOfConjestedQueuesInSharedQueue_v2(gamma_i);
+                            int conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v1(m_flow_priority);
 
                             if (queue->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue())
                             {
@@ -1520,6 +1521,9 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                             else
                             {
                                 std::cout << "Low Priority packet was dropped by Shared-Buffer" << std::endl;
+                                std::cout << "Low Priority Threshold is:" << GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue() << std::endl;
+                                std::cout << "Number of Low Priority packets in queue on net-device: " << device << " is: " << queue->GetNumOfLowPrioPacketsInQueue() << std::endl;
+                                std::cout << "Number of Low Priority Conjested queues: " << conjestedQueues << std::endl;
                                 DropBeforeEnqueue(item);
                             }
                         }
@@ -1616,20 +1620,13 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                     {
                         // step 1: calculate the Normalized dequeue BW of the designated queue:
                         float gamma_i = GetNormalizedDequeueBandWidth(device, m_flow_priority);
+                        // for debug:
+                        std::cout << "the normalized dequeue rate on port: " << device << " is: " << gamma_i << std::endl;
                         // step 2: get the total number of conjested queues in shared buffer
                         int conjestedQueues = 0; // initilize to 0
-                        if (m_multiQueuePerPort)
-                        {
-                            conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v2(m_flow_priority, gamma_i);
-                            // for debug:
-                            std::cout << "Num of congested queues of priority " << m_flow_priority << " is: " << conjestedQueues << std::endl;
-                        }
-                        else
-                        {
-                            conjestedQueues = GetNumOfConjestedQueuesInSharedQueue_v2(gamma_i);
-                            // for debug:
-                            std::cout << "Num of total congested queues " << conjestedQueues << std::endl;
-                        }
+                        conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v1(m_flow_priority);
+                        // for debug:
+                        std::cout << "Num of congested queues of priority: " << int(m_flow_priority) << " is: " << conjestedQueues << std::endl;
                         // step 3: use calculated gamma_i(t) and Np(t) to calculate the FB_Threshold_c(t)
                         if (internal_qDisc->GetNumOfHighPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue())
                         {
@@ -1673,20 +1670,10 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                         float gamma_i = GetNormalizedDequeueBandWidth(device, m_flow_priority);
                         // step 2: get the total number of conjested queues in shared buffer
                         int conjestedQueues = 0; // initilize to 0
-                        if (m_multiQueuePerPort)
-                        {
-                            conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v2(m_flow_priority, gamma_i);
-                            // for debug:
-                            std::cout << "Num of congested queues of priority " << m_flow_priority << " is: " << conjestedQueues << std::endl;
-                        }
-                        else
-                        {
-                            conjestedQueues = GetNumOfConjestedQueuesInSharedQueue_v2(gamma_i);
-                            // for debug:
-                            std::cout << "Num of total congested queues " << conjestedQueues << std::endl;
-                        }
+                        conjestedQueues = GetNumOfPriorityConjestedQueuesInSharedQueue_v1(m_flow_priority);
+                        // for debug:
+                        std::cout << "Num of congested queues of priority " << int(m_flow_priority) << " is: " << conjestedQueues << std::endl;
                         // step 3: use calculated gamma_i(t) and Np(t) to calculate the FB_Threshold_c(t)
-
                         if (internal_qDisc->GetNumOfLowPrioPacketsInQueue().GetValue() < GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue())
                         {
                             m_p_trace_threshold_l = GetQueueThreshold_FB_v2(m_alpha, m_alpha_l, m_alpha_h, conjestedQueues, gamma_i).GetValue();  // for tracing
