@@ -65,6 +65,8 @@
 // The flow port range, each flow will be assigned a random port number within this range
 #define SERV_PORT_P0 50000
 #define SERV_PORT_P1 50001
+#define SERV_PORT_P2 50002
+#define SERV_PORT_P3 50003
 
 // Adopted from the simulation from snowzjx
 // Acknowledged to https://github.com/snowzjx/ns3-load-balance.git
@@ -74,7 +76,7 @@ using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
 std::string traffic_control_type = "SharedBuffer_DT_v01"; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
-std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
+std::string implementation = "via_MultiQueues/4_ToS";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string usedAlgorythm;  // "DT"/"FB"
 
 uint32_t prev = 0;
@@ -138,24 +140,24 @@ TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t 
 
 // Trace the Threshold Value for High Priority packets in the Shared Queue
 void
-TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
+TrafficControlThresholdHighTrace (size_t index, float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold_" + ToString(index) + ".dat", std::ios::out | std::ios::app);
   tchpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchpthr.close ();
 
-  std::cout << "HighPriorityQueueThreshold " << newValue << " packets " << std::endl;
+  std::cout << "HighPriorityQueueThreshold on port: " << index << "is: " << newValue << " packets " << std::endl;
 }
 
 // Trace the Threshold Value for Low Priority packets in the Shared Queue
 void
-TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
+TrafficControlThresholdLowTrace (size_t index, float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold_" + ToString(index) + ".dat", std::ios::out | std::ios::app);
   tclpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclpthr.close ();
   
-  std::cout << "LowPriorityQueueThreshold " << newValue << " packets " << std::endl;
+  std::cout << "LowPriorityQueueThreshold on port: " << index << "is: " << " packets " << std::endl;
 }
 
 // void DroppedPacketHandler(std::string context, Ptr<const Packet> packet) 
@@ -339,18 +341,25 @@ int main (int argc, char *argv[])
 
     NS_LOG_INFO ("Install QueueDisc");
 
+    // Priomap for 4 classes of ToS.
+    // Priomap indexes: [0, 2, 4, 6] are for ToS with priorities 0, 2, 4, 6.
+    // Priomap[6] = 0 (highest), Priomap[4] = 1, Priomap[2] = 2, Priomap[0] = 3 (lowest)
+    // on each port i, sub queues j are as follows:
+    // queues_i_0 <- packets of ToS priority 6
+    // queues_i_1 <- packets of ToS priority 4
+    // queues_i_2 <- packets of ToS priority 2
+    // queues_i_3 <- packets of ToS priority 0
+    // Technically not nesessary for RoundRobinPrioQueue
     TrafficControlHelper tch;
-    // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
-    // priomap with high priority for class "0" and low priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    // uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
-    TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
-    tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue (queue_capacity)); // cid[0] is band "0" - the Highest Priority band
-    tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); // cid[1] is Low Priority
+    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("3 0 2 0 1 0 0 0 0 0 0 0 0 0 0 0"));
+
+    TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 4, "ns3::QueueDiscClass");
+    tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity));
+    tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); 
+    tch.AddChildQueueDisc(handle, cid[2], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity));
+    tch.AddChildQueueDisc(handle, cid[3], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); 
 
     QueueDiscContainer qdiscs = tch.Install (switchDevicesOut);  // in this option we installed TCH on switchDevicesOut. to send data from switch to reciever
-
-    
 
 ///////// set the Traffic Controll layer to be a shared buffer////////////////////////
 
@@ -366,8 +375,10 @@ int main (int argc, char *argv[])
     tc->TraceConnectWithoutContext("PacketsInQueue", MakeCallback (&TrafficControlPacketsInSharedQueueTrace));
     tc->TraceConnectWithoutContext("HighPriorityPacketsInQueue", MakeCallback (&TrafficControlHighPriorityPacketsInSharedQueueTrace));
     tc->TraceConnectWithoutContext("LowPriorityPacketsInQueue", MakeCallback (&TrafficControlLowPriorityPacketsInSharedQueueTrace));
-    tc->TraceConnectWithoutContext("EnqueueingThreshold_High", MakeCallback (&TrafficControlThresholdHighTrace));
-    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low", MakeCallback (&TrafficControlThresholdLowTrace));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_High_0", MakeBoundCallback (&TrafficControlThresholdHighTrace, 0));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low_0", MakeBoundCallback (&TrafficControlThresholdLowTrace, 0));  
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_High_1", MakeBoundCallback (&TrafficControlThresholdHighTrace, 1));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low_1", MakeBoundCallback (&TrafficControlThresholdLowTrace, 1));
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -435,8 +446,10 @@ int main (int argc, char *argv[])
 
     NS_LOG_INFO ("Create Sockets, Applications and Sinks");
 
-    uint32_t ipTos_LP = 0x00; //Low priority: Best Effort
-    uint32_t ipTos_HP = 0x10;  //High priority: Maximize Throughput
+    uint32_t ipTos_HP = 0x10;  //(max) priority 6: Interactive
+    uint32_t ipTos_LP1 = 0x00; //(Low) priority 0: Best Effort
+    uint32_t ipTos_LP2 = 0x08; //(Low) priority 2: Bulk
+    uint32_t ipTos_LP3 = 0x18; //(Low) priority 4: Interactive Bulk
     
     ApplicationContainer sinkApps, sourceApps;
     
@@ -477,7 +490,11 @@ int main (int argc, char *argv[])
         InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
         socketAddressP0.SetTos(ipTos_HP);  // ToS 0x10 -> High priority
         InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
-        socketAddressP1.SetTos(ipTos_LP);  // ToS 0x0 -> Low priority
+        socketAddressP1.SetTos(ipTos_LP1);  // ToS 0x0 -> Low priority
+        InetSocketAddress socketAddressP2 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P2);
+        socketAddressP2.SetTos(ipTos_LP2);  // ToS 0x1 -> Low priority
+        InetSocketAddress socketAddressP3 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P3);
+        socketAddressP3.SetTos(ipTos_LP3);  // ToS 0x2 -> Low priority
         
         // create and install Client apps:    
         if (applicationType.compare("standardClient") == 0) 
@@ -494,6 +511,16 @@ int main (int argc, char *argv[])
           clientHelperP1.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
           clientHelperP1.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
           sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+
+          UdpClientHelper clientHelperP2 (socketAddressP2);
+          clientHelperP2.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+          clientHelperP2.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          sourceApps.Add(clientHelperP2.Install (servers.Get(serverIndex)));
+
+          UdpClientHelper clientHelperP3 (socketAddressP3);
+          clientHelperP3.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+          clientHelperP3.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          sourceApps.Add(clientHelperP3.Install (servers.Get(serverIndex)));
         } 
         else if (applicationType.compare("OnOff") == 0) 
         {
@@ -513,6 +540,22 @@ int main (int argc, char *argv[])
           clientHelperP1.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
           clientHelperP1.SetAttribute ("DataRate", StringValue ("2Mb/s"));
           sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+
+          OnOffHelper clientHelperP2 (socketType, socketAddressP2);
+          clientHelperP2.SetAttribute ("Remote", AddressValue (socketAddressP2));
+          clientHelperP2.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+          clientHelperP2.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+          clientHelperP2.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          clientHelperP2.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+          sourceApps.Add(clientHelperP2.Install (servers.Get(serverIndex)));
+
+          OnOffHelper clientHelperP3 (socketType, socketAddressP3);
+          clientHelperP3.SetAttribute ("Remote", AddressValue (socketAddressP3));
+          clientHelperP3.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+          clientHelperP3.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+          clientHelperP3.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          clientHelperP3.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+          sourceApps.Add(clientHelperP3.Install (servers.Get(serverIndex)));
         } 
         else if (applicationType.compare("prioClient") == 0)
         {
@@ -529,6 +572,20 @@ int main (int argc, char *argv[])
           // clientHelperP1.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
           clientHelperP1.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
           sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+
+          UdpPrioClientHelper clientHelperP2 (socketAddressP2);
+          clientHelperP2.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+          clientHelperP2.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          // clientHelperP2.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+          clientHelperP2.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+          sourceApps.Add(clientHelperP2.Install (servers.Get(serverIndex)));
+          
+          UdpPrioClientHelper clientHelperP3 (socketAddressP3);
+          clientHelperP3.SetAttribute ("Interval", TimeValue (Seconds (0.1)));
+          clientHelperP3.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          // clientHelperP3.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+          clientHelperP3.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+          sourceApps.Add(clientHelperP3.Install (servers.Get(serverIndex)));
         }
         else if (applicationType.compare("prioOnOff") == 0) 
         {
@@ -553,6 +610,26 @@ int main (int argc, char *argv[])
           // clientHelperP1.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
           clientHelperP1.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
           sourceApps.Add(clientHelperP1.Install (servers.Get(serverIndex)));
+
+          PrioOnOffHelper clientHelperP2 (socketType, socketAddressP2);
+          clientHelperP2.SetAttribute ("Remote", AddressValue (socketAddressP2));
+          clientHelperP2.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+          clientHelperP2.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+          clientHelperP2.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          clientHelperP2.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+          // clientHelperP2.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+          clientHelperP2.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+          sourceApps.Add(clientHelperP2.Install (servers.Get(serverIndex)));
+
+          PrioOnOffHelper clientHelperP3 (socketType, socketAddressP3);
+          clientHelperP3.SetAttribute ("Remote", AddressValue (socketAddressP3));
+          clientHelperP3.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.5]"));
+          clientHelperP3.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0.1]"));
+          clientHelperP3.SetAttribute ("PacketSize", UintegerValue (PACKET_SIZE));
+          clientHelperP3.SetAttribute ("DataRate", StringValue ("2Mb/s"));
+          // clientHelperP3.SetAttribute("NumOfPacketsHighPrioThreshold", UintegerValue (10)); // relevant only if "FlowPriority" NOT set by user
+          clientHelperP3.SetAttribute("FlowPriority", UintegerValue (0x2));  // manualy set generated packets priority: 0x1 high, 0x2 low
+          sourceApps.Add(clientHelperP3.Install (servers.Get(serverIndex)));
         }
         else 
         {
@@ -562,10 +639,16 @@ int main (int argc, char *argv[])
         // setup sinks
         Address sinkLocalAddressP0 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P0));
         Address sinkLocalAddressP1 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P1));
+        Address sinkLocalAddressP2 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P2));
+        Address sinkLocalAddressP3 (InetSocketAddress (Ipv4Address::GetAny (), SERV_PORT_P3));
         PacketSinkHelper sinkP0 (socketType, sinkLocalAddressP0); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
         PacketSinkHelper sinkP1 (socketType, sinkLocalAddressP1); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
+        PacketSinkHelper sinkP2 (socketType, sinkLocalAddressP2); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
+        PacketSinkHelper sinkP3 (socketType, sinkLocalAddressP3); // socketType is: "ns3::TcpSocketFactory" or "ns3::UdpSocketFactory"
         sinkApps.Add(sinkP0.Install (recievers.Get(recieverIndex)));
-        sinkApps.Add(sinkP1.Install (recievers.Get(recieverIndex)));     
+        sinkApps.Add(sinkP1.Install (recievers.Get(recieverIndex)));
+        sinkApps.Add(sinkP2.Install (recievers.Get(recieverIndex)));
+        sinkApps.Add(sinkP3.Install (recievers.Get(recieverIndex)));      
     }
 
     sourceApps.Start (Seconds (1.0));

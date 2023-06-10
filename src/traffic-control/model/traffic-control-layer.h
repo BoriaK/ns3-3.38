@@ -289,6 +289,12 @@ class TrafficControlLayer : public Object
 
     //////////////Added by me//////////////////////////////////////////////////
     /**
+     * \brief Get the index of the current port (net-device) from the pointer
+     * \returns index of the current port (net-device).
+     */
+    size_t GetNetDeviceIndex(Ptr<NetDevice> device);
+    
+    /**
      * \brief Get the current size of the shared queue disc in bytes, if
      *        operating in bytes mode, or packets, otherwise.
      * it iterates over all the NetDevices that are aggregated to the Node
@@ -432,9 +438,10 @@ class TrafficControlLayer : public Object
     bool m_multiQueuePerPort; // !< True if multi-queue/port is used
     float_t m_p_threshold_h; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
     float_t m_p_threshold_l; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
-    TracedValue<float_t> m_p_trace_threshold_h; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
-    TracedValue<float_t> m_p_trace_threshold_l; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
-    // TracedValue<float_t> m_p_threshold_temp; //!< calculated in case both thresholds reach 0 ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_h_0; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_h_1; //!< Maximum number of packets enqueued for high priority stream ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_l_0; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
+    TracedValue<float_t> m_p_trace_threshold_l_1; //!< Maximum number of packets enqueued for low priority stream ### Added BY ME ####
     TracedValue<float_t> m_b_threshold_h; //!< Maximum number of bytes enqueued for high priority stream ### Added BY ME ####
     TracedValue<float_t> m_b_threshold_l; //!< Maximum number of bytes enqueued for low priority stream ### Added BY ME ####
     // Flow Classification Parameters

@@ -73,7 +73,7 @@
 using namespace ns3;
 
 std::string dir = "./Trace_Plots/2In2Out_Topology/";
-std::string traffic_control_type = "SharedBuffer_FB_v01"; //"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
+std::string traffic_control_type = "SharedBuffer_DT_v01"; //"SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
 std::string implementation = "via_NetDevices";  // "via_NetDevices"/"via_FIFO_QueueDiscs"
 std::string usedAlgorythm;  // "DT"/"FB"
 
@@ -138,24 +138,24 @@ TrafficControlLowPriorityPacketsInSharedQueueTrace (uint32_t oldValue, uint32_t 
 
 // Trace the Threshold Value for High Priority packets in the Shared Queue
 void
-TrafficControlThresholdHighTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
+TrafficControlThresholdHighTrace (size_t index, float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tchpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlHighPriorityQueueThreshold_" + ToString(index) + ".dat", std::ios::out | std::ios::app);
   tchpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchpthr.close ();
 
-  std::cout << "HighPriorityQueueThreshold " << newValue << " packets " << std::endl;
+  std::cout << "HighPriorityQueueThreshold on port: " << index << "is: " << newValue << " packets " << std::endl;
 }
 
 // Trace the Threshold Value for Low Priority packets in the Shared Queue
 void
-TrafficControlThresholdLowTrace (float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
+TrafficControlThresholdLowTrace (size_t index, float_t oldValue, float_t newValue)  // added by me, to monitor Threshold
 {
-  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold.dat", std::ios::out | std::ios::app);
+  std::ofstream tclpthr (dir + traffic_control_type + "/" + implementation + "/TrafficControlLowPriorityQueueThreshold_" + ToString(index) + ".dat", std::ios::out | std::ios::app);
   tclpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclpthr.close ();
   
-  std::cout << "LowPriorityQueueThreshold " << newValue << " packets " << std::endl;
+  std::cout << "LowPriorityQueueThreshold on port: " << index << "is: " << " packets " << std::endl;
 }
 
 // void DroppedPacketHandler(std::string context, Ptr<const Packet> packet) 
@@ -420,8 +420,10 @@ int main (int argc, char *argv[])
     tc->TraceConnectWithoutContext("PacketsInQueue", MakeCallback (&TrafficControlPacketsInSharedQueueTrace));
     tc->TraceConnectWithoutContext("HighPriorityPacketsInQueue", MakeCallback (&TrafficControlHighPriorityPacketsInSharedQueueTrace));
     tc->TraceConnectWithoutContext("LowPriorityPacketsInQueue", MakeCallback (&TrafficControlLowPriorityPacketsInSharedQueueTrace));
-    tc->TraceConnectWithoutContext("EnqueueingThreshold_High", MakeCallback (&TrafficControlThresholdHighTrace));
-    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low", MakeCallback (&TrafficControlThresholdLowTrace));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_High_0", MakeBoundCallback (&TrafficControlThresholdHighTrace, 0));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low_0", MakeBoundCallback (&TrafficControlThresholdLowTrace, 0));  
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_High_1", MakeBoundCallback (&TrafficControlThresholdHighTrace, 1));
+    tc->TraceConnectWithoutContext("EnqueueingThreshold_Low_1", MakeBoundCallback (&TrafficControlThresholdLowTrace, 1));
 
 /////////////////////////////////////////////////////////////////////////////
 

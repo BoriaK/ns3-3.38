@@ -34,7 +34,7 @@ ToString (uint32_t value)
   return ss.str();
 }
 
-std::string usedAlgorythm = "FB";  // "DT"/"FB"
+std::string usedAlgorythm = "DT";  // "DT"/"FB"
 std::string implementation = "via_MultiQueues";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"
 std::string dir = "./Trace_Plots/";
 std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
@@ -403,10 +403,10 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
 void
 CreateAllPlotFiles()  // create a multiplot and all the sub plots sepperatly
 {
-  CreateSingle2DPlotFile(0, 0, "High");
-  CreateSingle2DPlotFile(0, 1, "Low");
-  CreateSingle2DPlotFile(1, 0, "High");
-  CreateSingle2DPlotFile(1, 1, "Low");
+  // CreateSingle2DPlotFile(0, 0, "High");
+  // CreateSingle2DPlotFile(0, 1, "Low");
+  // CreateSingle2DPlotFile(1, 0, "High");
+  // CreateSingle2DPlotFile(1, 1, "Low");
   CreateSingle2DMultiPlotFile();
 }
 
