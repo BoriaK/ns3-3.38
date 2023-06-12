@@ -36,7 +36,7 @@ ToString (uint32_t value)
 
 std::string usedAlgorythm = "DT";  // "DT"/"FB"
 std::string implementation = "via_MultiQueues/4_ToS";  // "via_NetDevices"/"via_FIFO_QueueDiscs"/"via_MultiQueues"/"via_MultiQueues/2_ToS"/"via_MultiQueues/4_ToS"
-// std::string noumOfToS = "2";  // "2"/"4"
+std::size_t numOfSubQueues = static_cast<size_t>(implementation[implementation.length() - 5] - '0');
 std::string dir = "./Trace_Plots/";
 std::string topology = "2In2Out";  // "Line"/"Incast"/"2In2Out"
 std::string traffic_control_type; // "SharedBuffer_DT_v01"/"SharedBuffer_FB_v01"
@@ -85,10 +85,10 @@ CreateSingle2DPlotFile(size_t portInd, size_t queueInd, std::string priority)  /
   std::string trace_parameter2 = "TrafficControl" + priority + "PriorityQueueThreshold_" + ToString(portInd);
   // can plot as many trace parameters as I wish
   std::string location = dir + topology + "_Topology/" + traffic_control_type + "/" + implementation + "/";
-  std::string graphicsFileName = location + "port_" + ToString(portInd) + "_" + priority + ".png";
-  std::string plotFileName = location + "port_" + ToString(portInd) + "_" + priority + ".plt";
+  std::string graphicsFileName = location + "port_" + ToString(portInd) + "_queue_" + ToString(queueInd) + "_" + priority + ".png";
+  std::string plotFileName = location + "port_" + ToString(portInd) + "_queue_" + ToString(queueInd) + "_" + priority + ".plt";
 
-  std::string plotTitle = priority + " Priority Packets vs Threshold";
+  std::string plotTitle = "port " + ToString(portInd) + " queue " + ToString(queueInd) + " " + priority + " Priority Packets vs Threshold";
   
   // std::string dataTitle = trace_parameter;
 
@@ -111,8 +111,8 @@ CreateSingle2DPlotFile(size_t portInd, size_t queueInd, std::string priority)  /
   // std::cout << "load data from file: " << location + trace_parameter1 + ".dat" << std::endl;
   
   double x, y;
-  x=0;
-  y=0;
+  x = 0;
+  y = 0;
 
   while (file1 >> x >> y) 
   {
@@ -178,7 +178,6 @@ CreateSingle2DMultiPlotFile()  // for a multiplot, with N data-sets each
   std::map<std::string, std::string> trace_parameter1_array;
   std::map<std::string, std::string> trace_parameter2_array;
 
-  size_t numOfSubQueues = static_cast<size_t>(implementation[implementation.length() - 5] - '0');
   for (size_t i = 0; i < 2; i++) // iterate over port
   {
     for (size_t j = 0; j < numOfSubQueues; j++)  // iterate over sub-queue
@@ -288,6 +287,15 @@ CreateAllPlotFiles()  // create a multiplot and all the sub plots sepperatly
   CreateSingle2DPlotFile(0, 1, "Low");
   CreateSingle2DPlotFile(1, 0, "High");
   CreateSingle2DPlotFile(1, 1, "Low");
+  
+  if (numOfSubQueues > 2)
+  {
+    CreateSingle2DPlotFile(0, 2, "Low");
+    CreateSingle2DPlotFile(0, 3, "Low");
+    CreateSingle2DPlotFile(1, 2, "Low");
+    CreateSingle2DPlotFile(1, 3, "Low");
+  }
+
   CreateSingle2DMultiPlotFile();
 }
 

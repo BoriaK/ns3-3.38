@@ -159,45 +159,6 @@ RoundRobinPrioQueueDisc::DoEnqueue(Ptr<QueueDiscItem> item)
     return retval;
 }
 
-// original DoDequeue function
-// Ptr<QueueDiscItem>
-// RoundRobinPrioQueueDisc::DoDequeue()
-// {
-//     NS_LOG_FUNCTION(this);
-
-//     Ptr<QueueDiscItem> item;
-
-//     for (uint32_t i = 0; i < GetNQueueDiscClasses(); i++)
-//     {
-//         if ((item = GetQueueDiscClass(i)->GetQueueDisc()->Dequeue()))
-//         {
-//             NS_LOG_LOGIC("Popped from band " << i << ": " << item);
-//             NS_LOG_LOGIC("Number packets band "
-//                          << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets());
-//             // for debug:
-//             std::cout << "Packet dequeued from band: " << i << std::endl;
-//             std::cout << "Number of packets in band " << i << ": " << GetQueueDiscClass(i)->GetQueueDisc()->GetNPackets() << std::endl;
-//             //////////////
-//             return item;
-//         }
-//     }
-
-//     NS_LOG_LOGIC("Queue empty");
-//     return item;
-// }
-
-
-// Calculate the total weight of all non-empty queues
-// double totalWeight = 0.0;
-// for (size_t i = 0; i < GetNQueueDiscClasses(); i++) 
-// {
-//     if (!GetQueueDiscClass(i)->GetQueueDisc()->Peek() == 0) 
-//     {
-//         totalWeight += m_weights[i];
-//     }
-// }
-
-
 // Round-Robbin DoDequeue:
 Ptr<QueueDiscItem>
 RoundRobinPrioQueueDisc::DoDequeue()

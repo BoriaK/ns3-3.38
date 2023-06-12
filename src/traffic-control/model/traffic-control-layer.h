@@ -33,6 +33,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <array>
 
 namespace ns3
 {
@@ -40,6 +41,9 @@ namespace ns3
 class Packet;
 class QueueDisc;
 class NetDeviceQueueInterface;
+
+/// Priority map
+typedef std::array<uint16_t, 16> Priomap;
 
 /**
  * \defgroup traffic-control Traffic Control model

@@ -490,11 +490,11 @@ int main (int argc, char *argv[])
         InetSocketAddress socketAddressP0 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P0);
         socketAddressP0.SetTos(ipTos_HP);  // ToS 0x10 -> High priority
         InetSocketAddress socketAddressP1 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P1);
-        socketAddressP1.SetTos(ipTos_LP1);  // ToS 0x0 -> Low priority
+        socketAddressP1.SetTos(ipTos_LP1);  // ToS 0x00 -> Low priority
         InetSocketAddress socketAddressP2 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P2);
-        socketAddressP2.SetTos(ipTos_LP2);  // ToS 0x1 -> Low priority
+        socketAddressP2.SetTos(ipTos_LP2);  // ToS 0x08 -> Low priority
         InetSocketAddress socketAddressP3 = InetSocketAddress (recieverIFs.GetAddress(recieverIndex), SERV_PORT_P3);
-        socketAddressP3.SetTos(ipTos_LP3);  // ToS 0x2 -> Low priority
+        socketAddressP3.SetTos(ipTos_LP3);  // ToS 0x18 -> Low priority
         
         // create and install Client apps:    
         if (applicationType.compare("standardClient") == 0) 
