@@ -34,6 +34,8 @@
 #include <vector>
 #include <utility>
 #include <string>
+#include <list>
+#include <array>
 
 #include "ns3/core-module.h"
 #include "ns3/applications-module.h"
@@ -144,7 +146,7 @@ TrafficControlThresholdHighTrace (size_t index, float_t oldValue, float_t newVal
   tchpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tchpthr.close ();
 
-  std::cout << "HighPriorityQueueThreshold on port: " << index << "is: " << newValue << " packets " << std::endl;
+  std::cout << "HighPriorityQueueThreshold on port: " << index << " is: " << newValue << " packets " << std::endl;
 }
 
 // Trace the Threshold Value for Low Priority packets in the Shared Queue
@@ -155,7 +157,7 @@ TrafficControlThresholdLowTrace (size_t index, float_t oldValue, float_t newValu
   tclpthr << Simulator::Now ().GetSeconds () << " " << newValue << std::endl;
   tclpthr.close ();
   
-  std::cout << "LowPriorityQueueThreshold on port: " << index << "is: " << " packets " << std::endl;
+  std::cout << "LowPriorityQueueThreshold on port: " << index << " is: " << " packets " << std::endl;
 }
 
 // void DroppedPacketHandler(std::string context, Ptr<const Packet> packet) 
@@ -341,9 +343,10 @@ int main (int argc, char *argv[])
 
     TrafficControlHelper tch;
     // priomap with low priority for class "0" and high priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"));
-    // priomap with high priority for class "0" and low priority for rest of the 15 classes (1-15). Technically not nesessary for RoundRobinPrioQueue
-    // uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", StringValue("0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"));
+    std::array<uint16_t, 16> prioArray = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    
+    Priomap prioMap = Priomap{prioArray};
+    uint16_t handle = tch.SetRootQueueDisc("ns3::RoundRobinPrioQueueDisc", "Priomap", PriomapValue(prioMap));
     TrafficControlHelper::ClassIdList cid = tch.AddQueueDiscClasses(handle, 2, "ns3::QueueDiscClass");
     tch.AddChildQueueDisc(handle, cid[0], "ns3::FifoQueueDisc" , "MaxSize", StringValue (queue_capacity)); // cid[0] is band "0" - the Highest Priority band
     tch.AddChildQueueDisc(handle, cid[1], "ns3::FifoQueueDisc", "MaxSize", StringValue (queue_capacity)); // cid[1] is Low Priority
@@ -353,7 +356,7 @@ int main (int argc, char *argv[])
     
 
 ///////// set the Traffic Controll layer to be a shared buffer////////////////////////
-
+    TcPriomap tcPrioMap = TcPriomap{prioArray};
     Ptr<TrafficControlLayer> tc;
     tc = router.Get(0)->GetObject<TrafficControlLayer>();
     tc->SetAttribute("SharedBuffer", BooleanValue(true));
@@ -361,6 +364,7 @@ int main (int argc, char *argv[])
     tc->SetAttribute("Alpha_High", UintegerValue (alpha_high));
     tc->SetAttribute("Alpha_Low", UintegerValue (alpha_low));
     tc->SetAttribute("TrafficControllAlgorythm", StringValue (usedAlgorythm));
+    tc->SetAttribute("PriorityMapforMultiQueue", TcPriomapValue(tcPrioMap));
 
     // monitor the packets in the Shared Buffer in Traffic Control Layer:
     tc->TraceConnectWithoutContext("PacketsInQueue", MakeCallback (&TrafficControlPacketsInSharedQueueTrace));

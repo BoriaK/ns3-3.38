@@ -1,6 +1,6 @@
 Topology: 2In2Out
 Queueing Algorithm: SharedBuffer_DT_v01
-Implementation Method: via_FIFO_QueueDiscs
+Implementation Method: via_FIFO_QueueDiscs/2_ToS
 Alpha High = 10 Alpha Low = 2
 Application: prioOnOff
 

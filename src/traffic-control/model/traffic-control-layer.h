@@ -34,6 +34,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <list>
 
 namespace ns3
 {
@@ -43,7 +44,7 @@ class QueueDisc;
 class NetDeviceQueueInterface;
 
 /// Priority map
-typedef std::array<uint16_t, 16> Priomap;
+typedef std::array<uint16_t, 16> TcPriomap;
 
 /**
  * \defgroup traffic-control Traffic Control model
@@ -437,6 +438,7 @@ class TrafficControlLayer : public Object
     float_t m_numConjestedQueuesLow;  //!< number of queues that are conjested at current time instance
     float_t numOfClasses;  //!< total number of classes. for now it's only High Priority/ Low Priority
     // general parameters:
+    TcPriomap m_prioMap; // the priority map used by the Round Robin Prio-QueueDisc
     std::string m_usedAlgorythm; // the Traffic Controll algorythm to be used to manage traffic in shared buffer
     bool m_useSharedBuffer; // !< True if Shared-Buffer is used
     bool m_multiQueuePerPort; // !< True if multi-queue/port is used
@@ -471,6 +473,28 @@ class TrafficControlLayer : public Object
  * \returns a reference to the stream
  */
 std::ostream& operator<<(std::ostream& os, const TrafficControlLayer::TCStats& stats);
+
+/**
+ * Serialize the priomap to the given ostream
+ *
+ * \param os
+ * \param priomap
+ *
+ * \return std::ostream
+ */
+std::ostream& operator<<(std::ostream& os, const TcPriomap& priomap);
+
+/**
+ * Serialize from the given istream to this priomap.
+ *
+ * \param is
+ * \param priomap
+ *
+ * \return std::istream
+ */
+std::istream& operator>>(std::istream& is, TcPriomap& priomap);
+
+ATTRIBUTE_HELPER_HEADER(TcPriomap);
 
 } // namespace ns3
 

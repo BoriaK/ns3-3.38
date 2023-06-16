@@ -43,6 +43,8 @@ NS_LOG_COMPONENT_DEFINE("TrafficControlLayer");
 
 NS_OBJECT_ENSURE_REGISTERED(TrafficControlLayer);
 
+ATTRIBUTE_HELPER_CPP(TcPriomap);
+
 TypeId
 TrafficControlLayer::GetTypeId()
 {
@@ -84,6 +86,11 @@ TrafficControlLayer::GetTypeId()
                         StringValue("DT"),
                         MakeStringAccessor(&TrafficControlLayer::m_usedAlgorythm),
                         MakeStringChecker())
+            .AddAttribute("PriorityMapforMultiQueue",
+                        "The Priority Map that's used in the Round Robbin algorythm for each port in MultiQueue scenario",
+                        TcPriomapValue(TcPriomap{{1, 2, 2, 2, 1, 2, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1}}),
+                        MakeTcPriomapAccessor(&TrafficControlLayer::m_prioMap),
+                        MakeTcPriomapChecker())
             .AddTraceSource("PacketsInQueue",
                             "Number of packets currently stored in the Shared Buffer in Traffic Control Layer",
                             MakeTraceSourceAccessor(&TrafficControlLayer::m_traceSharedBufferPackets),
@@ -1647,13 +1654,12 @@ TrafficControlLayer::Send(Ptr<NetDevice> device, Ptr<QueueDiscItem> item)
                 Ptr<QueueDisc> internal_qDisc;  // for the multiqueue case
                 if (ndi->second.m_rootQueueDisc->GetNQueueDiscClasses() > 1)  // if we use multiple queues/port. 
                 {
-                    Priomap prio2band = {3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // need to find a way to bind priomap to the main function
-                    uint16_t subQueueIndex = prio2band[0];
+                    uint16_t subQueueIndex = m_prioMap[0];
                     
                     SocketPriorityTag priorityTag;
                     if (item->GetPacket()->PeekPacketTag(priorityTag))
                     {
-                        subQueueIndex = prio2band[priorityTag.GetPriority() & 0x0f];
+                        subQueueIndex = m_prioMap[priorityTag.GetPriority() & 0x0f];
                     }
                     
                     internal_qDisc = qDisc->GetQueueDiscClass(subQueueIndex)->GetQueueDisc();
